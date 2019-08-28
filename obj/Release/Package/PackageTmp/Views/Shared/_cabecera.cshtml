@@ -1,0 +1,43 @@
+﻿@using ConvalidacionEducacionSuperior.Models
+@{
+    LoginModel userLog = (LoginModel)Session["usuarioValido"];
+}
+
+<div class="container">
+    <div class="login_header">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="login_header_left">
+                    <a href="~/Inicio/BandejaConvalidante">
+                        <span class="blue_content">PROCESO</span>
+                        <span class="trans_content">Convalidación</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="login_header_right">
+                    @if (userLog != null)
+                    {
+                        <div class="login_header_left">
+                            <a href="~/Inicio/BandejaConvalidante">
+                                <span class="trans_content">@userLog.datosUsuario.primerNombre @userLog.datosUsuario.primerApellido</span>
+                            </a>
+                        </div>
+                        <a href="" class="button general_button button_blue">Manual del solicitante</a>
+                        <a href="http://192.168.32.197/SedeElectronica/Tramites" class="button general_button button_pink">Salir</a>
+                        @*@Html.ActionLink("Salir", "Login", "Inicio", routeValues: null, htmlAttributes: new { @class = "button general_button button_pink" })*@
+                    }
+                    else
+                    {
+                        <a href="" class="button general_button button_blue">Manual del solicitante</a>
+                        @*@Html.ActionLink("Registrarse", "Nuevo", "Usuario", routeValues: null, htmlAttributes: new { @class = "button general_button button_pink" })*@
+                    }
+                </div>
+            </div>
+            <div class="col-md-12">
+                    
+                <img style="max-width:100%;" src="~/assets/images/cabecera_login.jpg" />
+            </div>
+        </div>
+    </div>
+</div>

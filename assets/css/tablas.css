@@ -1,0 +1,168 @@
+.tabla_title {
+  display: flex;
+
+  padding: 10px;
+
+  border-bottom: 1px solid #b3b3b3;
+
+  background: #e2e2e2;
+
+  align-items: center;
+}
+
+.tabla_title .icon-wrap {
+  width: 20px;
+
+  height: 20px;
+
+  padding: 5px;
+
+  border-radius: 50%;
+
+  background: #d0d0d0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-right: 10px;
+}
+
+.tabla_wrapper {
+  border: 2px solid #bdbdbd;
+
+  border-radius: 8px;
+  max-height: 2000px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+
+.tabla_wrapper.accordion {
+  max-height: 0px;
+  transition-timing-function: cubic-bezier(.01,.01,.14,1.02)
+}
+
+.tabla_wrapper.no-bordered {
+  border: none !important;
+}
+
+.tabla_container {
+  position: relative;
+}
+
+#tablas_section .icon-wrap {
+  cursor: pointer;
+
+  position: relative;
+
+  right: 0;
+
+  height: 35px;
+
+  top: 0;
+
+  width: 35px;
+
+  background: #3366cc;
+
+  padding: 10px;
+
+  border-radius: 50%;
+
+  margin-left: 20px;
+}
+
+.title-image-b h3 {
+  color: #3266cc;
+
+  font-weight: 700;
+
+  font-size: 24px;
+}
+
+.tabla_container .icon-wrap img {
+  width: 100%;
+
+  position: static !important;
+
+  height: auto;
+}
+
+.tb_td_key {
+  font-weight: bold;
+}
+
+.tr_full_td td {
+  width: 50%;
+}
+
+.scren_box_table table tr td {
+  width: 100%;
+}
+
+#tablas_section .title-image-b {
+  justify-content: space-between;
+  padding-left: 70px;
+}
+
+#tablas_section .title-image-b img {
+  left: 0;
+}
+#tablas_section .scren_box_table table tr:first-child td {
+  padding: 8px 11px;
+  border-top: none;
+}
+
+#tablas_section .icon-wrap img {
+  width: 14.5px;
+  position: static !important;
+  height: auto;
+}
+#tablas_section .scren_box_table table tr td:first-child {
+  border-left: 5px solid #bdbdbd;
+  font-weight: bold;
+}
+#tablas_section .scren_box_table table tbody tr:hover {
+  box-shadow: 0 3px 10px #d8d8d8;
+  background: rgba(255, 255, 2555, 0.6);
+}
+#tablas_section .scren_box_table table tr:hover td:first-child {
+  border-left-color: #659afe;
+  color: #659afe;
+}
+#recibidos .scren_box_table table tr td:first-child {
+  border-left: 5px solid #bdbdbd;
+  font-weight: inherit;
+  text-align: left;
+}
+
+/* End Accordion */
+
+@media screen and (max-width: 991px) {
+  #recibidos .scren_box_table table tr {
+    height: 100%;
+    border-bottom: 1px solid #bdbdbd;
+  }
+  #recibidos .scren_box_table table tr td {
+    border: none;
+  }
+}
+
+#tablas_section .tabla_body td {
+  min-width: 190px;
+}
+@media screen and (max-width: 768px) {
+  #tablas_section .title-image-b {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 0px;
+  }
+  #tablas_section .title-image-b img {
+    left: 0;
+    margin-right: 20px;
+  }
+}

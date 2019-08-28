@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.tms.com.co/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceInterop" targetNamespace="http://www.tms.com.co/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.tms.com.co/Imports">
+      <xsd:import schemaLocation="http://m2apgdoc01/TMS.InteropDoc.MENGESDOC/ServiceInterop.svc?xsd=xsd0" namespace="http://www.tms.com.co/" />
+      <xsd:import schemaLocation="http://m2apgdoc01/TMS.InteropDoc.MENGESDOC/ServiceInterop.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://m2apgdoc01/TMS.InteropDoc.MENGESDOC/ServiceInterop.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="DocumentoRadicarRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoRadicarRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoRadicarRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoRadicarResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoRadicarResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoEtapaRadicarRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoEtapaRadicarRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoEtapaRadicarRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoEtapaRadicarResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoEtapaRadicarResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoAnexarArchivoRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoAnexarArchivoRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoAnexarArchivoRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoAnexarArchivoResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoAnexarArchivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexoRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoConsultarAnexoRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexoRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexoResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoConsultarAnexoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexoFiltroRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoConsultarAnexoFiltroRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexoFiltroRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexoFiltroResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoConsultarAnexoFiltroResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultaIdEtapaRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoConsultaIdEtapaRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultaIdEtapaRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarIdEtapaResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoConsultarIdEtapaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoGetHashRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoGetHashRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoGetHashRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoGetHashResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoGetHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoGetPlantillaXMLRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoGetPlantillaXMLRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoGetPlantillaXMLRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoGetPlantillaXMLResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoGetPlantillaXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClientePJCrearRequest">
+    <wsdl:part name="parameters" element="tns:ClientePJCrearRequest" />
+  </wsdl:message>
+  <wsdl:message name="ClientePJCrearRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="ClientePJCrearResponse">
+    <wsdl:part name="parameters" element="tns:ClientePJCrearResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClienteModificarRequest">
+    <wsdl:part name="parameters" element="tns:ClienteModificarRequest" />
+  </wsdl:message>
+  <wsdl:message name="ClienteModificarRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="ClienteModificarResponse">
+    <wsdl:part name="parameters" element="tns:ClienteModificarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ContactoCrearRequest">
+    <wsdl:part name="parameters" element="tns:ContactoCrearRequest" />
+  </wsdl:message>
+  <wsdl:message name="ContactoCrearRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="ContactoCrearResponse">
+    <wsdl:part name="parameters" element="tns:ContactoCrearResponse" />
+  </wsdl:message>
+  <wsdl:message name="ContactoModificarRequest">
+    <wsdl:part name="parameters" element="tns:ContactoModificarRequest" />
+  </wsdl:message>
+  <wsdl:message name="ContactoModificarRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="ContactoModificarResponse">
+    <wsdl:part name="parameters" element="tns:ContactoModificarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerTablasParametrizadasRequest">
+    <wsdl:part name="parameters" element="tns:ObtenerTablasParametrizadasRequest" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerTablasParametrizadasRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerTablasParametrizadasResponse">
+    <wsdl:part name="parameters" element="tns:ObtenerTablasParametrizadasResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexosRadicadoRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoConsultarAnexosRadicadoRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexosRadicadoRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConsultarAnexosRadicadoResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoConsultarAnexosRadicadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConfirmarAnexosDescargadosRequest">
+    <wsdl:part name="parameters" element="tns:DocumentoConfirmarAnexosDescargadosRequest" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConfirmarAnexosDescargadosRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="DocumentoConfirmarAnexosDescargadosResponse">
+    <wsdl:part name="parameters" element="tns:DocumentoConfirmarAnexosDescargadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="CicloAprobacionGestionarRequest">
+    <wsdl:part name="parameters" element="tns:CicloAprobacionGestionarRequest" />
+  </wsdl:message>
+  <wsdl:message name="CicloAprobacionGestionarRequest_Headers">
+    <wsdl:part name="usuarioApp" element="tns:usuarioApp" />
+  </wsdl:message>
+  <wsdl:message name="CicloAprobacionGestionarResponse">
+    <wsdl:part name="parameters" element="tns:CicloAprobacionGestionarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceInterop">
+    <wsdl:operation name="DocumentoRadicar">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoRadicar" name="DocumentoRadicarRequest" message="tns:DocumentoRadicarRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoRadicarResponse" name="DocumentoRadicarResponse" message="tns:DocumentoRadicarResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoEtapaRadicar">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoEtapaRadicar" name="DocumentoEtapaRadicarRequest" message="tns:DocumentoEtapaRadicarRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoEtapaRadicarResponse" name="DocumentoEtapaRadicarResponse" message="tns:DocumentoEtapaRadicarResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoAnexarArchivo">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoAnexarArchivo" name="DocumentoAnexarArchivoRequest" message="tns:DocumentoAnexarArchivoRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoAnexarArchivoResponse" name="DocumentoAnexarArchivoResponse" message="tns:DocumentoAnexarArchivoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConsultarAnexo">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexo" name="DocumentoConsultarAnexoRequest" message="tns:DocumentoConsultarAnexoRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexoResponse" name="DocumentoConsultarAnexoResponse" message="tns:DocumentoConsultarAnexoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConsultarAnexoFiltro">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexoFiltro" name="DocumentoConsultarAnexoFiltroRequest" message="tns:DocumentoConsultarAnexoFiltroRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexoFiltroResponse" name="DocumentoConsultarAnexoFiltroResponse" message="tns:DocumentoConsultarAnexoFiltroResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConsultarIdEtapa">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConsultarIdEtapa" name="DocumentoConsultaIdEtapaRequest" message="tns:DocumentoConsultaIdEtapaRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConsultarIdEtapaResponse" name="DocumentoConsultarIdEtapaResponse" message="tns:DocumentoConsultarIdEtapaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoGetHashVersion">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoGetHashVersion" name="DocumentoGetHashRequest" message="tns:DocumentoGetHashRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoGetHashVersionResponse" name="DocumentoGetHashResponse" message="tns:DocumentoGetHashResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoGetPlantillaXML">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoGetPlantillaXML" name="DocumentoGetPlantillaXMLRequest" message="tns:DocumentoGetPlantillaXMLRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoGetPlantillaXMLResponse" name="DocumentoGetPlantillaXMLResponse" message="tns:DocumentoGetPlantillaXMLResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientePJCrear">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/ClientePJCrear" name="ClientePJCrearRequest" message="tns:ClientePJCrearRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/ClientePJCrearResponse" name="ClientePJCrearResponse" message="tns:ClientePJCrearResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ClienteModificar">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/ClienteModificar" name="ClienteModificarRequest" message="tns:ClienteModificarRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/ClienteModificarResponse" name="ClienteModificarResponse" message="tns:ClienteModificarResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ContactoCrear">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/ContactoCrear" name="ContactoCrearRequest" message="tns:ContactoCrearRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/ContactoCrearResponse" name="ContactoCrearResponse" message="tns:ContactoCrearResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ContactoModificar">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/ContactoModificar" name="ContactoModificarRequest" message="tns:ContactoModificarRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/ContactoModificarResponse" name="ContactoModificarResponse" message="tns:ContactoModificarResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTablasParametrizadas">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/ObtenerTablasParametrizadas" name="ObtenerTablasParametrizadasRequest" message="tns:ObtenerTablasParametrizadasRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/ObtenerTablasParametrizadasResponse" name="ObtenerTablasParametrizadasResponse" message="tns:ObtenerTablasParametrizadasResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConsultarAnexosRadicado">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexosRadicado" name="DocumentoConsultarAnexosRadicadoRequest" message="tns:DocumentoConsultarAnexosRadicadoRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexosRadicadoResponse" name="DocumentoConsultarAnexosRadicadoResponse" message="tns:DocumentoConsultarAnexosRadicadoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConfirmarAnexosDescargados">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConfirmarAnexosDescargados" name="DocumentoConfirmarAnexosDescargadosRequest" message="tns:DocumentoConfirmarAnexosDescargadosRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/DocumentoConfirmarAnexosDescargadosResponse" name="DocumentoConfirmarAnexosDescargadosResponse" message="tns:DocumentoConfirmarAnexosDescargadosResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CicloAprobacionGestionar">
+      <wsdl:input wsaw:Action="http://www.tms.com.co/IServiceInterop/CicloAprobacionGestionar" name="CicloAprobacionGestionarRequest" message="tns:CicloAprobacionGestionarRequest" />
+      <wsdl:output wsaw:Action="http://www.tms.com.co/IServiceInterop/CicloAprobacionGestionarResponse" name="CicloAprobacionGestionarResponse" message="tns:CicloAprobacionGestionarResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceInteropTMS" type="tns:IServiceInterop">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DocumentoRadicar">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoRadicar" style="document" />
+      <wsdl:input name="DocumentoRadicarRequest">
+        <soap:header message="tns:DocumentoRadicarRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoRadicarResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoEtapaRadicar">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoEtapaRadicar" style="document" />
+      <wsdl:input name="DocumentoEtapaRadicarRequest">
+        <soap:header message="tns:DocumentoEtapaRadicarRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoEtapaRadicarResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoAnexarArchivo">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoAnexarArchivo" style="document" />
+      <wsdl:input name="DocumentoAnexarArchivoRequest">
+        <soap:header message="tns:DocumentoAnexarArchivoRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoAnexarArchivoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConsultarAnexo">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexo" style="document" />
+      <wsdl:input name="DocumentoConsultarAnexoRequest">
+        <soap:header message="tns:DocumentoConsultarAnexoRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoConsultarAnexoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConsultarAnexoFiltro">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexoFiltro" style="document" />
+      <wsdl:input name="DocumentoConsultarAnexoFiltroRequest">
+        <soap:header message="tns:DocumentoConsultarAnexoFiltroRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoConsultarAnexoFiltroResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConsultarIdEtapa">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoConsultarIdEtapa" style="document" />
+      <wsdl:input name="DocumentoConsultaIdEtapaRequest">
+        <soap:header message="tns:DocumentoConsultaIdEtapaRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoConsultarIdEtapaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoGetHashVersion">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoGetHashVersion" style="document" />
+      <wsdl:input name="DocumentoGetHashRequest">
+        <soap:header message="tns:DocumentoGetHashRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoGetHashResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoGetPlantillaXML">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoGetPlantillaXML" style="document" />
+      <wsdl:input name="DocumentoGetPlantillaXMLRequest">
+        <soap:header message="tns:DocumentoGetPlantillaXMLRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoGetPlantillaXMLResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientePJCrear">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/ClientePJCrear" style="document" />
+      <wsdl:input name="ClientePJCrearRequest">
+        <soap:header message="tns:ClientePJCrearRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ClientePJCrearResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClienteModificar">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/ClienteModificar" style="document" />
+      <wsdl:input name="ClienteModificarRequest">
+        <soap:header message="tns:ClienteModificarRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ClienteModificarResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContactoCrear">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/ContactoCrear" style="document" />
+      <wsdl:input name="ContactoCrearRequest">
+        <soap:header message="tns:ContactoCrearRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ContactoCrearResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContactoModificar">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/ContactoModificar" style="document" />
+      <wsdl:input name="ContactoModificarRequest">
+        <soap:header message="tns:ContactoModificarRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ContactoModificarResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTablasParametrizadas">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/ObtenerTablasParametrizadas" style="document" />
+      <wsdl:input name="ObtenerTablasParametrizadasRequest">
+        <soap:header message="tns:ObtenerTablasParametrizadasRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ObtenerTablasParametrizadasResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConsultarAnexosRadicado">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoConsultarAnexosRadicado" style="document" />
+      <wsdl:input name="DocumentoConsultarAnexosRadicadoRequest">
+        <soap:header message="tns:DocumentoConsultarAnexosRadicadoRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoConsultarAnexosRadicadoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentoConfirmarAnexosDescargados">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/DocumentoConfirmarAnexosDescargados" style="document" />
+      <wsdl:input name="DocumentoConfirmarAnexosDescargadosRequest">
+        <soap:header message="tns:DocumentoConfirmarAnexosDescargadosRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DocumentoConfirmarAnexosDescargadosResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CicloAprobacionGestionar">
+      <soap:operation soapAction="http://www.tms.com.co/IServiceInterop/CicloAprobacionGestionar" style="document" />
+      <wsdl:input name="CicloAprobacionGestionarRequest">
+        <soap:header message="tns:CicloAprobacionGestionarRequest_Headers" part="usuarioApp" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CicloAprobacionGestionarResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceInterop">
+    <wsdl:port name="ServiceInteropTMS" binding="tns:ServiceInteropTMS">
+      <soap:address location="http://m2apgdoc01/TMS.InteropDoc.MENGESDOC/ServiceInterop.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

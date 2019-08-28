@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ws.convalidaciones.msl.com/" targetNamespace="http://ws.convalidaciones.msl.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="getWebRegistry" type="tns:getWebRegistry" />
+  <xs:element name="getWebRegistryResponse" type="tns:getWebRegistryResponse" />
+  <xs:complexType name="getWebRegistry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CorreoElectronico" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getWebRegistryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:consultaRespuestaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultaRespuestaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoCiudadExpedicion" type="xs:string" />
+      <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcionCiudadExpedicion" type="xs:string" />
+      <xs:element minOccurs="0" name="numeroIdentificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="primerApellido" type="xs:string" />
+      <xs:element minOccurs="0" name="primerNombre" type="xs:string" />
+      <xs:element minOccurs="0" name="respuesta" type="tns:respuestaDTO" />
+      <xs:element minOccurs="0" name="segundoApellido" type="xs:string" />
+      <xs:element minOccurs="0" name="segundoNombre" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoIdentificacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="respuestaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoRespuesta" type="xs:int" />
+      <xs:element minOccurs="0" name="mensajeRespuesta" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

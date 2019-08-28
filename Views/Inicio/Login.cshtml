@@ -1,0 +1,100 @@
+﻿@model ConvalidacionEducacionSuperior.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ministerio de Educación</title>
+    <link href="~/assets/css/bootstrap.grid.min.css" rel="stylesheet" />
+    <link href="~/assets/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/css/login.css" rel="stylesheet" />
+    <script src="~/Scripts/MEN/jsMen.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="login_header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="login_header_left">
+                            <span class="blue_content">PROCESO</span>
+                            <span class="trans_content">Convalidación</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="login_header_right">
+                            <a class="button general_button button_blue" href="">Manual del solicitante</a>
+                            <a class="button general_button button_pink" href="">Registrarse</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <img src="~/assets/images/cabecera_login.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="education_login">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            
+            <div class="container">
+                <div class="login_form_container">
+                    <form action="" id="login_form">
+                        <div class="field">
+                            <div class="icon_wrap">
+                                <img src="~/assets/images/icons/men-documento.svg" alt="">
+                            </div>
+                            @Html.DropDownList("tipoDoc", null, htmlAttributes: new { id = "login_type_doc" })
+
+                        </div>
+                        <div class="field">
+                            <span>@Html.ValidationSummary(true, "")</span>
+                        </div>
+                        <div class="field">
+                            <div class="icon_wrap">
+                                <img src="~/assets/images/icons/men-id.svg" alt="">
+                            </div>
+                            @Html.EditorFor(model => model.usuario, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número de documento" } })
+                            
+                        </div>
+                        <div class="field">
+                            <span>@Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })</span>
+                        </div>
+                        <div class="field">
+                            <div class="icon_wrap">
+                                <img src="~/assets/images/icons/men-password.svg" alt="">
+                            </div>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", id = "txtPsw", @type = "password", placeholder = "Contraseña" } })
+                            
+                            <div class="icon_wrap icon_right">
+                                <img style="height: 47%;" src="~/assets/images/icons/men-view.svg" alt="" onclick="verOcultar()">
+                            </div>
+                        </div>
+                        <div class="field">
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field_small">
+                            <a href="">¿Olvidó su contraseña?</a>
+                        </div>
+                        <div class="field field_spaced text-center">
+                            @*<input type="submit" class="button general_button button_blue ingresar" id="btnFaseI" value="INGRESAR" />*@
+                            <a class="button general_button button_blue ingresar" href="~/Inicio/BandejaConvalidante?email=lpradac@hotmail.com">INGRESAR</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </section>
+</body>
+
+</html>

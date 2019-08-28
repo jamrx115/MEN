@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.9\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props" Condition="Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.9\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BFA6637F-50FF-4764-B2C2-C3E187BE5B61}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConvalidacionEducacionSuperior</RootNamespace>
+    <AssemblyName>ConvalidacionEducacionSuperior</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44362</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerLaunchUrl>http://{ServiceIPAddress}</DockerLaunchUrl>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.9.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.9.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.3.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Packaging.4.5.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\AutenticacionLogin\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioBizagi\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioBozagiConsulta\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioSGD\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\Entidades\tbSolicitudsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConsumeServicioBizagi.cs" />
+    <Compile Include="Models\ConsumeServicioSGD.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\PagoRequest.cs" />
+    <Compile Include="Models\ParametrosEntrada.cs" />
+    <Compile Include="Models\Paso2Model.cs" />
+    <Compile Include="Models\Paso3Model.cs" />
+    <Compile Include="Models\Paso4Model.cs" />
+    <Compile Include="Models\SolicitudModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\Constancia\Constancia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constancia.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Archivos\ModeloXml" />
+    <None Include="Connected Services\AutenticacionLogin\ConsultaWSWebRegistry.wsdl" />
+    <None Include="Connected Services\AutenticacionLogin\ConsultaWSWebRegistry.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\bootstrap.grid.min.css" />
+    <Content Include="assets\css\custom.css" />
+    <Content Include="assets\css\login.css" />
+    <Content Include="assets\css\pantalla1.css" />
+    <Content Include="assets\css\tablas.css" />
+    <Content Include="Connected Services\AutenticacionLogin\ConvalidacionEducacionSuperior.AutenticacionLogin.consultaRespuestaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AutenticacionLogin\ConvalidacionEducacionSuperior.AutenticacionLogin.getWebRegistryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServicioBizagi\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioBizagi\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioBizagi\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServicioBizagi\workflowenginesoa.wsdl" />
+    <None Include="Connected Services\ServicioBozagiConsulta\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioBozagiConsulta\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioBozagiConsulta\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServicioBizagi\workflowenginesoa1.disco" />
+    <Content Include="assets\images\cabecera_login.jpg" />
+    <Content Include="assets\images\cabecera_login.png" />
+    <Content Include="assets\images\icons\felcha arriba.svg" />
+    <Content Include="assets\images\icons\flecha-abajo.svg" />
+    <Content Include="assets\images\icons\men-acepto.svg" />
+    <Content Include="assets\images\icons\men-agregar instituciones.svg" />
+    <Content Include="assets\images\icons\men-alerta.svg" />
+    <Content Include="assets\images\icons\men-anterior.svg" />
+    <Content Include="assets\images\icons\men-arrow-down.svg" />
+    <Content Include="assets\images\icons\men-autorizaciones.svg" />
+    <Content Include="assets\images\icons\men-bars.svg" />
+    <Content Include="assets\images\icons\men-borrador.svg" />
+    <Content Include="assets\images\icons\men-borrar.svg" />
+    <Content Include="assets\images\icons\men-boton-alerta.svg" />
+    <Content Include="assets\images\icons\men-cargar.svg" />
+    <Content Include="assets\images\icons\men-celular.svg" />
+    <Content Include="assets\images\icons\men-ciudad.svg" />
+    <Content Include="assets\images\icons\men-convalidar-titulo.svg" />
+    <Content Include="assets\images\icons\men-datos-personales.svg" />
+    <Content Include="assets\images\icons\men-datos.svg" />
+    <Content Include="assets\images\icons\men-declaracion-manifiesto.svg" />
+    <Content Include="assets\images\icons\men-direccion.svg" />
+    <Content Include="assets\images\icons\men-documento.svg" />
+    <Content Include="assets\images\icons\men-documentos-recibidos.svg" />
+    <Content Include="assets\images\icons\men-download.svg" />
+    <Content Include="assets\images\icons\men-email.svg" />
+    <Content Include="assets\images\icons\men-enviar.svg" />
+    <Content Include="assets\images\icons\men-especialidad-base-especialidad.svg" />
+    <Content Include="assets\images\icons\men-facebook.svg" />
+    <Content Include="assets\images\icons\men-filtros.svg" />
+    <Content Include="assets\images\icons\men-id.svg" />
+    <Content Include="assets\images\icons\men-importante.svg" />
+    <Content Include="assets\images\icons\men-informacion-aportada.svg" />
+    <Content Include="assets\images\icons\men-informacion.svg" />
+    <Content Include="assets\images\icons\men-Información especial Base.svg" />
+    <Content Include="assets\images\icons\men-instagram.svg" />
+    <Content Include="assets\images\icons\men-institucion-superior.svg" />
+    <Content Include="assets\images\icons\men-institucion-titulo-convalidar.svg" />
+    <Content Include="assets\images\icons\men-instituciones.svg" />
+    <Content Include="assets\images\icons\men-notificacion-electronica.svg" />
+    <Content Include="assets\images\icons\men-notificacion-fisica.svg" />
+    <Content Include="assets\images\icons\men-password.svg" />
+    <Content Include="assets\images\icons\men-politica.svg" />
+    <Content Include="assets\images\icons\men-pregarado.svg" />
+    <Content Include="assets\images\icons\men-pregrado-convalidar-título-posgrado.svg" />
+    <Content Include="assets\images\icons\men-programa-educacion-superior-convalidar.svg" />
+    <Content Include="assets\images\icons\men-salir.svg" />
+    <Content Include="assets\images\icons\men-solicitudes.svg" />
+    <Content Include="assets\images\icons\men-terminos.svg" />
+    <Content Include="assets\images\icons\men-twitter.svg" />
+    <Content Include="assets\images\icons\men-user.svg" />
+    <Content Include="assets\images\icons\men-verificacion.svg" />
+    <Content Include="assets\images\icons\men-view.svg" />
+    <Content Include="assets\js\custom.js" />
+    <None Include="Connected Services\AutenticacionLogin\configuration91.svcinfo" />
+    <None Include="Connected Services\AutenticacionLogin\configuration.svcinfo" />
+    <None Include="Connected Services\AutenticacionLogin\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServicioSGD\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioSGD\configuration.svcinfo" />
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.CicloAprobacionGestionarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.CicloAprobacionGestionarResponseOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ClienteModificarOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ClienteModificarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ClientePJCrearOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ClientePJCrearResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ContactoCrearOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ContactoCrearResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ContactoModificarOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ContactoModificarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoAnexarArchivoOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoAnexarArchivoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConfirmarAnexosDescargadosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConfirmarAnexosDescargadosResponseOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConsultaIdEtapaOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConsultarAnexoFiltroResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConsultarAnexoFiltroResponseOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConsultarAnexoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConsultarAnexoResponseOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConsultarAnexosRadicadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConsultarAnexosRadicadoResponseOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoConsultarIdEtapaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoEtapaRadicarOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoEtapaRadicarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoGetHashOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoGetHashResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoGetPlantillaXMLOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoGetPlantillaXMLResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoRadicarOut.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.DocumentoRadicarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.ObtenerTablasParametrizadasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.RegistrosEntidad.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioSGD\ConvalidacionEducacionSuperior.ServicioSGD.RptOperacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServicioSGD\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\estiloPropio.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="fonts\cabecera.PNG" />
+    <Content Include="fonts\facebook.png" />
+    <Content Include="fonts\facebook_1.PNG" />
+    <Content Include="fonts\icono-persona.png" />
+    <Content Include="fonts\imgPdf_I.jfif" />
+    <Content Include="fonts\instagram.jpg" />
+    <Content Include="fonts\instagram_1.PNG" />
+    <Content Include="fonts\Step_1.png" />
+    <Content Include="fonts\Step_2.png" />
+    <Content Include="fonts\Step_3.png" />
+    <Content Include="fonts\Step_4.png" />
+    <Content Include="fonts\twitter.png" />
+    <Content Include="fonts\twtter_1.PNG" />
+    <Content Include="Scripts\MEN\Autocompletar.js" />
+    <Content Include="Scripts\MEN\jsMen.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\alltic-logo-trans %281%29.png" />
+    <Content Include="fonts\Fondo.PNG" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\LogoMinE.PNG" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Connected Services\ServicioBozagiConsulta\QuerySOA.wsdl" />
+    <None Include="Connected Services\ServicioSGD\ServiceInterop.wsdl" />
+    <None Include="Connected Services\ServicioSGD\ServiceInterop.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioSGD\ServiceInterop1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioSGD\ServiceInterop2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dockerfile" />
+    <None Include=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
+    <Content Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Reportes\Constancia\Constancia.xsc">
+      <DependentUpon>Constancia.xsd</DependentUpon>
+    </Content>
+    <None Include="Reportes\Constancia\Constancia.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Constancia.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\Constancia\Constancia.xss">
+      <DependentUpon>Constancia.xsd</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Inicio\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
+    <Content Include="Views\Inicio\FaseII.cshtml" />
+    <Content Include="Views\Inicio\FaseIII.cshtml" />
+    <Content Include="Views\Inicio\FaseIV.cshtml" />
+    <Content Include="Views\Shared\_cabecera.cshtml" />
+    <Content Include="Views\Shared\_footer.cshtml" />
+    <Content Include="Views\Inicio\BandejaConvalidante.cshtml" />
+    <Content Include="Views\Usuario\Edita.cshtml" />
+    <Content Include="Views\Usuario\CambiaContrasena.cshtml" />
+    <Content Include="Views\Inicio\listaSolicitudes.cshtml" />
+    <Content Include="Views\Error\_ErrorPage.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Usuario\Nuevo.cshtml" />
+    <Content Include="Views\Inicio\Resumen.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Inicio\Respuesta.cshtml" />
+    <Content Include="Views\Inicio\LoginSession.cshtml" />
+    <Content Include="Views\Inicio\FaseI.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Archivos\Documentos\Originales\" />
+    <Folder Include="Archivos\Documentos\Traducidos\" />
+    <Folder Include="Archivos\Pregrado\SegundaEspInernal\" />
+    <Folder Include="Archivos\Pregrado\SegundaEspNal\" />
+    <Folder Include="Archivos\Pregrado\ValidaTitulo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConvalidacionEducacionSuperiorDatos\ConvalidacionEducacionSuperiorDatos.csproj">
+      <Project>{8e3b1fda-8dae-4789-88e4-13afec868b4e}</Project>
+      <Name>ConvalidacionEducacionSuperiorDatos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AutenticacionLogin\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioBizagi\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioBozagiConsulta\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioSGD\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reportes\Constancia\ConstanciaReport.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62250</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44362/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.9\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.9\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.9\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.9\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets'))" />
+  </Target>
+  <Import Project="packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.9\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets" Condition="Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.9\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

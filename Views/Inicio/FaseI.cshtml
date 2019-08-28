@@ -1,0 +1,427 @@
+﻿@model ConvalidacionEducacionSuperiorDatos.tbSolicitud
+@using ConvalidacionEducacionSuperior.Models
+@{
+    ViewBag.Title = "FaseI";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+  
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body onload="nobackbutton()">
+    
+
+    <div class="container text-left">
+
+        <section id="screen2">
+            <div class="screen_boxwizard_buttons row">
+                <div class="boxwizard_button active col">
+                    <span>Aprobación de términos y condiciones</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Selección de filtros de entrada</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Diligenciamiento de formato de Solicitud</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Cargue de documentos</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Resumen</span>
+                </div>
+            </div>
+
+            <div class="line-progress">
+                <ul>
+                    <li><span class="progres-active" href="#"></span></li>
+                    <li><span href="#"></span></li>
+                    <li><span href="#"></span></li>
+                    <li><span href="#"></span></li>
+                    <li><span href="#"></span></li>
+                </ul>
+            </div>
+
+            <div class="lines_wizard_general wizard1">
+                <div class="title-image-b">
+                    <img src="~/assets/images/icons/men-terminos.svg" alt="">
+                    <h3 class="wizard_genera_title">
+                        Términos y condiciones de uso del Sistema de Información de Convalidaciones de
+                        Educación Superior
+                    </h3>
+                </div>
+
+                <div class="wizard_lines_all">
+                    <div class="wizard_line_wrapper">
+                        <div class="wizard_line_container">
+                            <div class="wizard_line_title">
+                                <h4>
+                                    <span class="resaltado">
+                                        Aspectos generales
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="wizard_line_context">
+                                <p>
+                                    El <span class="resaltado">Ministerio de Educación Nacional de Colombia (MEN)</span> creó el Sistema
+                                    de Información de
+                                    Convalidaciones
+                                    de
+                                    Educación Superior y puso en funcionamiento un sitio web para hacer el trámite de Convalidación de
+                                    títulos
+                                    otorgados por Instituciones de Educación Superior en el exterior. <br><br>
+
+                                    Al ingresar al sitio web, el solicitante acepta los términos y condiciones que regulan el uso de esta
+                                    página o los servicios ofrecidos y el Ministerio de Educación, por su parte, puede modificarlos en
+                                    cualquier momento.
+                                </p>
+                            </div>
+                            <div class="wizard_line_title">
+                                <h4>
+                                    <span class="resaltado">
+                                        El trámite de Convalidación
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="wizard_line_context">
+                                <p>
+                                    La existencia de Convenios internacionales NO exime al poseedor de un título en Educación Superior
+                                    obtenido en el exterior, de realizar el trámite de Convalidación ante el Gobierno colombiano a través
+                                    del Ministerio de Educación Nacional. <br><br>
+
+                                    El trámite de Convalidación se realiza completamente en línea y sin intermediación alguna. <br><br>
+
+                                    El solicitante creará un usuario y una contraseña desde la página web del Sistema de Información de
+                                    Convalidaciones de Educación Superior para iniciar, modificar y hacer seguimiento al estado de su
+                                    trámite. <br><br>
+
+                                    El usuario y la clave asignadas para acceder al sitio web de servicios del Sistema de Información de
+                                    Convalidaciones son personales, intransferibles y el solicitante será el único responsable por su uso
+                                    adecuado. <br><br>
+
+                                    Bajo la gravedad del juramento, el solicitante manifiesta que la información que consignará durante el
+                                    trámite de Convalidación es verídica y en consecuencia, acepta que podrá ser verificada ante las
+                                    respectivas autoridades o establecimientos educativos indicados. En caso de suministrar información
+                                    falsa, incurre en el delito establecido en los Artículos 289 y 442 del Código Penal Colombiano.
+                                    <br><br>
+
+                                    Asimismo, el solicitante acepta que previamente leyó y entendió los siguientes instructivos:
+                                    Requisitos
+                                    mínimos para la solicitud de Convalidación, Guía Práctica de Convalidaciones y Preguntas Frecuentes
+                                    elaboradas con base en la Resolución No.20128 del 2019 “por medio de la cual se regula la
+                                    Convalidación
+                                    de títulos de Educación Superior otorgados en el exterior y que deroga la Resolución 20797 de 2017”.
+                                    <br><br>
+
+                                    Como el trámite de Convalidación implica la realización de una serie de etapas previas a la expedición
+                                    de una Resolución o una Certificación, según el caso, el Ministerio dará respuesta a la solicitud
+                                    únicamente a través de los Actos Administrativos que corresponda. <br><br>
+
+                                    Si para verificar aspectos legales o académicos, el Ministerio requiere que el solicitante explique,
+                                    aclare o aporte información adicional, este deberá responder a través de la página web del Sistema de
+                                    Información de Convalidaciones de Educación Superior o del Sistema que defina el Ministerio de
+                                    Educación
+                                    dentro del plazo legal establecido. <br><br>
+
+                                    En caso de que se requiera información adicional, el trámite de Convalidación quedará suspendido
+                                    durante
+                                    30 días calendario en los términos del Código de Procedimiento Administrativo y de lo Contencioso
+                                    Administrativo o de las normas que los modifiquen. <br><br>
+
+                                    El proceso se reanudará una vez el solicitante aporte lo requerido. Igualmente, se suspenderá el
+                                    término
+                                    cuando de oficio, la Administración requiera información adicional que permita establecer cualquier
+                                    aspecto de legalidad, relacionado con el trámite de Convalidación. <br><br>
+
+                                    Si el solicitante acepta la notificación electrónica, la cuenta de correo registrada en el momento de
+                                    iniciar el trámite será el único medio para recibir la Resolución expedida con la decisión sobre su
+                                    solicitud. En caso contrario, la Resolución será remitida por Correo Certificado a la dirección física
+                                    autorizada en el momento de hacer la solicitud. <br><br>
+
+                                    El Sistema de Información de Convalidaciones de Educación Superior no está diseñado para hacer
+                                    consultas. Por esa razón, si después de verificar la información previa, al solicitante se le
+                                    presentan
+                                    dudas, se le recomienda ingresar a la página del Ministerio de Educación Nacional, al enlace de la
+                                    Unidad de Atención al Ciudadano y radicar la Consulta en línea. <br><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="title-image-b">
+                        <img src="~/assets/images/icons/men-autorizaciones.svg" alt="">
+                        <h3 class="wizard_genera_title">Autorizaciones y exoneraciones</h3>
+                    </div>
+                    <div class="wizard_line_container">
+                        <div class="wizard_line_context left-dots">
+                            <ul>
+                                <li>
+                                    En el sitio web del <span class="resaltado">
+                                        Sistema de Información de Convalidaciones de Educación
+                                        Superior
+                                    </span>, el Ministerio
+                                    de Educación se
+                                    reserva el derecho de corregir cualquier error, cambiar o actualizar la información en cualquier
+                                    momento y sin previo
+                                    aviso. El Ministerio hace sus mayores esfuerzos para que el contenido suministrado sea de óptima
+                                    calidad, y en tal
+                                    sentido, el solicitante acepta utilizar el servicio.
+                                </li>
+                                <li>
+                                    En caso de que el solicitante requiera autorizar a otra persona para llevar a cabo el trámite de
+                                    Convalidación, deberá
+                                    autorizarlo (a) de manera expresa en el formato de solicitud.
+                                </li>
+                                <li>
+                                    El solicitante, en forma voluntaria y expresa, autoriza al Ministerio de Educación Nacional a
+                                    registrar y procesar todos
+                                    los datos y la información suministrada en el momento de hacer el registro o usar el sitio web.
+                                </li>
+                                <li>
+                                    El sitio web del Sistema de Información de Convalidaciones puede tener enlaces a otros sitios de
+                                    interés o a documentos
+                                    localizados en páginas web de propiedad de otras entidades, personas u organizaciones diferentes al
+                                    Ministerio de
+                                    Educación.
+                                </li>
+                                <li>
+                                    Cuando el solicitante acceda a un sitio web o a un documento individual localizado en otra página, a
+                                    través de un
+                                    vínculo establecido en el sitio web del Sistema de Información de Convalidaciones, deberá someterse
+                                    a
+                                    las Condiciones de
+                                    uso y a la Política de Privacidad de la página web a la que lo envía el enlace.
+
+                                </li>
+                                <li>
+                                    La publicación de un vínculo de un sitio web de otra empresa, entidad o programa por parte del
+                                    Ministerio, no implica
+                                    necesariamente la existencia de relaciones entre esa cartera y el propietario del sitio o página web
+                                    vinculada, ni la
+                                    aceptación o aprobación por esta de sus contenidos o servicios.
+
+                                </li>
+                                <li>
+                                    Asimismo, el Ministerio de Educación no se hace responsable de la información que se encuentre fuera
+                                    del sitio web del
+                                    Sistema de Información de Convalidaciones y no sea gestionada directamente por su administrador. Los
+                                    vínculos que
+                                    aparecen en el sitio web tienen como propósito informar a los solicitantes sobre la existencia de
+                                    otras fuentes
+                                    susceptibles de ampliar los contenidos ofrecidos en la página.
+                                </li>
+                                <li>
+                                    <span class="resaltado">El Sistema de Información de Convalidaciones de Educación Superior</span> no
+                                    garantiza que la conexión y
+                                    la
+                                    operación del sitio
+                                    estén exentas de indisponibilidad y el solicitante manifiesta expresamente que conoce estas
+                                    circunstancias y que, en el
+                                    evento de un error, la responsabilidad del Ministerio se limitará exclusivamente a corregirlo en un
+                                    tiempo prudencial.
+                                </li>
+                                <li>
+                                    El Ministerio de Educación no se hace responsable del servicio ininterrumpido o libre de error de
+                                    la
+                                    página.
+                                </li>
+                                <li>
+                                    El Ministerio de Educación no será responsable por los perjuicios que el solicitante pueda causar
+                                    a
+                                    terceros en la
+                                    utilización del Sistema de Información de Convalidaciones de Educación Superior.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section-gray">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="inform_text_wrap">
+                                <div class="inform_title">
+                                    <div class="title-image-b">
+                                        <img src="~/assets/images/icons/men-politica.svg" alt="">
+                                        <h3 class="wizard_genera_title">
+                                            Política de tratamiento de datos personales
+                                        </h3>
+                                    </div>
+
+                                </div>
+                                <div class="wizard_line_container">
+                                    <p>
+                                        El <span class="resaltado">MEN </span>se compromete a adoptar una
+                                        <a href="https://www.mineducacion.gov.co/portal/atencion-al-ciudadano/Participacion-Ciudadana/353715:Proteccion-de-Datos-Personales" target="_blank">política de tratamiento de datos</a>
+                                        personales, con el objeto de proteger la privacidad de la información personal obtenida a través del Sistema general de convalidación Superior.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="inform_text_wrap">
+                                <div class="inform_title">
+                                    <div class="title-image-b">
+                                        <img src="~/assets/images/icons/men-notificacion-electronica.svg" alt="">
+                                        <h3 class="wizard_genera_title">
+                                            Notificación Electrónica
+                                        </h3>
+                                    </div>
+
+                                </div>
+                                <div class="wizard_line_container">
+                                    <p>
+                                        <span class="resaltado">Ley 1437 de 2011,</span> “Por la cual se expide el Código de Procedimiento Administrativo y de lo Contencioso Administrativo”;
+                                        Artículo 56. <span class="resaltado">NOTIFICACIÓN ELECTRÓNICA</span>. Las autoridades podrán notificar sus actos a través de medios electrónicos,
+                                        siempre que el administrado haya aceptado este medio de notificación.
+                                    </p>
+
+                                    <p>
+                                        Sin embargo, durante el desarrollo de la actuación, el interesado podrá solicitar a la autoridad que las notificaciones
+                                        sucesivas no se realicen por medios electrónicos, sino de conformidad con los otros medios previstos en el Capítulo
+                                        Quinto del presente Título.
+                                    </p>
+
+                                    <p>
+                                        La notificación quedará surtida a partir de la fecha y hora en que el administrado acceda al Acto Administrativo, fecha
+                                        y hora que deberá certificar la Administración.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="screen2_actions">
+                <a href="~/Inicio/BandejaConvalidante" class="button general_button has_icon button_blue">
+                    <div class="icon_wrap">
+                        <img src="~/assets/images/icons/men-salir.svg" alt="">
+                    </div>
+                    Menú
+                </a>
+                <a href="~/Inicio/FaseII?id=@Model.SolicitudId" class="button general_button has_icon button_pink">
+                    <div class="icon_wrap">
+                        <img src="~/assets/images/icons/men-acepto.svg" alt="">
+                    </div>
+                    Acepto
+                </a>
+            </div>
+
+
+        </section>
+    </div>
+
+    
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal_pop" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content  modal-set" style="height:620px" >
+                <div class="modal-header">
+                    <h2 class="modal-title bold" id="exampleModalLabel">Información Importante</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-justify" style="height:550px">
+                    <br />
+                    <p>
+                        Señor solicitante, recuerde que si tiene un trámite vigente con la Resolución 20797 del 2017 que corresponda a la misma
+                        institución y programa de la que pretende iniciar un nuevo trámite, el sistema no le permitirá radicar una nueva
+                        solicitud en el presente sistema.
+                    </p>
+
+                    <p>
+                        Tenga en cuenta que de conformidad con lo establecido en la Resolución 20128 del 2019, NO son convalidables los títulos con
+                        las siguientes características, para mayor información consulte en el micrositio de convalidaciones
+                        <a target="new"
+                           href="https://www.mineducacion.gov.co/portal/convalidaciones/Convalidaciones-Educacion-Superior/350999:Glosario">https://www.mineducacion.gov.co/portal/convalidaciones/Convalidaciones-Educacion-Superior/350999:Glosario</a>
+                    </p>
+
+                    <ul>
+                        <li>Doble titulación y programas conjuntos en Colombia</li>
+                        <li>Títulos propios o no oficiales.</li>
+                        <li>Títulos con formación en Colombia.</li>
+                        <li>Títulos de pregrado del área de la salud que no sean equivalentes a programas académicos activos en Colombia.</li>
+                        <li>Grados honoríficos</li>
+                        <li>Diplomas de educación continua que no correspondan a títulos de educación superior.</li>
+                    </ul>
+
+
+                    <p>
+                        Para el inicio de un trámite de convalidación de un título de posgrado, el solicitante deberá aportar copia del título
+                        de pregrado otorgado por una institución de educación superior colombiana o indicar el número de la resolución expedida
+                        por el Ministerio de Educación Nacional o por el ICFES por medio de la cual, se convalidó el título de pregrado, en caso
+                        de que hubiese sido otorgado en el exterior.
+                    </p>
+
+                    <p>
+                        No se admiten solicitudes simultáneas de convalidación del título de pregrado y posgrado. Debe iniciar primero la
+                        solicitud de convalidación del título de pregrado, y una vez haya culminado este proceso con resolución favorable, puede
+                        iniciar la convalidación del título de Posgrado.
+                    </p>
+
+                    <p>
+                        Señor solicitante, la solicitud de convalidación implica el pago de una tarifa
+                        (<a href="https://www.mineducacion.gov.co/portal/convalidaciones/convalidaciones-Educacion-Superior/350995:Costo-y-duracion" target="_blank">Link de tarifas</a>)
+                        por la prestación de los servicios de evaluación de los documentos. El pago de la tarifa no asegura la convalidación del título y no podrá
+                        solicitarse su reembolso o devolución. El pago se realiza directamente a través de la plataforma para pagos por medio
+                        de: Cupón, PSE (Cuenta Débito o Cuenta Crédito).
+                    </p>
+
+                    <p>
+                        Por su seguridad, recuerde que el Ministerio de Educación Nacional nunca solicita información confidencial o financiera,
+                        ni envía correos electrónicos, ni realiza llamadas telefónicas, ni mensajes de textos con números de cuenta para
+                        realizar pagos o cargos adicionales; no se aceptan solicitudes de convalidación a través de terceros no autorizados, ni
+                        a través de correos electrónicos de terceros, ni redes sociales, ni mensajes de texto u otras páginas web.
+                    </p>
+
+                    <p>
+                        Señor solicitante, para iniciar el trámite el formulario de registro lo llevará a través de los siguientes pasos:
+                    </p>
+
+                    <ul>
+                        <li>
+                            1. Aprobación de términos y condiciones.
+                        </li>
+                        <li>
+                            2. Selección de filtros de entrada.
+                        </li>
+                        <li>
+                            3. Diligenciamiento de formulario de solicitud.
+                        </li>
+                        <li>
+                            4. Cargue de Documentos.
+                        </li>
+                        <li>
+                            5. Resumen y Orden de pago.
+                            Para facilidad del solicitante, el formulario almacena la información que va registrando por un tiempo máximo de quince
+                            (15) días mientras cumple con la totalidad de los cinco pasos anteriores.
+                        </li>
+                    </ul>
+
+                    <p>
+                        Es importante recordar que la gestión del trámite inicia cuando se realice el pago y el mismo sea reflejado en el
+                        Sistema de Información de Convalidaciones de Educación Superior.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).load(function () {
+            $('#myModal_pop').modal('show');
+        });
+    </script>
+
+</body>
+
+</html>

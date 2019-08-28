@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.tms.com.co/" elementFormDefault="qualified" targetNamespace="http://www.tms.com.co/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://m2apgdoc01/TMS.InteropDoc.MENGESDOC/ServiceInterop.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="DocumentoRadicarRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoRadicarIn" nillable="true" type="tns:DocumentoRadicarIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoRadicarIn">
+    <xs:sequence>
+      <xs:element name="documentoXMLTMS" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoRadicarIn" nillable="true" type="tns:DocumentoRadicarIn" />
+  <xs:complexType name="UsrEntVigilada">
+    <xs:sequence>
+      <xs:element name="idAppEntidad" nillable="true" type="xs:string" />
+      <xs:element name="idUsuario" nillable="true" type="xs:string" />
+      <xs:element name="password" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UsrEntVigilada" nillable="true" type="tns:UsrEntVigilada" />
+  <xs:element name="usuarioApp" nillable="true" type="tns:UsrEntVigilada" />
+  <xs:element name="DocumentoRadicarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoRadicarOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoRadicarOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="NumeroRadicado" nillable="true" type="xs:string" />
+          <xs:element name="FechaRadicado" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoRadicarOut" nillable="true" type="tns:DocumentoRadicarOut" />
+  <xs:complexType name="RptOperacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idOperacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaOperacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="estadoOperacion" type="tns:EstadosOperacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RptOperacion" nillable="true" type="tns:RptOperacion" />
+  <xs:simpleType name="EstadosOperacion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OK" />
+      <xs:enumeration value="FAIL_AUT" />
+      <xs:enumeration value="FAIL_VAL" />
+      <xs:enumeration value="FAIL" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadosOperacion" nillable="true" type="tns:EstadosOperacion" />
+  <xs:element name="DocumentoEtapaRadicarRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoEtapaRadicarIn" nillable="true" type="tns:DocumentoEtapaRadicarIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoEtapaRadicarIn">
+    <xs:sequence>
+      <xs:element name="documentoXMLTMS" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoEtapaRadicarIn" nillable="true" type="tns:DocumentoEtapaRadicarIn" />
+  <xs:element name="DocumentoEtapaRadicarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoEtapaRadicarOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoEtapaRadicarOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="NumeroRadicado" nillable="true" type="xs:string" />
+          <xs:element name="FechaRadicado" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoEtapaRadicarOut" nillable="true" type="tns:DocumentoEtapaRadicarOut" />
+  <xs:element name="DocumentoAnexarArchivoRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoAnexarArchivoIn" nillable="true" type="tns:DocumentoAnexarArchivoIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoAnexarArchivoIn">
+    <xs:sequence>
+      <xs:element name="numeroRadicado" nillable="true" type="xs:string" />
+      <xs:element name="idSolicitud" nillable="true" type="xs:string" />
+      <xs:element name="archivo" nillable="true" type="xs:base64Binary" />
+      <xs:element name="nombreArchivo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcionArchivo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoAnexo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoAnexarArchivoIn" nillable="true" type="tns:DocumentoAnexarArchivoIn" />
+  <xs:element name="DocumentoAnexarArchivoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoAnexarArchivoOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoAnexarArchivoOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="IdDocAnexo" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoAnexarArchivoOut" nillable="true" type="tns:DocumentoAnexarArchivoOut" />
+  <xs:element name="DocumentoConsultarAnexoRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoConsultarAnexoIn" nillable="true" type="tns:DocumentoConsultarAnexoIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConsultarAnexoIn">
+    <xs:sequence>
+      <xs:element name="idDocAnexo" type="xs:int" />
+      <xs:element name="TipoDocAnexo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoConsultarAnexoIn" nillable="true" type="tns:DocumentoConsultarAnexoIn" />
+  <xs:element name="DocumentoConsultarAnexoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoConsultarAnexoResponseOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConsultarAnexoResponseOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="nombreArchivo" nillable="true" type="xs:string" />
+          <xs:element name="descripcionArchivo" nillable="true" type="xs:string" />
+          <xs:element name="archivo" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoConsultarAnexoResponseOut" nillable="true" type="tns:DocumentoConsultarAnexoResponseOut" />
+  <xs:element name="DocumentoConsultarAnexoFiltroRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoConsultarAnexoFiltroIn" nillable="true" type="tns:DocumentoConsultarAnexoFiltroIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConsultarAnexoFiltroIn">
+    <xs:sequence>
+      <xs:element name="IdRadicado" nillable="true" type="xs:string" />
+      <xs:element name="IdDocumentoAnexo" type="xs:int" />
+      <xs:element name="TipoDocumentoAnexo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoConsultarAnexoFiltroIn" nillable="true" type="tns:DocumentoConsultarAnexoFiltroIn" />
+  <xs:element name="DocumentoConsultarAnexoFiltroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoConsultarAnexoFiltroResponseOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConsultarAnexoFiltroResponseOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="nombreArchivo" nillable="true" type="xs:string" />
+          <xs:element name="archivo" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoConsultarAnexoFiltroResponseOut" nillable="true" type="tns:DocumentoConsultarAnexoFiltroResponseOut" />
+  <xs:element name="DocumentoConsultaIdEtapaRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoConsultaIdEtapaIn" nillable="true" type="tns:DocumentoConsultaIdEtapaIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConsultaIdEtapaIn">
+    <xs:sequence>
+      <xs:element name="numeroRadicado" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoConsultaIdEtapaIn" nillable="true" type="tns:DocumentoConsultaIdEtapaIn" />
+  <xs:element name="DocumentoConsultarIdEtapaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoConsultaIdEtapaOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConsultaIdEtapaOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="idEtapa" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoConsultaIdEtapaOut" nillable="true" type="tns:DocumentoConsultaIdEtapaOut" />
+  <xs:element name="DocumentoGetHashRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoGetHashIn" nillable="true" type="tns:DocumentoGetHashIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoGetHashIn">
+    <xs:sequence>
+      <xs:element name="lngFormato" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoGetHashIn" nillable="true" type="tns:DocumentoGetHashIn" />
+  <xs:element name="DocumentoGetHashResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoGetHashOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoGetHashOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="strRetorno" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoGetHashOut" nillable="true" type="tns:DocumentoGetHashOut" />
+  <xs:element name="DocumentoGetPlantillaXMLRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoGetPlantillaXMLIn" nillable="true" type="tns:DocumentoGetPlantillaXMLIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoGetPlantillaXMLIn">
+    <xs:sequence>
+      <xs:element name="lngTipoDoc" type="xs:long" />
+      <xs:element name="lngFormato" type="xs:long" />
+      <xs:element name="strUsuario" nillable="true" type="xs:string" />
+      <xs:element name="strPasword" nillable="true" type="xs:string" />
+      <xs:element name="TipoXSD" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoGetPlantillaXMLIn" nillable="true" type="tns:DocumentoGetPlantillaXMLIn" />
+  <xs:element name="DocumentoGetPlantillaXMLResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoGetPlantillaXMLOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoGetPlantillaXMLOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="strRetorno" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoGetPlantillaXMLOut" nillable="true" type="tns:DocumentoGetPlantillaXMLOut" />
+  <xs:element name="ClientePJCrearRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClientePJCrearIn" nillable="true" type="tns:ClientePJCrearIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ClientePJCrearIn">
+    <xs:sequence>
+      <xs:element name="Nit" nillable="true" type="xs:string" />
+      <xs:element name="DV" nillable="true" type="xs:string" />
+      <xs:element name="RazonSocial" nillable="true" type="xs:string" />
+      <xs:element name="Sigla" nillable="true" type="xs:string" />
+      <xs:element name="ClasePersona" nillable="true" type="xs:string" />
+      <xs:element name="CorreoElectronico" nillable="true" type="xs:string" />
+      <xs:element name="Estado" nillable="true" type="xs:string" />
+      <xs:element name="CaracteristicasDinamicas" nillable="true" type="xs:string" />
+      <xs:element name="URLSitioWeb" nillable="true" type="xs:string" />
+      <xs:element name="TipoCliente" nillable="true" type="tns:TipoCliente" />
+      <xs:element name="Ubicacion" nillable="true" type="tns:Localizacion" />
+      <xs:element minOccurs="0" name="Contacto" nillable="true" type="tns:Contacto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClientePJCrearIn" nillable="true" type="tns:ClientePJCrearIn" />
+  <xs:complexType name="TipoCliente">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="LstTipoCliente" nillable="true" type="q1:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TipoCliente" nillable="true" type="tns:TipoCliente" />
+  <xs:complexType name="Localizacion">
+    <xs:sequence>
+      <xs:element name="Telefonos" nillable="true" type="xs:string" />
+      <xs:element name="Fax" nillable="true" type="xs:string" />
+      <xs:element name="Celular" nillable="true" type="xs:string" />
+      <xs:element name="Direccion" nillable="true" type="xs:string" />
+      <xs:element name="UbicacionGeografica" nillable="true" type="tns:LocalizacionGeografica" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Localizacion" nillable="true" type="tns:Localizacion" />
+  <xs:complexType name="LocalizacionGeografica">
+    <xs:sequence>
+      <xs:element name="CodDaneMunicipio" nillable="true" type="xs:string" />
+      <xs:element name="IdCiudad" type="xs:int" />
+      <xs:element name="IdDepartamento" type="xs:int" />
+      <xs:element name="IdPais" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LocalizacionGeografica" nillable="true" type="tns:LocalizacionGeografica" />
+  <xs:complexType name="Contacto">
+    <xs:sequence>
+      <xs:element name="PrimerNombre" nillable="true" type="xs:string" />
+      <xs:element name="SegundoNombre" nillable="true" type="xs:string" />
+      <xs:element name="PrimerApellido" nillable="true" type="xs:string" />
+      <xs:element name="SegundoApellido" nillable="true" type="xs:string" />
+      <xs:element name="TipoIdentificacion" nillable="true" type="xs:string" />
+      <xs:element name="Identificacion" nillable="true" type="xs:string" />
+      <xs:element name="Genero" nillable="true" type="xs:string" />
+      <xs:element name="Estado" nillable="true" type="xs:string" />
+      <xs:element name="CorreoElectronico" nillable="true" type="xs:string" />
+      <xs:element name="TipoCargo" type="xs:int" />
+      <xs:element name="NombreCargo" nillable="true" type="xs:string" />
+      <xs:element name="OrigenRegistro" nillable="true" type="xs:string" />
+      <xs:element name="CaracteristicasDinamicas" nillable="true" type="xs:string" />
+      <xs:element name="Residencia" nillable="true" type="tns:Localizacion" />
+      <xs:element name="Login" nillable="true" type="tns:UserLogin" />
+      <xs:element name="ExpedicionDocumento" nillable="true" type="tns:LocalizacionGeografica" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contacto" nillable="true" type="tns:Contacto" />
+  <xs:complexType name="UserLogin">
+    <xs:sequence>
+      <xs:element name="IdUsuario" nillable="true" type="xs:string" />
+      <xs:element name="Clave" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserLogin" nillable="true" type="tns:UserLogin" />
+  <xs:element name="ClientePJCrearResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:ClientePJCrearOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ClientePJCrearOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClientePJCrearOut" nillable="true" type="tns:ClientePJCrearOut" />
+  <xs:element name="ClienteModificarRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClienteModificarIn" nillable="true" type="tns:ClienteModificarIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ClienteModificarIn">
+    <xs:sequence>
+      <xs:element name="IdCliente" type="xs:int" />
+      <xs:element name="nit" nillable="true" type="xs:string" />
+      <xs:element name="DV" nillable="true" type="xs:string" />
+      <xs:element name="nombre" nillable="true" type="xs:string" />
+      <xs:element name="direccion" nillable="true" type="xs:string" />
+      <xs:element name="correoElectronico" nillable="true" type="xs:string" />
+      <xs:element name="fax" nillable="true" type="xs:string" />
+      <xs:element name="telefono" nillable="true" type="xs:string" />
+      <xs:element name="celular" nillable="true" type="xs:string" />
+      <xs:element name="sitioWeb" nillable="true" type="xs:string" />
+      <xs:element name="clasePersona" nillable="true" type="xs:string" />
+      <xs:element name="estado" type="xs:int" />
+      <xs:element minOccurs="0" name="caractDinamicas" nillable="true" type="xs:string" />
+      <xs:element name="idLocalizacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClienteModificarIn" nillable="true" type="tns:ClienteModificarIn" />
+  <xs:element name="ClienteModificarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:ClienteModificarOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ClienteModificarOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClienteModificarOut" nillable="true" type="tns:ClienteModificarOut" />
+  <xs:element name="ContactoCrearRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContactoCrearIn" nillable="true" type="tns:ContactoCrearIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ContactoCrearIn">
+    <xs:sequence>
+      <xs:element name="TipoIdentificacion" nillable="true" type="xs:string" />
+      <xs:element name="Identificacion" nillable="true" type="xs:string" />
+      <xs:element name="Nombre" nillable="true" type="xs:string" />
+      <xs:element name="Apellido" nillable="true" type="xs:string" />
+      <xs:element name="CorreoElectronico" nillable="true" type="xs:string" />
+      <xs:element name="TipoCargo" type="xs:int" />
+      <xs:element name="NombreCargo" nillable="true" type="xs:string" />
+      <xs:element name="IdClienteAsociado" type="xs:int" />
+      <xs:element name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+      <xs:element name="Celular" nillable="true" type="xs:string" />
+      <xs:element name="Fax" nillable="true" type="xs:string" />
+      <xs:element name="Direccion" nillable="true" type="xs:string" />
+      <xs:element name="Localizacion" type="xs:int" />
+      <xs:element name="caractDinamicas" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContactoCrearIn" nillable="true" type="tns:ContactoCrearIn" />
+  <xs:element name="ContactoCrearResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:ContactoCrearOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ContactoCrearOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ContactoCrearOut" nillable="true" type="tns:ContactoCrearOut" />
+  <xs:element name="ContactoModificarRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContactoModificarIn" nillable="true" type="tns:ContactoModificarIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ContactoModificarIn">
+    <xs:sequence>
+      <xs:element name="IdContacto" type="xs:long" />
+      <xs:element name="TipoIdentificacion" nillable="true" type="xs:string" />
+      <xs:element name="Identificacion" nillable="true" type="xs:string" />
+      <xs:element name="Nombres" nillable="true" type="xs:string" />
+      <xs:element name="Apellidos" nillable="true" type="xs:string" />
+      <xs:element name="CorreoElectronico" nillable="true" type="xs:string" />
+      <xs:element name="TipoCargo" type="xs:int" />
+      <xs:element name="NombreCargo" nillable="true" type="xs:string" />
+      <xs:element name="IdClienteAsociado" type="xs:int" />
+      <xs:element name="Activo" type="xs:boolean" />
+      <xs:element name="Telefono" nillable="true" type="xs:string" />
+      <xs:element name="Celular" nillable="true" type="xs:string" />
+      <xs:element name="Fax" nillable="true" type="xs:string" />
+      <xs:element name="Direccion" nillable="true" type="xs:string" />
+      <xs:element name="Localizacion" type="xs:int" />
+      <xs:element name="caractDinamicas" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContactoModificarIn" nillable="true" type="tns:ContactoModificarIn" />
+  <xs:element name="ContactoModificarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:ContactoModificarOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ContactoModificarOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ContactoModificarOut" nillable="true" type="tns:ContactoModificarOut" />
+  <xs:element name="ObtenerTablasParametrizadasRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EntidadParametrizada" nillable="true" type="tns:EntidadParametrizada" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="EntidadParametrizada">
+    <xs:sequence>
+      <xs:element name="identificadorObjeto" nillable="true" type="xs:string" />
+      <xs:element name="parametros" nillable="true" type="tns:ArrayOfParametroG" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EntidadParametrizada" nillable="true" type="tns:EntidadParametrizada" />
+  <xs:complexType name="ArrayOfParametroG">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ParametroG" nillable="true" type="tns:ParametroG" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfParametroG" nillable="true" type="tns:ArrayOfParametroG" />
+  <xs:complexType name="ParametroG">
+    <xs:sequence>
+      <xs:element name="nombre" nillable="true" type="xs:string" />
+      <xs:element name="valor" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ParametroG" nillable="true" type="tns:ParametroG" />
+  <xs:element name="ObtenerTablasParametrizadasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:RptOperacion" />
+        <xs:element minOccurs="0" name="registros" nillable="true" type="tns:RegistrosEntidad" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="RegistrosEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="registros" nillable="true">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any minOccurs="0" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegistrosEntidad" nillable="true" type="tns:RegistrosEntidad" />
+  <xs:element name="DocumentoConsultarAnexosRadicadoRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoConsultarAnexosRadicadoIn" nillable="true" type="tns:DocumentoConsultarAnexosRadicadoIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConsultarAnexosRadicadoIn">
+    <xs:sequence>
+      <xs:element name="idRadicado" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoConsultarAnexosRadicadoIn" nillable="true" type="tns:DocumentoConsultarAnexosRadicadoIn" />
+  <xs:element name="DocumentoConsultarAnexosRadicadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoConsultarAnexosRadicadoResponseOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConsultarAnexosRadicadoResponseOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence>
+          <xs:element name="archivosSolicitud" nillable="true" type="tns:ArrayOfarchivoTMS" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoConsultarAnexosRadicadoResponseOut" nillable="true" type="tns:DocumentoConsultarAnexosRadicadoResponseOut" />
+  <xs:complexType name="ArrayOfarchivoTMS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="archivoTMS" nillable="true" type="tns:archivoTMS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfarchivoTMS" nillable="true" type="tns:ArrayOfarchivoTMS" />
+  <xs:complexType name="archivoTMS">
+    <xs:sequence>
+      <xs:element name="idAnexo" type="xs:int" />
+      <xs:element name="nombreArchivo" nillable="true" type="xs:string" />
+      <xs:element name="archivo" nillable="true" type="xs:base64Binary" />
+      <xs:element name="docPrincipal" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="archivoTMS" nillable="true" type="tns:archivoTMS" />
+  <xs:element name="DocumentoConfirmarAnexosDescargadosRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentoConfirmarAnexosDescargadosIn" nillable="true" type="tns:DocumentoConfirmarAnexosDescargadosIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConfirmarAnexosDescargadosIn">
+    <xs:sequence>
+      <xs:element name="idRadicado" nillable="true" type="xs:string" />
+      <xs:element name="estadoRadicacion" nillable="true" type="xs:string" />
+      <xs:element name="descripcion" nillable="true" type="xs:string" />
+      <xs:element name="Anexos" nillable="true" type="tns:ArrayOfAnexo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentoConfirmarAnexosDescargadosIn" nillable="true" type="tns:DocumentoConfirmarAnexosDescargadosIn" />
+  <xs:complexType name="ArrayOfAnexo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Anexo" nillable="true" type="tns:Anexo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnexo" nillable="true" type="tns:ArrayOfAnexo" />
+  <xs:complexType name="Anexo">
+    <xs:sequence>
+      <xs:element name="idAnexo" type="xs:int" />
+      <xs:element name="estadoOperacion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Anexo" nillable="true" type="tns:Anexo" />
+  <xs:element name="DocumentoConfirmarAnexosDescargadosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:DocumentoConfirmarAnexosDescargadosResponseOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentoConfirmarAnexosDescargadosResponseOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentoConfirmarAnexosDescargadosResponseOut" nillable="true" type="tns:DocumentoConfirmarAnexosDescargadosResponseOut" />
+  <xs:element name="CicloAprobacionGestionarRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CicloAprobacionGestionarIn" nillable="true" type="tns:CicloAprobacionGestionarIn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CicloAprobacionGestionarIn">
+    <xs:sequence>
+      <xs:element name="lngIdDoc" type="xs:long" />
+      <xs:element name="lngIdTipoDoc" type="xs:long" />
+      <xs:element name="strUsuario" nillable="true" type="xs:string" />
+      <xs:element name="strIdSol" nillable="true" type="xs:string" />
+      <xs:element name="strModulo" nillable="true" type="xs:string" />
+      <xs:element name="intPagina" type="xs:int" />
+      <xs:element name="intIdCausa" type="xs:int" />
+      <xs:element name="strDescripcion" nillable="true" type="xs:string" />
+      <xs:element name="lngIdDocumento" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CicloAprobacionGestionarIn" nillable="true" type="tns:CicloAprobacionGestionarIn" />
+  <xs:element name="CicloAprobacionGestionarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="respuesta" nillable="true" type="tns:CicloAprobacionGestionarResponseOut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CicloAprobacionGestionarResponseOut">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RptOperacion">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CicloAprobacionGestionarResponseOut" nillable="true" type="tns:CicloAprobacionGestionarResponseOut" />
+</xs:schema>

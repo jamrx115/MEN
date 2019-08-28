@@ -1,0 +1,98 @@
+﻿@model ConvalidacionEducacionSuperior.Models.LoginModel
+@{
+    ViewBag.Title = "Solicitudes en trámite";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<h4 class="text-left">@Html.ActionLink("Volver a Bandeja Principal", "BandejaConvalidante", "Inicio", new { area = "" }, new { @class = "btn botones" })</h4>
+
+<h3>Solicitudes en trámite</h3>
+
+<div class="text-center">
+
+    <table class="table table-bordered table-striped">
+        <tr class="text-center">
+            <th class="text-center" style="width:20%">
+                Nro. Solicitud
+            </th>
+            <th class="text-center" style="width:20%">
+                Fecha
+            </th>
+            <th class="text-center" style="width:20%">
+                Tipo Solicitud
+            </th>
+            <th class="text-center" style="width:20%">
+                Estado
+            </th>
+            <th class="text-center" style="width:20%"></th>
+        </tr>
+        @foreach (var item in Model.lstSolicitudes)
+        {
+            <tr>
+                <td title="Ir a Solicitud" onclick="irAsolicitud('@item.SolicitudId')">
+                    <h4>@Html.DisplayFor(modelItem => item.SolicitudId)</h4>
+                </td>
+                <td title="Ir a Solicitud" onclick="irAsolicitud('@item.SolicitudId')">
+                    <h4>@Html.DisplayFor(modelItem => item.Fecha)</h4>
+                </td>
+                <td title="Ir a Solicitud" onclick="irAsolicitud('@item.SolicitudId')">
+                    <h4>@Html.DisplayFor(modelItem => item.Tipo)</h4>
+                </td>
+                <td title="Ir a Solicitud" onclick="irAsolicitud('@item.SolicitudId')">
+                    <h4>@Html.DisplayFor(modelItem => item.tbEstado.Estado)</h4>
+                </td>
+                <td>
+                    <a id="btnSolicitud_@item.SolicitudId" class="btn botones btn-sm" title="Ir a Solicitud" href="~/Inicio/FaseIII?solicitudId=@item.SolicitudId">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
+                    </a>
+                    <a class="btn botones btn-sm" title="Elimina Solicitud"
+                       onclick="mensajeEliminaSolicitud('@item.SolicitudId','@item.Fecha','@item.Tipo','@item.tbEstado.Estado')">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- Modal -->
+<button id="btnModal_1" type="button" data-toggle="modal" data-target="#myModal_1" style="visibility:hidden"></button>
+<div class="modal fade" id="myModal_1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4>Confirma Eliminar Solicitud <span class="glyphicon glyphicon-exclamation-sign"></span></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Seguro de Eliminar esta Solicitud ?</h3>
+                <table class="table table-bordered table-striped">
+                    <tr class="text-center">
+                        <th class="text-center" style="width:25%">Nro. Solicitud</th>
+                        <th class="text-center" style="width:25%">Fecha</th>
+                        <th class="text-center" style="width:25%">Tipo Solicitud</th>
+                        <th class="text-center" style="width:25%">Estado</th>
+                    </tr>
+                    <tr>
+                        <td><h4 id="td_1"></h4></td>
+                        <td><h4 id="td_2"></h4></td>
+                        <td><h4 id="td_3"></h4></td>
+                        <td><h4 id="td_4"></h4></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCierraModal" type="submit" class="btn btn-info btn-default pull-left" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Cancelar
+                </button>
+                <a onclick="eliminaSolicitud()" class="btn btn-info btn-default pull-left" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

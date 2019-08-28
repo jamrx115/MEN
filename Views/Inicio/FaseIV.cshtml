@@ -1,0 +1,967 @@
+﻿@model ConvalidacionEducacionSuperior.Models.Paso4Model
+@{
+    ViewBag.Title = "FaseIV";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+    <script>
+        window.onload = function () {
+            nobackbutton();
+        }
+    </script>
+
+    <div class="container">
+
+        <section id="screen2">
+            <div class="screen_boxwizard_buttons row">
+                <div class="boxwizard_button col">
+                    <span>Aprobación de términos y condiciones</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Selección de filtros de entrada</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Diligenciamiento de formato de Solicitud</span>
+                </div>
+                <div class="boxwizard_button active col">
+                    <span>Cargue de documentos</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Resumen</span>
+                </div>
+            </div>
+
+            <div class="line-progress">
+                <ul>
+                    <li><span class="progres-done" href=""></span></li>
+                    <li><span class="progres-done" href=""></span></li>
+                    <li><span class="progres-done" href=""></span></li>
+                    <li><span class="progres-active" href=""></span></li>
+                    <li><span href=""></span></li>
+                </ul>
+            </div>
+
+            @using (Html.BeginForm("FaseIV", "Inicio", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+
+                @Html.HiddenFor(model => model.solicitudActual.SolicitudId)
+                @Html.HiddenFor(model => model.solicitudActual.acreditacionCalidad)
+                <!-- Empieza sección -->
+
+                <div class="lines_wizard_general wizard4 mb-4">
+                    <div class="title-image-b">
+                        <img src="~/assets/images/icons/men-cargar.svg" alt="">
+                        <h3 class="wizard_genera_title">Cargue de documentos para convalidación de títulos</h3>
+                    </div>
+
+                    <div class="wizard_line_container">
+                        <div class="solicicitud text-left">
+                            <span>Solicitud: @Model.solicitudActual.Fecha - <strong>@Model.solicitudActual.Tipo</strong></span>
+                        </div>
+                        <p class="text-left">
+                            Señor solicitante, por favor tenga en cuenta que cada uno de los archivos PDF que anexará, como soporte,
+                            deben coincidir con los documentos requeridos en la Resolución No.20128 del 2019.
+                        </p>
+                        <p>
+                            Para facilidad de la carga de cada uno de los documentos se presenta a continuación el listado:
+                        </p>
+                        <p class="text-justify">
+                            <span class="resaltado">
+                                Tamaño máximo para nuevos archivos: 15 MB, número máximo de archivos adjuntos: 1, formato de archivo pdf, no se permiten caracteres especiales en el nombre.
+                            </span>
+                        </p>
+                    </div>
+                    <div class="title-image-b">
+                        <img src="~/assets/images/icons/men-pregarado.svg" alt="">
+                        <h3 class="wizard_genera_title">@Model.solicitudActual.Tipo</h3>
+                    </div>
+                    <div class="wizard_line_context sin-barra mt-3">
+                        <h4>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</h4>
+                        <div class="screen1_box">
+                            <div class="screen_box_content">
+                                <div class="scren_box_table erase_table">
+                                    <table class="erase_table pregrado">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Documentos requeridos para gestionar la Convalidación</th>
+                                                <th class="text-center">Documento Original</th>
+                                                <th class="text-center">Documento Traducido</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="screen_box_active_tr">
+                                                <td>
+                                                    <p>
+                                                        Documento de identidad (No se admite como documento de identidad la contraseña ni certificaciones. Además, los documentos deben estar vigentes).
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="fileDocumentoIdentidadPos" id="fileDocumentoIdentidadPos" accept="application/pdf" onchange="cambiaFileUpload('fileDocumentoIdentidadPos','txtDocumentoIdentidadPos','refDocumentoIdentidadPos','lblDocumentoIdentidadPos')">
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutaDocumentoIdentidad" target="_blank" id="refDocumentoIdentidadPos" style="width:90%">
+                                                            @Html.EditorFor(model => model.documentoIdentidad, new { htmlAttributes = new { @class = "form-control", id = "txtDocumentoIdentidadPos", @readOnly = true, @style = "max-width:100%" } })
+                                                            
+                                                        </a>
+                                                        @*<a style="padding-top:3px">
+                                                            <span class="input-group-addon" title="Ver"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                                        </a>*@
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtDocumentoIdentidadPos')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.documentoIdentidad, "", new { @class = "text-danger" })
+                                                    <p class="text-justify" id="lblDocumentoIdentidadPos"></p>
+                                                    
+                                                </td>
+                                                <td>
+                                                    @*<input type="file" name="fileDocumentoIdentidadPostraducido" id="fileDocumentoIdentidadPostraducido" accept="application/pdf" onchange="cambiaFileUpload('fileDocumentoIdentidadPostraducido','txtDocumentoIdentidadTraducidoPos','refDocumentoIdentidadTraducidoPos','lblDocumentoIdentidadPostraducido')" />
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutadocumentoIdentidadTraducido" target="_blank" id="refDocumentoIdentidadTraducidoPos" style="width:90%">
+                                                            @Html.EditorFor(model => model.documentoIdentidadTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtDocumentoIdentidadTraducidoPos", @readOnly = true, @style = "max-width:100%" } })
+                                                        </a>
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtDocumentoIdentidadTraducidoPos')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.documentoIdentidadTraducido, "", new { @class = "text-danger" })
+                                                    <p class="text-justify" id="lblDocumentoIdentidadPostraducido"></p>*@
+                                                </td>
+                                            </tr>
+                                            <tr class="screen_box_active_tr">
+                                                <td>
+                                                    <p>
+                                                        Diploma o título (debidamente legalizado por vía diplomática o con sello de apostilla).
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="filediplomaPosgrado" id="filediplomaPosgrado" accept="application/pdf" onchange="cambiaFileUpload('filediplomaPosgrado','txtdiplomaPosgrado','refdiplomaPosgrado','lbldiplomaPosgrado')" />
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutaDiplomaPosgrado" target="_blank" id="refdiplomaPosgrado" style="width:90%">
+                                                            @Html.EditorFor(model => model.diplomaPosgrado, new { htmlAttributes = new { @class = "form-control", id = "txtdiplomaPosgrado", @readOnly = true, @style = "max-width:100%" } })
+                                                        </a>
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtdiplomaPosgrado')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.diplomaPosgrado, "", new { @class = "text-danger" })
+                                                    <p class="text-justify" id="lbldiplomaPosgrado"></p>
+
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="filediplomaPosgradotraducido" id="filediplomaPosgradotraducido" accept="application/pdf" onchange="cambiaFileUpload('filediplomaPosgradotraducido','txtdiplomaPosgradotraducido','refdiplomaPosgradotraducido','lbldiplomaPosgradotraducido')" />
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutadiplomaPosgradoTraducido" target="_blank" id="refdiplomaPosgradotraducido" style="width:90%">
+                                                            @Html.EditorFor(model => model.diplomaPosgradoTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtdiplomaPosgradotraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                        </a>
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtdiplomaPosgradotraducido')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.diplomaPosgradoTraducido, "", new { @class = "text-danger" })
+                                                    <p class="text-justify" id="lbldiplomaPosgradotraducido"></p>
+
+                                                </td>
+                                            </tr>
+                                            <tr class="screen_box_active_tr">
+                                                <td>
+                                                    <p>
+                                                        Copia del certificado de asignaturas (debidamente legalizado por vía diplomática o con sello de apostilla)
+                                                        Traducción Oficial en caso que los documentos se obtengan en idioma diferente al castellano)
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="fileCertificadoAsignaturas" id="fileCertificadoAsignaturas" accept="application/pdf" onchange="cambiaFileUpload('fileCertificadoAsignaturas','txtCertificadoAsignaturas','refCertificadoAsignaturas','lblCertificadoAsignaturas')" />
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutacertificadoAsignaturas" target="_blank" id="refCertificadoAsignaturas" style="width:90%">
+                                                            @Html.EditorFor(model => model.certificadoAsignaturas, new { htmlAttributes = new { @class = "form-control", id = "txtCertificadoAsignaturas", @readOnly = true, @style = "max-width:100%" } })
+                                                        </a>
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtCertificadoAsignaturas')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.certificadoAsignaturas, "", new { @class = "text-danger" })
+                                                    <p class="text-justify" id="lblCertificadoAsignaturas"></p>
+
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="fileCertificadoAsignaturastraducido" id="fileCertificadoAsignaturastraducido" accept="application/pdf" onchange="cambiaFileUpload('fileCertificadoAsignaturastraducido','txtCertificadoAsignaturasTraducido','refCertificadoAsignaturasTraducido','lblCertificadoAsignaturastraducido')" />
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutacertificadoAsignaturasTraducido" target="_blank" id="refCertificadoAsignaturasTraducido" style="width:90%">
+                                                            @Html.EditorFor(model => model.certificadoAsignaturasTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtCertificadoAsignaturasTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                        </a>
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtCertificadoAsignaturasTraducido')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+
+                                                    @Html.ValidationMessageFor(model => model.certificadoAsignaturasTraducido, "", new { @class = "text-danger" })
+                                                    <p class="text-justify" id="lblCertificadoAsignaturastraducido"></p>
+
+                                                </td>
+                                            </tr>
+                                            @if (Model.solicitudActual.Tipo.ToUpper().Equals("PREGRADO"))
+                                            {
+                                                if (Model.displayProgramaAcademico)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Copia del certificado de programa académico, o si la institución formadora no emite el anterior documento deberá adjuntar Documento oficial emitido y suscrito por la institución formadora,
+                                                                en la que se describa la manera como se desarrolló el programa cursado. (Traducción oficial en caso que los documentos se obtengan en idioma diferente al castellano).
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileCertificadoPrograma" id="fileCertificadoPrograma" accept="application/pdf" onchange="cambiaFileUpload('fileCertificadoPrograma','txtCertificadoPrograma','refCertificadoPrograma','lblCertificadoPrograma')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutacertificadoPrograma" target="_blank" id="refCertificadoPrograma" style="width:90%">
+                                                                    @Html.EditorFor(model => model.certificadoPrograma, new { htmlAttributes = new { @class = "form-control", id = "txtCertificadoPrograma", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtCertificadoPrograma')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.certificadoPrograma, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblCertificadoPrograma"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileCertificadoProgramaTraducido" id="fileCertificadoProgramaTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileCertificadoProgramaTraducido','txtCertificadoProgramaTraducido','refCertificadoProgramaTraducido','lblCertificadoProgramaTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutacertificadoProgramaTraducido" target="_blank" id="refCertificadoProgramaTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.certificadoProgramaTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtCertificadoProgramaTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtCertificadoProgramaTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.certificadoProgramaTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblCertificadoProgramaTraducido"></p>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displaySalud)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Certificación de prácticas profesionales o internado rotatorio. (debidamente legalizado por vía diplomática o con sello de apostilla y traducido si se encuentra en idioma distinto al español).
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileRequisitoEspecialSalud" id="fileRequisitoEspecialSalud" accept="application/pdf" onchange="cambiaFileUpload('fileRequisitoEspecialSalud','txtRequisitoEspecialSalud','refRequisitoEspecialSalud','lblRequisitoEspecialSalud')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarequisitoEspecialSalud" target="_blank" id="refRequisitoEspecialSalud" style="width:90%">
+                                                                    @Html.EditorFor(model => model.requisitoEspecialSalud, new { htmlAttributes = new { @class = "form-control", id = "txtRequisitoEspecialSalud", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRequisitoEspecialSalud')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.requisitoEspecialSalud, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRequisitoEspecialSalud"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileRequisitoEspecialSaludTraducido" id="fileRequisitoEspecialSaludTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileRequisitoEspecialSaludTraducido','txtRequisitoEspecialSaludTraducido','refRequisitoEspecialSaludTraducido','lblRequisitoEspecialSaludTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarequisitoEspecialSaludTraducido" target="_blank" id="refRequisitoEspecialSaludTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.requisitoEspecialSaludTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtRequisitoEspecialSaludTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRequisitoEspecialSaludTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.requisitoEspecialSaludTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRequisitoEspecialSaludTraducido"></p>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displayDerecho)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Certificación de aprobación de estudios específicos de la legislación colombiana en: 1. Derecho constitucional, 2. Derecho Administrativo, 3. Derecho Procesal: Civil, Penal y Laboral.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileRequisitoEspecialDerecho" id="fileRequisitoEspecialDerecho" accept="application/pdf" onchange="cambiaFileUpload('fileRequisitoEspecialDerecho','txtRequisitoEspecialDerecho','refRequisitoEspecialDerecho','lblRequisitoEspecialDerecho')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarequisitoEspecialDerecho" target="_blank" id="refRequisitoEspecialDerecho" style="width:90%">
+                                                                    @Html.EditorFor(model => model.requisitoEspecialDerecho, new { htmlAttributes = new { @class = "form-control", id = "txtRequisitoEspecialDerecho", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRequisitoEspecialDerecho')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.requisitoEspecialDerecho, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRequisitoEspecialDerecho"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            @*<input type="file" name="fileRequisitoEspecialDerechoTraducido" id="fileRequisitoEspecialDerechoTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileRequisitoEspecialDerechoTraducido','txtRequisitoEspecialDerechoTraducido','refRequisitoEspecialDerechoTraducido','lblRequisitoEspecialDerechoTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarequisitoEspecialDerechoTraducido" target="_blank" id="refRequisitoEspecialDerechoTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.requisitoEspecialDerechoTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtRequisitoEspecialDerechoTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRequisitoEspecialDerechoTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.requisitoEspecialDerechoTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRequisitoEspecialDerechoTraducido"></p>*@
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displayContaduria)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Certificación de aprobación de estudios específicos de la legislación colombiana en: 1. Derecho comercial, tributario y laboral,  2. Normas contables y conceptos sobre Normas Internacionales de Información Financiera NIIF.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileRequisitoEspecialContaduria" id="fileRequisitoEspecialContaduria" accept="application/pdf" onchange="cambiaFileUpload('fileRequisitoEspecialContaduria','txtRequisitoEspecialContaduria','refRequisitoEspecialContaduria','lblRequisitoEspecialContaduria')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarequisitoEspecialContaduria" target="_blank" id="refRequisitoEspecialContaduria" style="width:90%">
+                                                                    @Html.EditorFor(model => model.requisitoEspecialContaduria, new { htmlAttributes = new { @class = "form-control", id = "txtRequisitoEspecialContaduria", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRequisitoEspecialContaduria')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.requisitoEspecialContaduria, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRequisitoEspecialContaduria"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            @*<input type="file" name="fileRequisitoEspecialContaduriaTraducido" id="fileRequisitoEspecialContaduriaTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileRequisitoEspecialContaduriaTraducido','txtRequisitoEspecialContaduriaTraducido','refRequisitoEspecialContaduriaTraducido','lblRequisitoEspecialContaduriaTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarequisitoEspecialContaduriaTraducido" target="_blank" id="refRequisitoEspecialContaduriaTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.requisitoEspecialContaduriaTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtRequisitoEspecialContaduriaTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRequisitoEspecialContaduriaTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.requisitoEspecialContaduriaTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRequisitoEspecialContaduriaTraducido"></p>*@
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displayEducacion)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Certificado de prácticas educativas y pedagógicas con la cual se pueda demostrar una equivalencia de creditos u horas de practica.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileRequisitoEspecialEducacion" id="fileRequisitoEspecialEducacion" accept="application/pdf" onchange="cambiaFileUpload('fileRequisitoEspecialEducacion','txtRequisitoEspecialEducacion','refRequisitoEspecialEducacion','lblRequisitoEspecialEducacion')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarequisitoEspecialEducacion" target="_blank" id="refRequisitoEspecialEducacion" style="width:90%">
+                                                                    @Html.EditorFor(model => model.requisitoEspecialEducacion, new { htmlAttributes = new { @class = "form-control", id = "txtRequisitoEspecialEducacion", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRequisitoEspecialEducacion')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.requisitoEspecialEducacion, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRequisitoEspecialEducacion"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            @*<input type="file" name="fileRequisitoEspecialEducacionTraducido" id="fileRequisitoEspecialEducacionTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileRequisitoEspecialEducacionTraducido','txtRequisitoEspecialEducacionTraducido','refRequisitoEspecialEducacionTraducido','lblRequisitoEspecialEducacionTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarequisitoEspecialEducacionTraducido" target="_blank" id="refRequisitoEspecialEducacionTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.requisitoEspecialEducacionTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtRequisitoEspecialEducacionTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRequisitoEspecialEducacionTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.requisitoEspecialEducacionTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRequisitoEspecialEducacionTraducido"></p>*@
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (!(bool)Model.solicitudActual.nacional)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Copia del título de pregrado otorgado por la institución de educación superior reconocida en Colombia
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileTituloPregrado" id="fileTituloPregrado" accept="application/pdf" onchange="cambiaFileUpload('fileTituloPregrado','txtTituloPregrado','refTituloPregrado','lblTituloPregrado')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutaTituloPregrado" target="_blank" id="refTituloPregrado" style="width:90%">
+                                                                    @Html.EditorFor(model => model.tituloPregrado, new { htmlAttributes = new { @class = "form-control", id = "txtTituloPregrado", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtTituloPregrado')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.tituloPregrado, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblTituloPregrado"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileTituloPregradotraducido" id="fileTituloPregradotraducido" accept="application/pdf" onchange="cambiaFileUpload('fileTituloPregradotraducido','txtTituloPregradotraducido','refTituloPregradotraducido','lblTituloPregradotraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutatituloPregradoTraducido" target="_blank" id="refTituloPregradotraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.tituloPregradoTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtTituloPregradotraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtTituloPregradotraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.tituloPregradoTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblTituloPregradotraducido"></p>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                                if (Model.displayProgramaAcademicoPosgrado)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Copia del certificado de programa académico, o si la institución formadora no emite el anterior documento deberá adjuntar Documento oficial emitido y suscrito por la institución formadora,
+                                                                en la que se describa la manera como se desarrolló el programa cursado. (Traducción Oficial en caso que los documentos se obtengan en idioma diferente al castellano).
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileCertificadoPrograma" id="fileCertificadoPrograma" accept="application/pdf" onchange="cambiaFileUpload('fileCertificadoPrograma','txtCertificadoPrograma','refCertificadoPrograma','lblCertificadoPrograma')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutacertificadoPrograma" target="_blank" id="refCertificadoPrograma" style="width:90%">
+                                                                    @Html.EditorFor(model => model.certificadoPrograma, new { htmlAttributes = new { @class = "form-control", id = "txtCertificadoPrograma", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtCertificadoPrograma')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.certificadoPrograma, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblCertificadoPrograma"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileCertificadoProgramaTraducido" id="fileCertificadoProgramaTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileCertificadoProgramaTraducido','txtCertificadoProgramaTraducido','refCertificadoProgramaTraducido','lblCertificadoProgramaTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutacertificadoProgramaTraducido" target="_blank" id="refCertificadoProgramaTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.certificadoProgramaTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtCertificadoProgramaTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtCertificadoProgramaTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.certificadoProgramaTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblCertificadoProgramaTraducido"></p>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displayProductosInvestigacion)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Formato de resumen de productos de investigación.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileFormatoInvestigacion" id="fileFormatoInvestigacion" accept="application/pdf" onchange="cambiaFileUpload('fileFormatoInvestigacion','txtFormatoInvestigacion','refFormatoInvestigacion','lblFormatoInvestigacion')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutaformatoInvestigacion" target="_blank" id="refFormatoInvestigacion" style="width:90%">
+                                                                    @Html.EditorFor(model => model.formatoInvestigacion, new { htmlAttributes = new { @class = "form-control", id = "txtFormatoInvestigacion", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtFormatoInvestigacion')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.formatoInvestigacion, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblFormatoInvestigacion"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            @*<input type="file" name="fileFormatoInvestigacionTraducido" id="fileFormatoInvestigacionTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileFormatoInvestigacionTraducido','txtFormatoInvestigacionTraducido','refFormatoInvestigacionTraducido','lblFormatoInvestigacionTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutaformatoInvestigacionTraducido" target="_blank" id="refFormatoInvestigacionTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.formatoInvestigacionTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtFormatoInvestigacionTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtFormatoInvestigacionTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.formatoInvestigacionTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblFormatoInvestigacionTraducido"></p>*@
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displayTrabajoInvestigacion)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Acta de sustentación del trabajo de investigaciòn.  Traducción oficial en caso que los documentos se obtengan en idioma diferente al castellano).
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileActaSustentacion" id="fileActaSustentacion" accept="application/pdf" onchange="cambiaFileUpload('fileActaSustentacion','txtActaSustentacion','refActaSustentacion','lblActaSustentacion')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutaactaSustentacion" target="_blank" id="refActaSustentacion" style="width:90%">
+                                                                    @Html.EditorFor(model => model.actaSustentacion, new { htmlAttributes = new { @class = "form-control", id = "txtActaSustentacion", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtActaSustentacion')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.actaSustentacion, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblActaSustentacion"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileActaSustentacionTraducido" id="fileActaSustentacionTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileActaSustentacionTraducido','txtActaSustentacionTraducido','refActaSustentacionTraducido','lblActaSustentacionTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutaactaSustentacionTraducido" target="_blank" id="refActaSustentacionTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.actaSustentacionTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtActaSustentacionTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtActaSustentacionTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.actaSustentacionTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblActaSustentacionTraducido"></p>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displayTesis)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Trabajo de grado  o tesis/Constancia de la institución formadora en la que se describan las caracteristicas del requisito que conllevó al otorgamiento del título,
+                                                                o si la información exigida en esta constancia hace parte  del certificado de programa académico aportar este documento.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileTesisMaestrias" id="fileTesisMaestrias" accept="application/pdf" onchange="cambiaFileUpload('fileTesisMaestrias','txtTesisMaestrias','refTesisMaestrias','lblTesisMaestrias')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutatesisMaestrias" target="_blank" id="refTesisMaestrias" style="width:90%">
+                                                                    @Html.EditorFor(model => model.tesisMaestrias, new { htmlAttributes = new { @class = "form-control", id = "txtTesisMaestrias", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtTesisMaestrias')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.tesisMaestrias, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblTesisMaestrias"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileTesisMaestriasTraducido" id="fileTesisMaestriasTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileTesisMaestriasTraducido','txtTesisMaestriasTraducido','refTesisMaestriasTraducido','lblTesisMaestriasTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutatesisMaestriasTraducido" target="_blank" id="refTesisMaestriasTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.tesisMaestriasTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtTesisMaestriasTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtTesisMaestriasTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.tesisMaestriasTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblTesisMaestriasTraducido"></p>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displayEspecialidadBaseNal)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                @*Título de especialidad base o primera especialidad otorgado por la IES colombiana o información del número de la Resolución de convalidación.*@
+                                                                Copia del documento de pregrado de especialidad base o primera espeialidad otorgado por la Institución de Educación Superior legalmente reconocida en Colombia.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileTituloEspecialidad" id="fileTituloEspecialidad" accept="application/pdf" onchange="cambiaFileUpload('fileTituloEspecialidad','txtTituloEspecialidad','refTituloEspecialidad','lblTituloEspecialidad')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutatituloEspecialidad" target="_blank" id="refTituloEspecialidad" style="width:90%">
+                                                                    @Html.EditorFor(model => model.tituloEspecialidad, new { htmlAttributes = new { @class = "form-control", id = "txtTituloEspecialidad", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtTituloEspecialidad')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.tituloEspecialidad, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblTituloEspecialidad"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            @*<input type="file" name="fileTituloEspecialidadTraducido" id="fileTituloEspecialidadTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileTituloEspecialidadTraducido','txtTituloEspecialidadTraducido','refTituloEspecialidadTraducido','lblTituloEspecialidadTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutatituloEspecialidadTraducido" target="_blank" id="refTituloEspecialidadTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.tituloEspecialidadTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtTituloEspecialidadTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtTituloEspecialidadTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.tituloEspecialidadTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblTituloEspecialidadTraducido"></p>*@
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (Model.displayRecorProcedimientos)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Para títulos de posgrado de especialidades médicas y quirúrgicas y odontológicas y maestrías en profundización clínica en salud. / Récord de procedimientos.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileRecordProcedimientos" id="fileRecordProcedimientos" accept="application/pdf" onchange="cambiaFileUpload('fileRecordProcedimientos','txtRecordProcedimientos','refRecordProcedimientos','lblRecordProcedimientos')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarecordProcedimientos" target="_blank" id="refRecordProcedimientos" style="width:90%">
+                                                                    @Html.EditorFor(model => model.recordProcedimientos, new { htmlAttributes = new { @class = "form-control", id = "txtRecordProcedimientos", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRecordProcedimientos')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.recordProcedimientos, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRecordProcedimientos"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileRecordProcedimientosTraducido" id="fileRecordProcedimientosTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileRecordProcedimientosTraducido','txtRecordProcedimientosTraducido','refRecordProcedimientosTraducido','lblRecordProcedimientosTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutarecordProcedimientosTraducido" target="_blank" id="refRecordProcedimientosTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.recordProcedimientosTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtRecordProcedimientosTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtRecordProcedimientosTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.recordProcedimientosTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblRecordProcedimientosTraducido"></p>
+
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                Para títulos de posgrado de especialidades médicas y quirúrgicas y odontológicas y maestrías en profundización clínica en salud. / Certificación de actividades académicas y asistenciales.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileCertificadoActividadesAcademicas" id="fileCertificadoActividadesAcademicas" accept="application/pdf" onchange="cambiaFileUpload('fileCertificadoActividadesAcademicas','txtCertificadoActividadesAcademicas','refCertificadoActividadesAcademicas','lblCertificadoActividadesAcademicas')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutacertificadoActividadesAcademicas" target="_blank" id="refCertificadoActividadesAcademicas" style="width:90%">
+                                                                    @Html.EditorFor(model => model.certificadoActividadesAcademicas, new { htmlAttributes = new { @class = "form-control", id = "txtCertificadoActividadesAcademicas", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtCertificadoActividadesAcademicas')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.certificadoActividadesAcademicas, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblCertificadoActividadesAcademicas"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileCertificadoActividadesAcademicasTraducido" id="fileCertificadoActividadesAcademicasTraducido" accept="application/pdf" onchange="cambiaFileUpload('fileCertificadoActividadesAcademicasTraducido','txtCertificadoActividadesAcademicasTraducido','refCertificadoActividadesAcademicasTraducido','lblCertificadoActividadesAcademicasTraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutacertificadoActividadesAcademicasTraducido" target="_blank" id="refCertificadoActividadesAcademicasTraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.certificadoActividadesAcademicasTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtCertificadoActividadesAcademicasTraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtCertificadoActividadesAcademicasTraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.certificadoActividadesAcademicasTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblCertificadoActividadesAcademicasTraducido"></p>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                                if (!(bool)Model.solicitudActual.nacional)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                @*Resolución de convalidación pregrado*@
+                                                                Copia de la Resolución que otorga la convalidación del título de pregrado emitida.
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileConvalidacionPregrado" id="fileConvalidacionPregrado" accept="application/pdf" onchange="cambiaFileUpload('fileConvalidacionPregrado','txtConvalidacionPregrado','refConvalidacionPregrado','lblConvalidacionPregrado')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutaTituloPregrado" target="_blank" id="refConvalidacionPregrado" style="width:90%">
+                                                                    @Html.EditorFor(model => model.convalidacionPregrado, new { htmlAttributes = new { @class = "form-control", id = "txtConvalidacionPregrado", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtConvalidacionPregrado')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.convalidacionPregrado, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblConvalidacionPregrado"></p>
+
+                                                        </td>
+                                                        <td>
+                                                            @*<input type="file" name="fileConvalidacionPregradotraducido" id="fileConvalidacionPregradotraducido" accept="application/pdf" onchange="cambiaFileUpload('fileConvalidacionPregradotraducido','txtConvalidacionPregradotraducido','refConvalidacionPregradotraducido','lblConvalidacionPregradotraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutatituloPregradoTraducido" target="_blank" id="refConvalidacionPregradotraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.convalidacionPregradoTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtConvalidacionPregradotraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtConvalidacionPregradotraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.convalidacionPregradoTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblConvalidacionPregradotraducido"></p>*@
+
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                                if (Model.displaySaludSegundaEsp)
+                                                {
+                                                    <tr class="screen_box_active_tr">
+                                                        <td>
+                                                            <p>
+                                                                @*Resolución de convalidación especialidad base*@
+                                                                Copia de la Resolución de especialidad base que otorga la convalidación del título de pregrado emitida
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="fileConvalidacionEspecialidadBase" id="fileConvalidacionEspecialidadBase" accept="application/pdf" onchange="cambiaFileUpload('fileConvalidacionEspecialidadBase','txtConvalidacionEspecialidadBase','refConvalidacionEspecialidadBase','lblConvalidacionEspecialidadBase')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutaTituloPregrado" target="_blank" id="refConvalidacionEspecialidadBase" style="width:90%">
+                                                                    @Html.EditorFor(model => model.convalidacionEspecialidadBase, new { htmlAttributes = new { @class = "form-control", id = "txtConvalidacionEspecialidadBase", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtConvalidacionEspecialidadBase')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.convalidacionEspecialidadBase, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblConvalidacionEspecialidadBase"></p>
+                                                        </td>
+                                                        <td>
+                                                            @*<input type="file" name="fileConvalidacionEspecialidadBasetraducido" id="fileConvalidacionEspecialidadBasetraducido" accept="application/pdf" onchange="cambiaFileUpload('fileConvalidacionEspecialidadBasetraducido','txtConvalidacionEspecialidadBasetraducido','refConvalidacionEspecialidadBasetraducido','lblConvalidacionEspecialidadBasetraducido')" />
+                                                            <div class="d-flex">
+                                                                <a href="@Model.rutatituloPregradoTraducido" target="_blank" id="refConvalidacionEspecialidadBasetraducido" style="width:90%">
+                                                                    @Html.EditorFor(model => model.convalidacionEspecialidadBaseTraducido, new { htmlAttributes = new { @class = "form-control", id = "txtConvalidacionEspecialidadBasetraducido", @readOnly = true, @style = "max-width:100%" } })
+                                                                </a>
+                                                                <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtConvalidacionEspecialidadBasetraducido')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </a>
+                                                            </div>
+
+                                                            @Html.ValidationMessageFor(model => model.convalidacionEspecialidadBaseTraducido, "", new { @class = "text-danger" })
+                                                            <p class="text-justify" id="lblConvalidacionEspecialidadBasetraducido"></p>*@
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                            <tr class="screen_box_active_tr">
+                                                <td>
+                                                    <p>
+                                                        Documento adicional 1
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="fileDocumentoAdicional1" id="fileDocumentoAdicional1" accept="application/pdf" onchange="cambiaFileUpload('fileDocumentoAdicional1','txtDocumentoAdicional1','refDocumentoAdicional1','lblDocumentoAdicional1')">
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutaDocumentoAdicional1" target="_blank" id="refDocumentoAdicional1" style="width:90%">
+                                                            @Html.EditorFor(model => model.documentoAdicional1, new { htmlAttributes = new { @class = "form-control", id = "txtDocumentoAdicional1", @readOnly = true, @style = "max-width:100%" } })
+                                                            
+                                                        </a>
+                                                        @*<a style="padding-top:3px">
+                                                            <span class="input-group-addon" title="Ver"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                                        </a>*@
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtDocumentoAdicional1')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <p class="text-justify" id="lblDocumentoAdicional1"></p>                                                    
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="screen_box_active_tr">
+                                                <td>
+                                                    <p>
+                                                        Documento adicional 2
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="fileDocumentoAdicional2" id="fileDocumentoAdicional2" accept="application/pdf" onchange="cambiaFileUpload('fileDocumentoAdicional2','txtDocumentoAdicional2','refDocumentoAdicional2','lblDocumentoAdicional2')">
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutaDocumentoAdicional2" target="_blank" id="refDocumentoAdicional1" style="width:90%">
+                                                            @Html.EditorFor(model => model.documentoAdicional2, new { htmlAttributes = new { @class = "form-control", id = "txtDocumentoAdicional2", @readOnly = true, @style = "max-width:100%" } })
+                                                            
+                                                        </a>
+                                                        @*<a style="padding-top:3px">
+                                                            <span class="input-group-addon" title="Ver"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                                        </a>*@
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtDocumentoAdicional2')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <p class="text-justify" id="lblDocumentoAdicional2"></p>                                                    
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="screen_box_active_tr">
+                                                <td>
+                                                    <p>
+                                                        Documento adicional 3
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="fileDocumentoAdicional3" id="fileDocumentoAdicional3" accept="application/pdf" onchange="cambiaFileUpload('fileDocumentoAdicional3','txtDocumentoAdicional3','refDocumentoAdicional3','lblDocumentoAdicional3')">
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutaDocumentoAdicional3" target="_blank" id="refDocumentoAdicional1" style="width:90%">
+                                                            @Html.EditorFor(model => model.documentoAdicional3, new { htmlAttributes = new { @class = "form-control", id = "txtDocumentoAdicional3", @readOnly = true, @style = "max-width:100%" } })
+                                                            
+                                                        </a>
+                                                        @*<a style="padding-top:3px">
+                                                            <span class="input-group-addon" title="Ver"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                                        </a>*@
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtDocumentoAdicional3')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <p class="text-justify" id="lblDocumentoAdicional3"></p>                                                    
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="screen_box_active_tr">
+                                                <td>
+                                                    <p>
+                                                        Documento adicional 4
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="fileDocumentoAdicional4" id="fileDocumentoAdicional4" accept="application/pdf" onchange="cambiaFileUpload('fileDocumentoAdicional4','txtDocumentoAdicional4','refDocumentoAdicional4','lblDocumentoAdicional4')">
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutaDocumentoAdicional4" target="_blank" id="refDocumentoAdicional1" style="width:90%">
+                                                            @Html.EditorFor(model => model.documentoAdicional4, new { htmlAttributes = new { @class = "form-control", id = "txtDocumentoAdicional4", @readOnly = true, @style = "max-width:100%" } })
+                                                            
+                                                        </a>
+                                                        @*<a style="padding-top:3px">
+                                                            <span class="input-group-addon" title="Ver"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                                        </a>*@
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtDocumentoAdicional4')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <p class="text-justify" id="lblDocumentoAdicional4"></p>                                                    
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="screen_box_active_tr">
+                                                <td>
+                                                    <p>
+                                                        Documento adicional 5
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="fileDocumentoAdicional5" id="fileDocumentoAdicional5" accept="application/pdf" onchange="cambiaFileUpload('fileDocumentoAdicional5','txtDocumentoAdicional5','refDocumentoAdicional5','lblDocumentoAdicional5')">
+                                                    <div class="d-flex">
+                                                        <a href="@Model.rutaDocumentoAdicional5" target="_blank" id="refDocumentoAdicional1" style="width:90%">
+                                                            @Html.EditorFor(model => model.documentoAdicional5, new { htmlAttributes = new { @class = "form-control", id = "txtDocumentoAdicional5", @readOnly = true, @style = "max-width:100%" } })
+                                                            
+                                                        </a>
+                                                        @*<a style="padding-top:3px">
+                                                            <span class="input-group-addon" title="Ver"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                                        </a>*@
+                                                        <a title="Eliminar Archivo" class="button general_button button_normal button_small" onclick="mensajeEliminaArchivo('txtDocumentoAdicional5')">
+                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <p class="text-justify" id="lblDocumentoAdicional5"></p>                                                    
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-left">
+                        <br>Para los casos en los cuales el documento original a cargar se encuentre en idioma diferente al castellano,
+                        debe adjuntar adicionalmente el documento correspondiente a la traducción oficial.
+                    </p>
+                </div>
+
+                <!-- Finaliza sección -->
+
+                <div class="screen2_actions">
+                    <a href="~/Inicio/FaseIII?solicitudId=@Model.solicitudActual.SolicitudId" class="button general_button has_icon button_blue">
+                        <div class="icon_wrap">
+                            <img src="~/assets/images/icons/men-anterior.svg" alt="">
+                        </div>
+                        Anterior
+                    </a>
+                    <a href="~/Inicio/BandejaConvalidante" class="button general_button has_icon button_blue">
+                        <div class="icon_wrap">
+                            <img src="~/assets/images/icons/men-salir.svg" alt="">
+                        </div>
+                        Menú
+                    </a>
+                    <button value="Acepto" class="button general_button has_icon button_pink" id="btnAceptaIV">Siguiente</button>
+                </div>
+            }
+        </section>
+    </div>
+

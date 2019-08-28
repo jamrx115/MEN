@@ -1,0 +1,178 @@
+﻿<documentoXMLTMS>
+<TMS>
+	<SalidaCorrespondencia>
+		<ENCABEZADO Bloque="true">
+			<ID_DOC_PPAL/>
+			<Rotulo_Ciudad/>
+			<Rotulo_Ent_Destino/>
+			<Rotulo_Asunto1pte>Comunicación Registro Convalidaciones IES 1</Rotulo_Asunto1pte>
+			<Rotulo_Asunto2pte>16 de julio de 2019</Rotulo_Asunto2pte>
+			<Rotulo2_cliente/>	
+			<Ciudad_Radicacion>Bogotá D.C</Ciudad_Radicacion>
+			<Rotulo2_Direccion>carrera 1 No. 00-01</Rotulo2_Direccion>
+		</ENCABEZADO>
+		<TMS_RADICACION Bloque="true">
+			<CTmsTipoDocRadicacion/>
+			<CTmsRadicacion/>
+			<FechaRadicacion/>
+		</TMS_RADICACION>
+		<etiqueta_1 Bloque="true"/>
+		<CLIENTE Bloque="true">
+			<CTMS_nom_cliente>Juan Jose Francisco Jiminez Lopez</CTMS_nom_cliente>
+			<CTMS_direccion>carrera 1 No. 00-01</CTMS_direccion>
+			<CTMS_nit>876543</CTMS_nit>
+			<V_Ciudad>Bogota</V_Ciudad>
+			<Departamento>Cundinamarca</Departamento>
+			<Firmante>Juan Jose Francisco Jiminez Lopez</Firmante>
+			<CTMS_id_cliente/>
+			<CTMS_id_localizacion/>
+			<CTMS_tipo_cliente/>
+			<CTMS_clase_persona/>
+			<CTMS_actualizacion/>
+			<CTMS_admonTablabd/>
+			<CTMS_nombreTabla/>
+			<CTMS_pkTabla/>
+			<CTMSIdBloque/>
+		</CLIENTE>
+		<ASUNTO Bloque="true">
+			<AsuntoSolicitud>Comunicación Registro Convalidaciones IES</AsuntoSolicitud>
+			<BDIDPlataforma/>
+			<BDIDTipo/>
+			<Tipo_requerimiento/>
+			<Tradicion>0</Tradicion>
+			<Nombre_Plataforma/>
+			<s_id_cliente/>
+			<Asunto>Comunicación Registro Convalidaciones IES</Asunto>
+		</ASUNTO>
+		<Blq_resumen Bloque="true">
+			<Resumen/>
+		</Blq_resumen>
+		<etiqueta2 Bloque="true"/>
+		<TMS_ASUNTO Bloque="true">			
+			<CTMSNumsRadicacion/>
+			<NumeroRadicadicacionOrigen/>
+			<NodeFolios>1</NodeFolios>
+			<NodeAnexos>0</NodeAnexos>
+		</TMS_ASUNTO>
+		<CTMSANEXO Bloque="true">
+			<CTmsIdBloqueAnexo/>
+			<CTmsIdDocumentoAnexo/>
+			<CTmsUrlAnexo/>
+			<CTmsTipoDocumentoAnexo/>
+			<Validar_Anexo/>
+		</CTMSANEXO>
+		<etiqueta3 Bloque="true"/>
+		<TMS_ORIGEN Bloque="true">
+			<DescripcionAnexos/>
+			<CTmsOrigenNivel>Subdirección de Aseguramiento de la Calidad</CTmsOrigenNivel>
+			<CTmsOrigenIdNivel>356</CTmsOrigenIdNivel>			
+			<CTmsIdBloque/>
+			<CTmsClase>O</CTmsClase>
+			<CTmsIdDocumentoDestinop/>
+			<CTmsOrigenIdUsuario>37888643</CTmsOrigenIdUsuario>
+			<CTmsOrigenCargo>Subdirectora de Aseguramiento de la Calidad</CTmsOrigenCargo>
+			<CTmsOrigenTSol>Correspondencia Externa</CTmsOrigenTSol>
+			<CTmsOrigenUsuario>RUTH TERESA BERNAL RUIZ</CTmsOrigenUsuario>
+			<CTmsOrigenIdCargo>1391</CTmsOrigenIdCargo>
+			<IdClase/>
+			<CTmsOrigenIdTSol>0</CTmsOrigenIdTSol>
+			<Tipo_Documental>Carta</Tipo_Documental>
+			<id_tipo_documental/>
+			<Canal_Salida>Masivo</Canal_Salida>
+			<id_origen>0</id_origen>
+			<currier>COLDELIVERY</currier>
+			<id_currier>11</id_currier>
+			<id_documento_destino/>
+			<id_currier_destino>11</id_currier_destino>
+		</TMS_ORIGEN>
+		<TMS_DOCEXTERNO Bloque="true"/>
+		<TMS_COPIA Bloque="true">
+			<CTmsCopiaUsuario/>
+			<CTmsCopiacargo/>
+			<CTmsIdDocumentoDestinoCopia/>
+			<CTmsCopiaTSol/>
+			<CTmsCopiaClase/>
+			<CTmsCopiaIdNivel/>
+			<CTmsCopiaIdCargo/>
+			<CTmsIdBloqueCopia>0</CTmsIdBloqueCopia>
+			<CTmsCopiaNivel/>
+			<CTmsCopiaIdUsuario/>
+			<CTmsCopiaIdTSol/>
+			<DescripcionCopia/>
+		</TMS_COPIA>
+		<INFO_PLANILLAS Bloque="true">
+			<id_consecutivo/>
+			<id_documento/>
+			<fecha_documento/>
+			<radicacion_origen/>
+			<Entidad/>
+			<nombre_firmante>Juan Jose Francisco Jiminez Lopez</nombre_firmante>
+			<Numero_Folios>1</Numero_Folios>
+			<Tramite>Correspondencia Enviada</Tramite>
+			<Indireccion>carrera 1 No. 00-01</Indireccion>
+			<id_municipio>Soacha</id_municipio>
+			<In_NoAnexos>0</In_NoAnexos>
+			<in_desc_Anexos/>
+			<cc_id_currier>11</cc_id_currier>
+		</INFO_PLANILLAS>
+		<TMS_PARANIVEL Bloque="true">
+			<CTmsDestinoParaNivel1>DESTINO EXTERNO</CTmsDestinoParaNivel1>
+			<IdPais/>
+			<CTmsNombreOrganizacion/>
+			<CTmsIdDocumentoDestinoParaNivel/>
+			<CTmsDestinoParaNivelDepartamento/>
+			<CTmsIdBloqueParaNivel/>
+			<CTmsClaseParaNivel>O</CTmsClaseParaNivel>
+			<PaisPara>Colombia</PaisPara>
+			<CargoPara/>
+			<CTmsDestinoParaNivel>DESTINO EXTERNO</CTmsDestinoParaNivel>
+			<CTmsTelefono/>
+			<CTmsDireccion>carrera 1 No. 00-01</CTmsDireccion>
+			<NIT/>
+			<CTmsParaIdNivel>0</CTmsParaIdNivel>
+			<IdEntidad/>
+			<IdTituloPara/>
+			<CiudadPara>0</CiudadPara>
+			<DepartamentoPara/>
+			<id_ciudad/>
+			<id_departamento/>
+		</TMS_PARANIVEL>
+		<TMS_TIPOSERVICIOCOBERTURA Bloque="true">
+			<CTmsIdCobertura>8</CTmsIdCobertura>
+			<CTmsNomCobertura>Urbano</CTmsNomCobertura>
+			<CTmsIdTipoServicio>2</CTmsIdTipoServicio>
+			<CTmsNomTipoServicio>Normal</CTmsNomTipoServicio>
+		</TMS_TIPOSERVICIOCOBERTURA>
+	</SalidaCorrespondencia>
+	<registro_control>
+		<tipo_llamado asin="false"/>
+		<Usuario>
+			<id_usuario>79804555</id_usuario>
+			<clave>Convalidaciones2019*</clave>
+		</Usuario>
+		<documento tipo_documento="165" num_caracteres="0">
+			<id_documento/>
+			<NombreRegistro>SalidaCorrespondencia</NombreRegistro>
+			<id_xslGC>179</id_xslGC>
+		</documento>
+		<cliente>
+			<nit>876543</nit>
+		</cliente>
+		<solicitud>
+			<aplicativo/>
+			<id_solicitud/>
+			<url_respuesta/>
+			<id_usuario_remoto/>
+			<clave_usuario_remoto/>
+		</solicitud>
+		<DocumentosAnexos>
+			<Anexos Tipo="FTP" IdConfiguracion="0" Ruta="">
+				<File/>
+			</Anexos>
+		</DocumentosAnexos>
+		<Radicador>
+			<IdRadicador>79804555</IdRadicador>
+		</Radicador>
+	</registro_control>
+</TMS>
+</documentoXMLTMS>

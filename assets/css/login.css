@@ -1,0 +1,147 @@
+/* A el custom */
+.login_header_left {
+  display: flex;
+  align-items: center;
+    justify-content: flex-start;
+}
+.login_header_right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+/* .login_header_left .blue_content,
+.login_header_left .trans_content {
+  padding: 10px;
+  font-size: 25px;
+  display: block;
+} */
+.login_header_left .blue_content {
+  color: white;
+  background: #144198;
+}
+.login_header_left .trans_content {
+  color: #3266cc;
+}
+.login_header_right a {
+  margin-left: 10px;
+}
+.button.general_button.button_blue {
+  background: #3266cc;
+  color: white;
+  border: #3266cc;
+}
+.button.general_button.button_pink {
+  background: #f42f64;
+  color: white;
+  border: #f42f64;
+}
+.login_header_left,
+.login_header_right {
+  height: 60px;
+}
+/* No custom */
+
+
+.login_form_container {
+  max-width: 320px;
+  margin: auto;
+}
+#education_login {
+  padding: 50px 0;
+}
+.field {
+    margin-top: 20px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.field input[type="text"],
+.field input[type="number"],
+.field input[type="password"],
+.field select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #3266cc;
+  padding-left: 48px;
+  transition: box-shadow 0.3s;
+}
+.field select {
+  padding-left: 44px;
+}
+.field span{
+    color: #cc0000;
+    font-size: 14px;
+    font-style: italic;
+    justify-content: center;
+    width: auto;
+    margin: 10px auto 0 auto;
+}
+
+.field input[type="text"]:focus,
+.field input[type="number"]:focus,
+.field input[type="password"]:focus,
+.field select:focus {
+  outline: none;
+  box-shadow: 0 3px 6px #bdbdbd;
+}
+.field_small {
+  text-align: center;
+  margin-top: 3px;
+}
+
+.field_small a {
+  font-size: 13px;
+  color: #3266cc;
+  text-decoration: none;
+}
+.field .button.button.general_button,
+.field_small .button.button.general_button {
+  width: 100%;
+}
+.field select{
+    margin: 0;
+}
+.field .icon_wrap{
+  	height: 47px;
+}
+
+.icon_wrap {
+      justify-content: center;
+    position: absolute;
+    height: 30px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    top: 0;
+}
+.icon_wrap:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  height: 60%;
+  width: 1px;
+  background: #3266cc;
+}
+.icon_wrap.icon_right {
+    height: 40px;
+    right: 0;
+    top:5px;
+}
+.icon_wrap img {
+  height: 65%;
+}
+.ingresar{
+  margin: 0 auto;
+  text-align: center;
+  width: 200px!important;
+}
+/* Bootstrap */
+.modal-body{
+  font-size: 0.9em;
+}
+.modal-body a{
+word-break: break-all;
+}

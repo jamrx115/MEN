@@ -1,0 +1,70 @@
+﻿@model ConvalidacionEducacionSuperior.Models.CambioContrasena
+@{
+    ViewBag.Title = "CambiaContrasena";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<h2 class="tituloPagina">Cambiar Contraseña</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(x => x.user, new { id = "txtUser" })
+    @Html.HiddenFor(x => x.validPassword, new { id = "txtValidPsw" })
+    <table class="table table-borderless">
+        <tr>
+            <td style="width:35%"></td>
+            <td style="width:10%"></td>
+            <td class="text-left" style="width:30%"><label>Contraseña Anterior</label></td>
+            <td style="width:25%"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="text-left">
+                @Html.EditorFor(model => model.PasswordOld, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.PasswordOld, "", new { @class = "text-danger" })
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="text-justify" style="width:35%" rowspan="3">
+                La contraseña debe tener al menos 8 caracteres, no puede ser identica a la anterior, no puede ser igual  que el identificador de usuario,
+                debe tener 1 numeros, debe tener 5 minúsculas, debe contener 1 mayúsculas y debe contener un caracter especial
+            </td>
+            <td></td>
+            <td class="text-left"><label>Contraseña Nueva</label></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="text-left">
+                <div class="input-group col-sm-12">
+                    @Html.EditorFor(model => model.PasswordNew, new { htmlAttributes = new { @class = "form-control", id = "txtPsw", @type = "password", @style = "max-width:100%" } })
+                    @Html.ValidationMessageFor(model => model.PasswordNew, "", new { @class = "text-danger" })
+                    <span class="input-group-addon" title="Ver / Ocultar" onclick="verOcultar()"><i class="glyphicon glyphicon-eye-open" id="spOjo"></i></span>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="text-left"><label>Cofirmar Contraseña</label></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="text-left">
+                @Html.EditorFor(model => model.PasswordNewConfirma, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.PasswordNewConfirma, "", new { @class = "text-danger" })
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <button class="btn botones">Cambiar</button>
+}
+
+

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ministerio de Educación</title>
+   
+    @*<link href="~/assets/css/bootstrap.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="~/assets/css/bootstrap.grid.min.css">
+    <link rel="stylesheet" href="~/assets/css/custom.css">
+    <link href="~/assets/css/pantalla1.css" rel="stylesheet" />
+    @*<link href="~/assets/css/login.css" rel="stylesheet" />*@
+    @*<link href="~/assets/css/tablas.css" rel="stylesheet" />*@
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <div class="container body-content">
+        <header>
+            @Html.Partial("_Cabecera")
+        </header>
+        <div class="text-center">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            @Html.Partial("_footer")
+        </footer>
+
+        <button id="btnModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="visibility:hidden"></button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><span class="glyphicon glyphicon-exclamation-sign"></span> Mensajes</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 id="textoModal"></h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnCierraModal" type="submit" class="btn btn-info btn-default pull-left" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

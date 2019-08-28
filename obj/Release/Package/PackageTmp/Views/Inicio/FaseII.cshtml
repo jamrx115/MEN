@@ -1,0 +1,291 @@
+﻿@model ConvalidacionEducacionSuperior.Models.Paso2Model
+@{
+    ViewBag.Title = "FaseII";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <body onload="nobackbutton()">  
+        <div class="container text-left">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <section id="screen2">
+                    <div class="screen_boxwizard_buttons row">
+                        <div class="boxwizard_button col">
+                            <span>Aprobación de términos y condiciones</span>
+                        </div>
+                        <div class="boxwizard_button active col">
+                            <span>Selección de filtros de entrada</span>
+                        </div>
+                        <div class="boxwizard_button col">
+                            <span>Diligenciamiento de formato de Solicitud</span>
+                        </div>
+                        <div class="boxwizard_button col">
+                            <span>Cargue de documentos</span>
+                        </div>
+                        <div class="boxwizard_button col">
+                            <span>Resumen</span>
+                        </div>
+                    </div>
+                    <div class="line-progress">
+                        <ul>
+                            <li><span class="progres-done" href=""></span></li>
+                            <li><span class="progres-active" href=""></span></li>
+                            <li><span href=""></span></li>
+                            <li><span href=""></span></li>
+                            <li><span href=""></span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Empieza sección -->
+
+                    <div class="lines_wizard_general wizard2">
+                        <div class="title-image-b">
+                            <img src="~/assets/images/icons/men-filtros.svg" alt="">
+                            <h3 class="wizard_genera_title">Filtros de Entrada</h3>
+                        </div>
+
+
+                        <div class="wizard_line_container">
+
+                            <div class="wizard_line_title">
+                                <h4>
+                                    <span class="resaltado">
+                                        Señor solicitante, tenga en cuenta que de conformidad con lo establecido en la resolución 20128 del 2019, <b>NO</b> son
+                                        convalidables los títulos con las siguientes características
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="wizard_line_context">
+                                <ul>
+                                    <li>Doble titulación y programas conjuntos en Colombia.</li>
+                                    <li>Títulos propios o no oficiales.</li>
+                                    <li>Títulos con formación en Colombia.</li>
+                                    <li>
+                                        Títulos de pregrado del área de la salud que no sean equivalentes a programas académicos
+                                        activos en Colombia.
+                                    </li>
+                                    <li>Grados honoríficos.</li>
+                                    <li>Títulos de educación continua que no correspondan a títulos de educación superior.</li>
+                                </ul>
+                                <span class="resaltado">
+                                    Para mayor información puede consultar el Artículo de la Resolución 20128 del 2019.
+                                </span>
+                                <p>Señor solicitante, le recordamos que por cada trámite de Convalidación, debe hacer un pago.</p>
+
+                                <p>
+                                    Por su seguridad, recuerde que el Ministerio de Educación Nacional nunca solicita información
+                                    confidencial o financiera,
+                                    tampoco acepta el trámite de Convalidación a través de terceros no autorizados, correo electrónico, redes
+                                    sociales,
+                                    mensajes de texto u otras páginas web
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="row m-0 section-gray">
+                            <h3 class="wizard_genera_title">Señor solicitante por favor conteste las siguientes preguntas:</h3>
+
+                            <div class="wizard_line_context preguntas">
+                                <ul>
+                                    <li>
+                                        <div class="col-md-9 text-left">
+                                            <ul class="text-justify">
+                                                <li style="font-size:16px">
+                                                    Señor solicitante, el sistema notifica electrónicamente al correo electrónico que registre, 
+                                                    o se permite la notificación física a una dirección registrada en Colombia,
+                                                    ¿desea ser notificado electrónicamente?
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="respuestas">
+                                            <label class="respuesta-contenido">
+                                                SI
+                                                @Html.RadioButton("notificaElectrinica", "true", htmlAttributes: new { @onchange = "notificaTerceroDisplay()" })
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="respuesta-contenido">
+                                                NO
+                                                @Html.RadioButton("notificaElectrinica", "false", htmlAttributes: new { @onchange = "notificaTerceroDisplay()" })
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="divNotificaTercero" style="@Model.displayNotifica"><span>¿Autoriza a un tercero para recibir notificación física en Colombia?</span></div>
+                                        <div id="divNotificaTercero_1" style="@Model.displayNotifica">
+                                            <div class="respuestas">
+                                                <label class="respuesta-contenido">
+                                                    SI
+                                                    @Html.RadioButton("notificaTercero", "true")
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="respuesta-contenido">
+                                                    NO
+                                                    @Html.RadioButton("notificaTercero", "false")
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div><span>¿Su título es emitido por dos o más instituciones extranjeras?</span></div>
+                                        <div class="respuestas">
+                                            <label class="respuesta-contenido">
+                                                SI
+                                                @Html.RadioButton("institucionesExtrangeras", "true")
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="respuesta-contenido">
+                                                NO
+                                                @Html.RadioButton("institucionesExtrangeras", "false")
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div><span>¿Usted realizó estudios en el exterior usando beca?</span></div>
+                                        <div class="respuestas">
+                                            <label class="respuesta-contenido">
+                                                SI
+                                                @Html.RadioButton("beca", "true")
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="respuesta-contenido">
+                                                NO
+                                                @Html.RadioButton("beca", "false")
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <span>
+                                                ¿El programa de estudios hace parte de un convenio entre instituciones de educación superior colombianas y extranjeras?
+                                            </span>
+                                        </div>
+                                        <div class="respuestas">
+                                            <label class="respuesta-contenido">
+                                                SI
+                                                @Html.RadioButton("convenio", "true")
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="respuesta-contenido">
+                                                NO
+                                                @Html.RadioButton("convenio", "false")
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="@Model.estilo">
+                                            <span>
+                                                ¿Su pregrado es otorgado en: Colombia?
+                                            </span>
+                                        </div>
+                                        <div style="@Model.estilo" onchange="cambiaNacional('@Model.nacional')">
+                                            <div class="respuestas">
+                                                <label class="respuesta-contenido">
+                                                    SI
+                                                    @Html.RadioButton("nacional", "true")
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="respuesta-contenido">
+                                                    NO
+                                                    @Html.RadioButton("nacional", "false")
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>                                            
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="divConvalidado" style="@Model.estilo_1">
+                                            <span>
+                                                ¿Su pregrado otorgado en el exterior está convalidado?
+                                            </span>
+                                        </div>
+                                        <div id="divConvalidado_1" style="@Model.estilo_1">
+                                            <div class="respuestas">
+                                                <label class="respuesta-contenido">
+                                                    SI
+                                                    @Html.RadioButton("preGradoValidado", "true")
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="respuesta-contenido">
+                                                    NO
+                                                    @Html.RadioButton("preGradoValidado", "false")
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br><br>
+
+                        <div class="title-image-b">
+                            <img src="~/assets/images/icons/men-importante.svg" alt="">
+                            <h3 class="wizard_genera_title">Importante</h3>
+                        </div>
+
+                        <div class="wizard_line_container">
+                            <p>
+                                La Resolución No.20128 del 2019, que regula el actual proceso de Convalidación de títulos
+                                extranjeros de Educación Superior, podrá ser descargada a través del botón de AYUDA de este aplicativo o en
+                                la página <a href="http://www.mineducacion.gov.co" target="_blank"><span class="resaltado">www.mineducacion.gov.co</span></a> en la sección Convalidaciones
+                                Superior.<br><br>
+
+                                Señor solicitante, por favor tenga en cuenta que el nombre de los archivos que anexará, debe coincidir con
+                                el nombre de los documentos solicitados en los Artículos 3, 4, 5 y 23 de la
+                                <span class="resaltado">
+                                    Resolución No.20128 del 2019
+                                </span>.<br><br>
+
+                                Tenga en cuenta que el “Formato de productos de investigación”, definido en la Resolución como uno de los
+                                requisitos del proceso de convalidación, podrá descargarlo
+                                <a href="https://www.mineducacion.gov.co/portal/convalidaciones/Convalidaciones-Educacion-Superior/363154:Descargue-formato-Productos-de-Investigacion" target="_blank">
+                                    <span class="resaltado">aquí</span>
+                                </a>
+                                o en la página del Ministerio <a href="http://www.mineducacion.gov.co" target="_blank"><span class="resaltado">www.mineducacion.gov.co</span></a>
+                                en la sección <a href="https://www.mineducacion.gov.co/portal/convalidaciones/Convalidaciones-Educacion-Superior/350670:Conozca-el-proceso" target="_blank"><span class="resaltado">Convalidaciones Superior</span></a>.
+                                Para diligenciar este documento, debe utilizar un editor de archivos Pdf.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Finaliza sección -->
+
+                    <div class="screen2_actions">
+                        <a onclick="validaFaseII('0')" class="button general_button has_icon button_blue">
+                            <div class="icon_wrap">
+                                <img src="~/assets/images/icons/men-anterior.svg" alt="">
+                            </div>
+                            Anterior
+                        </a>
+                        <a onclick="validaFaseII('1')" class="button general_button has_icon button_blue">
+                            <div class="icon_wrap">
+                                <img src="~/assets/images/icons/men-salir.svg" alt="">
+                            </div>
+                            Menú
+                        </a>
+                        <a onclick="validaFaseII('@Model.esPregrado.ToString()')" class="button general_button has_icon button_pink">
+                            <div class="icon_wrap">
+                                <img src="~/assets/images/icons/men-acepto.svg" alt="">
+                            </div>
+                            Siguiente
+                        </a>
+                        <button value="Acepto" name="btnAceptaII" class="btn botones btn-lg" style="display:none" id="btnAceptaII">Acepto</button>
+                    </div>
+                </section>
+            }
+
+        </div>
+    </body>
+</html>
+
+

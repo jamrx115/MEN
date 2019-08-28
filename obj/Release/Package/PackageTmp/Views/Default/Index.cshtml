@@ -1,0 +1,247 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+<!------ Include the above in your HEAD tag ---------->
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+
+<script>
+    $(function () {
+        $.widget("custom.combobox", {
+            _create: function () {
+                this.wrapper = $("<span>")
+                    .addClass("custom-combobox")
+                    .insertAfter(this.element);
+
+                this.element.hide();
+                this._createAutocomplete();
+                this._createShowAllButton();
+            },
+
+            _createAutocomplete: function () {
+                var selected = this.element.children(":selected"),
+                    value = selected.val() ? selected.text() : "";
+
+                this.input = $("<input>")
+                    .appendTo(this.wrapper)
+                    .val(value)
+                    .attr("title", "")
+                    .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                    .autocomplete({
+                        delay: 0,
+                        minLength: 0,
+                        source: $.proxy(this, "_source")
+                    })
+                    .tooltip({
+                        classes: {
+                            "ui-tooltip": "ui-state-highlight"
+                        }
+                    });
+
+                this._on(this.input, {
+                    autocompleteselect: function (event, ui) {
+                        ui.item.option.selected = true;
+                        this._trigger("select", event, {
+                            item: ui.item.option
+                        });
+                    },
+
+                    autocompletechange: "_removeIfInvalid"
+                });
+            },
+
+            _createShowAllButton: function () {
+                var input = this.input,
+                    wasOpen = false
+
+                $("<a>")
+                    .attr("tabIndex", -1)
+                    .attr("title", "Show All Items")
+                    .attr("height", "")
+                    .tooltip()
+                    .appendTo(this.wrapper)
+                    .button({
+                        icons: {
+                            primary: "ui-icon-triangle-1-s"
+                        },
+                        text: "false"
+                    })
+                    .removeClass("ui-corner-all")
+                    .addClass("custom-combobox-toggle ui-corner-right")
+                    .on("mousedown", function () {
+                        wasOpen = input.autocomplete("widget").is(":visible");
+                    })
+                    .on("click", function () {
+                        input.trigger("focus");
+
+                        // Close if already visible
+                        if (wasOpen) {
+                            return;
+                        }
+
+                        // Pass empty string as value to search for, displaying all results
+                        input.autocomplete("search", "");
+                    });
+            },
+
+            _source: function (request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response(this.element.children("option").map(function () {
+                    var text = $(this).text();
+                    if (this.value && (!request.term || matcher.test(text)))
+                        return {
+                            label: text,
+                            value: text,
+                            option: this
+                        };
+                }));
+            },
+
+            _removeIfInvalid: function (event, ui) {
+
+                // Selected an item, nothing to do
+                if (ui.item) {
+                    return;
+                }
+
+                // Search for a match (case-insensitive)
+                var value = this.input.val(),
+                    valueLowerCase = value.toLowerCase(),
+                    valid = false;
+                this.element.children("option").each(function () {
+                    if ($(this).text().toLowerCase() === valueLowerCase) {
+                        this.selected = valid = true;
+                        return false;
+                    }
+                });
+
+                // Found a match, nothing to do
+                if (valid) {
+                    return;
+                }
+
+                // Remove invalid value
+                this.input
+                    .val("")
+                    .attr("title", value + " didn't match any item")
+                    .tooltip("open");
+                this.element.val("");
+                this._delay(function () {
+                    this.input.tooltip("close").attr("title", "");
+                }, 2500);
+                this.input.autocomplete("instance").term = "";
+            },
+
+            _destroy: function () {
+                this.wrapper.remove();
+                this.element.show();
+            }
+        });
+
+        $("#combobox").combobox();
+        $("#toggle").on("click", function () {
+            $("#combobox").toggle();
+        });
+    });
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="ui-widget">
+            <label>Procedure: </label>
+            <select id="combobox">
+                <option></option>
+                <option value="Ultrasound Knee Right">Ultrasound Knee Right</option>
+                <option value="Ultrasound Knee Left">Ultrasound Knee Left</option>
+                <option value="Ultrasound Forearm/Elbow Right">Ultrasound Forearm/  Elbow Right</option>
+                <option value="Ultrasound Forearm/Elbow Left">Ultrasound Forearm/Elbow Left</option>
+                <option value="MRI Knee Right">MRI Knee Right</option>
+                <option value="MRI Knee Left">MRI Knee Left</option>
+                <option value="MRI Forearm/Elbow Right">MRI Forearm/Elbow Right</option>
+                <option value="MRI Forearm/Elbow Left">MRI Forearm/Elbow Left</option>
+                <option value="CT Knee Right">CT Knee Right</option>
+                <option value="CT Knee Left">CT Knee Left</option>
+                <option value="CT Forearm/Elbow Right">CT Forearm/Elbow Right</option>
+                <option value="CT Forearm/Elbow Left">CT Forearm/Elbow Left</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+@*@using (Html.BeginForm("Index", "Default", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div>
+                    <input type="text" id="txtCustomer" name="CustomerName" autocomplete="off" />
+                </div>
+                <div>
+                    @ViewBag.Message
+                    <input type="hidden" id="hfCustomer" name="CustomerId" />
+                    <br /><br />
+                    <input type="submit" id="btnSubmit" value="Submit" />
+                </div>
+                <br />
+
+                <br /><br />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/MEN/Autocompletar.js"></script>
+
+    <script type="text/javascript">
+        var institucionName = [];
+        var institucionCode = [];
+
+        $.ajax({
+            url: '/Default/AutoComplete',
+            type: 'POST',
+            success: function (responce) {
+                var i = 0;
+                responce.forEach(function (element) {
+                    institucionName[i] = element.label;
+                    institucionCode[i++] = element.val;
+                });
+            },
+            error: function (responce) { mensajePopUp(responce.data) }
+        });
+
+        autocomplete(document.getElementById("txtCustomer"), institucionName, document.getElementById("hfCustomer"), institucionCode);
+    </script>*@
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/MEN/Autocompletar.js"></script>
+
+    <script type="text/javascript">
+        var programaName = [];
+        var programaCode = [];
+
+        $.ajax({
+            url: '/Default/AutoCompleteNombrePrograma',
+            type: 'POST',
+            success: function (responce) {
+                var i = 0;
+                responce.forEach(function (element) {
+                    programaName[i] = element.label;
+                    programaCode[i++] = element.val;
+                });
+            },
+            error: function (responce) { mensajePopUp(responce.data) }
+        });
+
+        autocomplete(document.getElementById("txtNombrePrograma"), programaName, document.getElementById("txtNombreProgramaId"), programaCode);
+    </script>*@
+

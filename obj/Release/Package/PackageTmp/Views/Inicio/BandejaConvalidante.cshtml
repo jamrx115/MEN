@@ -1,0 +1,272 @@
+﻿@model ConvalidacionEducacionSuperior.Models.LoginModel
+
+@{
+    ViewBag.Title = "Bandeja Convalidante";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+    <script>
+        window.onload = function () {
+            nobackbutton();
+        }
+    </script>
+
+    <div class="container">
+
+        <section id="screen1">
+            <div class="bars_sidebar">
+                <button class="button general_button button_blue button_small">
+                    <img src="~/assets/images/icons/men-bars.svg" alt="">
+                </button>
+            </div>
+            <div class="row">
+
+                <div class="col-xl-3 sidebar_col">
+                    <div class="screen_sidebar">
+                        <div class="sidebar_name">
+                            <h4>
+                                @Model.datosUsuario.primerNombre @Model.datosUsuario.segundoNombre @Model.datosUsuario.primerApellido @Model.datosUsuario.segundoApellido
+                            </h4>
+                        </div>
+                        <div class="sidebar_profile_buttons">
+                            <div class="profile_button_left">
+                                <a href="~/Inicio/FaseI?Tipo=PREGRADO" class="button">Convalida nuevo pregrado</a>
+                            </div>
+                            <div class="profile_button_left">
+                                <a href="~/Inicio/FaseI?Tipo=POSGRADO" class="button">Convalida nuevo posgrado</a>
+                            </div>
+                        </div>
+                        <div class="sidebar_list">
+                            <ul>
+                                <li>
+                                    <div class="icon_wrap">
+                                        <img src="~/assets/images/icons/men-id.svg" alt="">
+                                    </div>
+                                    <span>@Model.datosUsuario.numeroDocumento</span>
+                                </li>
+                                @*<li>
+                                    <div class="icon_wrap">
+                                        <img src="~/assets/images/icons/men-direccion.svg" alt="">
+                                    </div>
+                                    <span>@Model.datosUsuario.direccion</span>
+                                </li>
+                                <li>
+                                    <div class="icon_wrap">
+                                        <img src="~/assets/images/icons/men-celular.svg" alt="">
+                                    </div>
+                                    <span>@Model.datosUsuario.celular</span>
+                                </li>*@
+                                <li>
+                                    <div class="icon_wrap">
+                                        <img src="~/assets/images/icons/men-ciudad.svg" alt="">
+                                    </div>
+                                    <span>@Model.datosUsuario.ciudad</span>
+                                </li>
+                                <li>
+                                    <div class="icon_wrap">
+                                        <img src="~/assets/images/icons/men-email.svg" alt="">
+                                    </div>
+                                    <span>@Model.datosUsuario.email</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="screen_sidebar_button">
+                            <a href="" class="general_button button button_blue has_icon">
+                                <div class="icon_wrap">
+                                    <img src="~/assets/images/icons/men-alerta.svg" alt="">
+                                </div>
+                                <span>Alertas y notificaciones</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-9 col-12">
+                    <div class="screen1_boxes">
+                        <div class="screen1_box">
+                            <div class="screen_box_title">
+                                <div class="icon_wrap">
+                                    <img src="~/assets/images/icons/men-solicitudes.svg" alt="">
+                                </div>
+                                <h3 style="padding-left:52px">Solicitudes de convalidación radicadas en trámite</h3>
+                            </div>
+                            <div class="screen_box_content">
+                                <div class="scren_box_table">
+                                    <table class="erase_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center"></th>
+                                                <th class="text-center">No. Radicado</th>
+                                                <th class="text-center">Institución</th>
+                                                <th class="text-center">Programa</th>
+                                                <th class="text-center">Título</th>
+                                                <th class="text-center">Nivel Académico</th>
+                                                <th class="text-center">Fecha de radicación</th>
+                                                <th class="text-center">Estado</th>
+                                                <th class="text-center">Acciones</th>
+                                                <th class="text-center">Alertas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.lstSolicitudesTramite)
+                                            {
+                                                <tr class="screen_box_active_tr text-uppercase">
+                                                    <td>
+                                                        @Html.ActionLink("Constancia", "ConstanciaConvalidacion", new { tipoReporte = "PDF", solicitudId = @item.SolicitudId }, new { @class = "button general_button button_aqua button_small", target = "_blank" })
+                                                    </td>
+                                                    <td title="Ir a Convalidación" onclick="LLamaSolicitud('btnSolicitud_' + '@item.SolicitudId')">
+                                                        <a id="btnSolicitud_@item.SolicitudId" title="Ver detalle" href="~/Inicio/Resumen?solicitudId=@item.SolicitudId" style="display:none">
+                                                            @Html.DisplayFor(modelItem => item.Radicado)
+                                                        </a>
+                                                        <p>@Html.DisplayFor(modelItem => item.Radicado)</p>
+                                                    </td>
+                                                    <td title="Ir a Convalidación" onclick="LLamaSolicitud('btnSolicitud_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.tbInstitucion.FirstOrDefault().InstitutoText)</p>
+                                                    </td>
+                                                    <td title="Ir a Convalidación" onclick="LLamaSolicitud('btnSolicitud_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.tbPrograma.FirstOrDefault().NombreProgramaText)</p>
+                                                    </td>
+                                                    <td title="Ir a Convalidación" onclick="LLamaSolicitud('btnSolicitud_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.tbPrograma.FirstOrDefault().DenominacionTitulo)</p>
+                                                    </td>
+                                                    <td title="Ir a Convalidación" onclick="LLamaSolicitud('btnSolicitud_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.tbPrograma.FirstOrDefault().tbTipoEducacionSuperior.TipoEducacionSuperior)</p>
+                                                    </td>
+                                                    <td title="Ir a Convalidación" onclick="LLamaSolicitud('btnSolicitud_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.Fecha)</p>
+                                                    </td>
+                                                    <td title="Ir a Convalidación" onclick="LLamaSolicitud('btnSolicitud_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.tbEstado.Estado)</p>
+                                                    </td>
+                                                    <td title="Ir a Convalidación" onclick="LLamaSolicitud('btnSolicitud_' + '@item.SolicitudId')" class="text-center">
+                                                        <button class="button general_button button_aqua button_small">
+                                                            <img src="~/assets/images/icons/men-enviar.svg" alt="">
+                                                        </button>
+                                                    </td>
+                                                    <td title="Ir a Alerta" class="text-center">
+                                                        <button class="button general_button button_aqua button_small">
+                                                            <img src="~/assets/images/icons/men-alerta.svg" alt="">
+                                                        </button>
+                                                    </td>                                                    
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screen1_box">
+                            <div class="screen_box_title">
+                                <div class="icon_wrap">
+                                    <img src="~/assets/images/icons/men-borrador.svg" alt="">
+                                </div>
+                                <h3>Solicitudes en borrador</h3>
+                            </div>
+                            <div class="screen_box_content">
+                                <div class="scren_box_table">
+                                    <table class="erase_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Fecha</th>
+                                                <th class="text-center">Tipo de solicitud</th>
+                                                <th class="text-center">Estado</th>
+                                                <th class="text-center">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.lstSolicitudes)
+                                            {
+                                                <tr class="screen_box_active_tr text-uppercase">
+                                                    <td class="td_fecha" title="Ir a Solicitud" onclick="LLamaSolicitud('btnSolicitud1_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.Fecha)</p>
+                                                    </td>
+                                                    <td title="Ir a Solicitud" onclick="LLamaSolicitud('btnSolicitud1_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.Tipo)</p>
+                                                    </td>
+                                                    <td title="Ir a Solicitud" onclick="LLamaSolicitud('btnSolicitud1_' + '@item.SolicitudId')">
+                                                        <p>@Html.DisplayFor(modelItem => item.tbEstado.Estado)</p>
+                                                    </td>
+                                                    <td>
+                                                        <ul class="no_list erase_actions">
+                                                            <li>
+                                                                @if (item.Estado == 3)
+                                                                {
+                                                                    <a id="btnSolicitud1_@item.SolicitudId" class="button general_button button_aqua button_small" title="Ir a Solicitud" href="~/Inicio/Resumen?solicitudId=@item.SolicitudId">
+                                                                        <img src="~/assets/images/icons/men-enviar.svg" alt="">
+                                                                    </a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a id="btnSolicitud1_@item.SolicitudId" class="button general_button button_aqua button_small" title="Ir a Solicitud" href="~/Inicio/FaseIII?solicitudId=@item.SolicitudId">
+                                                                        <img src="~/assets/images/icons/men-enviar.svg" alt="">
+                                                                    </a>
+                                                                }
+                                                            </li>
+                                                            <li>
+                                                                <button title="Eliminar Solicitud" class="button general_button button_normal button_small" onclick="mensajeEliminaSolicitud('@item.SolicitudId','@item.Fecha','@item.Tipo','@item.tbEstado.Estado')">
+                                                                    <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+<!-- Modal -->
+<button id="btnModal_1" type="button" data-toggle="modal" data-target="#myModal_1" style="visibility:hidden"></button>
+<div class="modal fade" id="myModal_1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4>Confirma Eliminar Solicitud <span class="glyphicon glyphicon-exclamation-sign"></span></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Seguro de Eliminar esta Solicitud ?</h3>
+                <table class="table table-bordered table-striped">
+                    <tr class="text-center">
+                        <th class="text-center" style="width:25%">Nro. Solicitud</th>
+                        <th class="text-center" style="width:25%">Fecha</th>
+                        <th class="text-center" style="width:25%">Tipo Solicitud</th>
+                        <th class="text-center" style="width:25%">Estado</th>
+                    </tr>
+                    <tr>
+                        <td><h4 id="td_1"></h4></td>
+                        <td><h4 id="td_2"></h4></td>
+                        <td><h4 id="td_3"></h4></td>
+                        <td><h4 id="td_4"></h4></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCierraModal" type="submit" class="btn btn-info btn-default pull-left" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Cancelar
+                </button>
+                <a onclick="eliminaSolicitud()" class="btn btn-info btn-default pull-left" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

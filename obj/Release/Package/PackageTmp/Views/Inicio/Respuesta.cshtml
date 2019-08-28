@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Respuesta";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+    <script>
+        window.onload = function () {
+            nobackbutton();
+        }
+    </script>
+
+<hr/>
+<div class="row">
+
+    <div class="col-md-1"></div>
+    <div style="padding-left:30px; padding-right:30px" class="col-md-10">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1><span class="glyphicon glyphicon-exclamation-sign"></span> ESTADO DE LA SOLICITUD</h1>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h2 id="textoModal">@ViewBag.Respuesta</h2>
+                </div>
+                <div style="max-width:100%">
+                    <b>@ViewBag.Radicado</b>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <a class="btn btn-primary" href="~/Inicio/BandejaConvalidante">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Ir a Bandeja de Convalidante
+                    </a>
+                    <a class="btn btn-primary" href="~/Inicio/Resumen?solicitudId=@ViewBag.Solicitud">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                        Volver a Resumen
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

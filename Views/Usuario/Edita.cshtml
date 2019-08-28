@@ -1,0 +1,245 @@
+﻿@model ConvalidacionEducacionSuperior.Models.UsuarioModel
+@{
+    ViewBag.Title = "Edita";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+    @*<script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>*@
+    @*<script type="text/javascript">
+        var onloadCallback = function () {
+            alert("grecaptcha is ready!");
+        };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(x => x.Password, new { id = "txtValidPsw" })
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2 class="tituloPagina">Actualizar Datos</h2>
+            <div class="col-md-12 text-left">
+                <h3 class="text-left subTituloPagina"><b>Datos de Login</b></h3>
+                <div class="row text-right">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                                @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br /><br />
+                </div>
+            </div>
+            <div class="col-md-12 text-left">
+                <h3 class="text-left subTituloPagina"><b>Datos personales</b></h3>
+                <div class="row text-right">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5"><b class="text-danger">**</b> Primer Nombre</label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.primerNombre, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                                @Html.ValidationMessageFor(model => model.primerNombre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Segundo Nombre</label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.segundoNombre, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                                @Html.ValidationMessageFor(model => model.segundoNombre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br /><br />
+                </div>
+                <div class="row  text-right">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5"><b class="text-danger">**</b> Primer Apellido</label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.primerApellido, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                                @Html.ValidationMessageFor(model => model.primerApellido, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Segundo Apellido</label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.segundoApellido, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                                @Html.ValidationMessageFor(model => model.segundoApellido, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br /><br />
+                </div>
+                <div class="row  text-right">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Sexo Biológico</label>
+                            <div class="col-md-7">
+                                @Html.DropDownList("sexo", null, htmlAttributes: new { @class = "form-control", @style = "max-width:100%" })
+                                @Html.ValidationMessageFor(model => model.genero, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <br /><br />
+                </div>
+                <div class="row  text-right">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5"><b class="text-danger">**</b> Tipo Documento</label>
+                            <div class="col-md-7">
+                                @Html.DropDownList("tipoDoc", null, htmlAttributes: new { @class = "form-control", @style = "max-width:100%" })
+                                @Html.ValidationMessageFor(model => model.tipoDoc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5"><b class="text-danger">**</b> Número Documento</label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.numeroDocumento, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                                @Html.ValidationMessageFor(model => model.numeroDocumento, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br /><br />
+                </div>
+                <div class="row text-right">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5"><b class="text-danger">**</b> Ciudad Expedición</label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.ciudadExpedicion, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                                @Html.ValidationMessageFor(model => model.ciudadExpedicion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Nacionalidad</label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.nacionalidad, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                                @Html.ValidationMessageFor(model => model.nacionalidad, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br /><br />
+                </div>
+
+                <table class="table table-borderless table-responsive">
+                    <tr>
+                        <td class="text-right" style="width:25%">
+                            <label class="control-label"><b class="text-danger">**</b> Dirección Residencia</label>
+                        </td>
+                        <td colspan="3">
+                            @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                            @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+                        </td>
+
+                        <td class="text-right">
+                            <label class="control-label">Código Postal</label>
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.codigoPostal, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.codigoPostal, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-right">
+                            <label class="control-label"><b class="text-danger">**</b> Correo Electrónico</label>
+                        </td>
+                        <td colspan="5">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">
+                            <label class="control-label">Correo Electrónico opcional</label>
+                        </td>
+                        <td colspan="5">
+                            @Html.EditorFor(model => model.emailOpcional, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                            @Html.ValidationMessageFor(model => model.emailOpcional, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">
+                            <label class="control-label">Teléfono Fijo</label>
+                        </td>
+                        <td colspan="2">
+                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                        </td>
+                        <td class="text-right">
+                            <label class="control-label"><b class="text-danger">**</b>  Teléfono Móvil</label>
+                        </td>
+                        <td colspan="2">
+                            @Html.EditorFor(model => model.celular, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                            @Html.ValidationMessageFor(model => model.celular, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr id="trUbicacionGeografica">
+                        <td class="text-right" style="width:18%">
+                            <label class="control-label"><b class="text-danger">**</b> País Residencia</label>
+                        </td>
+                        <td style="width:15%">
+                            @Html.DropDownList("Pais", null, htmlAttributes: new { @class = "form-control", id = "cmbPais", @onchange = "cambiaDepartamento()" })
+                            @Html.ValidationMessageFor(model => model.pais, "", new { @class = "text-danger" })
+                        </td>
+                        <td class="text-right" style="width:15%">
+                            <label id="lblDpto" class="control-label" style="@Model.PaisDisplay"><b class="text-danger">**</b> Departamento Residencia</label>
+                        </td>
+                        <td style="width:15%">
+                            @Html.DropDownList("Departamento", null, htmlAttributes: new { @class = "form-control", id = "cmbDpto", @onchange = "cambiaCiudad('cmbDpto','cmbCiudad')", @style = Model.PaisDisplay })
+                            @Html.ValidationMessageFor(model => model.departamento, "", new { @class = "text-danger" })
+                        </td>
+                        <td class="text-right" style="width:15%">
+                            <label class="control-label"><b class="text-danger">**</b> Ciudad Residencia</label>
+                        </td>
+                        <td style="width:15%">
+                            @Html.DropDownList("Ciudad", null, htmlAttributes: new { @class = "form-control", id = "cmbCiudad", @style = Model.PaisDisplay })
+                            @Html.EditorFor(model => model.ciudad_II, new { htmlAttributes = new { @class = "form-control", id = "txtCiudad", @style = Model.PaisDisplay_II } })
+                            @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.ciudad_II, "", new { @class = "text-danger", @style = Model.PaisDisplay_II })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            @*<div class="row">
+                <div class="col-md-4 text-center">
+
+                </div>
+                <div class="col-md-4 text-left">
+                    <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+                    <%= Html.GenerateCaptcha() %>
+                    
+                    <label><b class="text-danger">**</b> Seleccione las imagenes solicitadas</label>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>*@
+            
+            <div class="col-md-12">                
+                <button class="btn botones btn-lg">Actualizar</button>
+            </div>
+        </div>
+    </div>
+}
+
+

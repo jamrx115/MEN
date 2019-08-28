@@ -1,0 +1,677 @@
+﻿@model ConvalidacionEducacionSuperior.Models.Paso3Model
+@{
+    ViewBag.Title = "Resumen";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+    <script>
+        window.onload = function () {
+            nobackbutton();
+        }
+    </script>
+
+<div class="container">
+    <section id="screen2">
+        <div class="screen_boxwizard_buttons row">
+            <div class="boxwizard_button col">
+                <span>Aprobación de términos y condiciones</span>
+            </div>
+            <div class="boxwizard_button col">
+                <span>Selección de filtros de entrada</span>
+            </div>
+            <div class="boxwizard_button col">
+                <span>Diligenciamiento de formato de Solicitud</span>
+            </div>
+            <div class="boxwizard_button col">
+                <span>Cargue de documentos</span>
+            </div>
+            <div class="boxwizard_button active col">
+                <span>Resumen</span>
+            </div>
+        </div>
+        <div class="line-progress">
+            <ul>
+                <li><span class="progres-done" href=""></span></li>
+                <li><span class="progres-done" href=""></span></li>
+                <li><span class="progres-done" href=""></span></li>
+                <li><span class="progres-done" href=""></span></li>
+                <li><span class="progres-active" href=""></span></li>
+            </ul>
+        </div>
+
+
+        <!-- Empieza sección -->
+
+        <div class="lines_wizard_general wizard5">
+            <div class="title-image-b">
+                <img src="~/assets/images/icons/men-informacion-aportada.svg" alt="">
+                <h3 class="wizard_genera_title">Información aportada para la gestión de la Convalidación</h3>
+            </div>
+        </div>
+
+        <div class="wizard_line_container">
+            <div class="solicicitud text-left">
+                <span>Solicitud: @Model.solicitudActual.Fecha - <strong>@Model.solicitudActual.Tipo</strong></span>
+            </div>
+        </div>
+
+        <div class="title-image-b" data-toggle="collapse" data-target="#divDatosPersonales1" onclick="acordeonSolicitud('spanDatosPersonales')">
+            <img src="~/assets/images/icons/men-datos-personales.svg" alt="">
+            <h3 class="wizard_genera_title">Datos Personales del convalidante</h3>&nbsp;&nbsp;
+            <span class="wizard_genera_title glyphicon glyphicon-chevron-down" id="spanDatosPersonales"></span>
+        </div>
+
+        <div id="divDatosPersonales1" class="wizard_line_container collapse">
+            <div class="row text-left">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Primer Nombre</label>
+                        @Html.EditorFor(model => model.PrimerNombre, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Segundo Nombre</label>
+                        @Html.EditorFor(model => model.SegundoNombre, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Primer Apellido</label>
+                        @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Segundo Apellido</label>
+                        @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Tipo Documento de Identidad</label>
+                        @Html.EditorFor(model => model.NombreTipoDocumento, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Número Documento de Identidad</label>
+                        @Html.EditorFor(model => model.NumeroDocumento, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+                @if (Model.TipoDocumento == "CE")
+                {
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Ciudad Expedición del documento</label>
+                            @Html.EditorFor(model => model.CiudadExpedicion, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">País de Expedición del documento</label>
+                            @Html.EditorFor(model => model.PaisExpedicion, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+                }
+                @if (Model.TipoDocumento == "CC")
+                {
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Departamento de Expedición del documento</label>
+                            @Html.EditorFor(model => model.DeptoExpedicion, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Ciudad Expedición del documento</label>
+                            @Html.EditorFor(model => model.CiudadExpedicionCC, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+                }
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Nacionalidad</label>
+                        @Html.EditorFor(model => model.Nacionalidad, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+                @if (Model.solicitudActual.notificacionElectronica == true)
+                {
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">País Residencia</label>
+                            @Html.EditorFor(model => model.PaisNombre, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Departamento Residencia</label>
+                            @Html.EditorFor(model => model.DepartamentNombre, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Ciudad Residencia</label>
+                            @Html.EditorFor(model => model.CiudadNombre, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Dirección de Residencia</label>
+                            @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Código Postal de residencia</label>
+                            @Html.EditorFor(model => model.CodigoPostal, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Correo Electrónico para notificación</label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Correo Electrónico para notificación opcional</label>
+                            @Html.EditorFor(model => model.Email2, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Teléfono Móvil de contacto</label>
+                            @Html.EditorFor(model => model.Celular, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Teléfono Fijo de contacto</label>
+                            @Html.EditorFor(model => model.TelefonoFijo, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        @if (Model.solicitudActual.notificacionElectronica == false)
+        {
+            <div class="title-image-b" data-toggle="collapse" data-target="#divDatosNotificacion1" onclick="acordeonSolicitud('spanDatosNotificacion')">
+                <img src="~/assets/images/icons/men-datos-personales.svg" alt="">
+                <h3 class="wizard_genera_title">Datos de notificación física en Colombia</h3>&nbsp;&nbsp;
+                <span class="wizard_genera_title glyphicon glyphicon-chevron-down" id="spanDatosNotificacion"></span>
+            </div>
+
+            <div id="divDatosNotificacion1" class="wizard_line_container collapse">
+                <div class="row text-left">
+                    @if ((bool)Model.solicitudActual.notificaTercero)
+                    {
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Primer Nombre autorizado</label>
+                                @Html.EditorFor(model => model._autorizado.Nombre1Aut, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Segundo Nombre autorizado</label>
+                                @Html.EditorFor(model => model._autorizado.Nombre2Aut, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Primer Apellido autorizado</label>
+                                @Html.EditorFor(model => model._autorizado.apellido1Aut, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Segundo Apellido autorizado</label>
+                                @Html.EditorFor(model => model._autorizado.apellido2Aut, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Tipo Documento de identidad del autorizado</label>
+                                @Html.EditorFor(model => model._autorizado.TipoDocumento, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Número Documento identidad del autorizado</label>
+                                @Html.EditorFor(model => model._autorizado.NumeroDocumento, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Dirección física para Notificación</label>
+                            @Html.EditorFor(model => model._autorizado.Direccion, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Código Postal de la dirección de notificación</label>
+                            @Html.EditorFor(model => model._autorizado.CodigoPostal, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">País Notificación</label>
+                            @Html.EditorFor(model => model._autorizado.Pais, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Departamento Notificación</label>
+                            @Html.EditorFor(model => model._autorizado.DepartamentNombre, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Ciudad Notificación</label>
+                            @Html.EditorFor(model => model._autorizado.CiudadNombre, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Teléfono Móvil del autorizado</label>
+                            @Html.EditorFor(model => model._autorizado.Celular, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Teléfono Fijo del autorizado</label>
+                            @Html.EditorFor(model => model._autorizado.TelefonoFijo, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="title-image-b" data-toggle="collapse" data-target="#divInstituciones1" onclick="acordeonSolicitud('spanInstituciones')">
+            <img src="~/assets/images/icons/men-instituciones.svg" alt="">
+            <h3 class="wizard_genera_title">Información de la(s) institución(es) que otorgan el título a convalidar</h3>&nbsp;&nbsp;
+            <span class="wizard_genera_title glyphicon glyphicon-chevron-down" id="spanInstituciones"></span>
+        </div>
+
+        <div id="divInstituciones1" class="screen1_box mt-4 collapse">
+
+            <div class="screen_box_content">
+                <div class="scren_box_table erase_table">
+                    <table class="erase_table convalidar">
+                        <thead>
+                            <tr>
+                                <th class="text-center">País</th>
+                                <th class="text-center">Ciudad</th>
+                                <th class="text-center">Institución Educación Superior</th>
+                                <th class="text-center">Estado/Región/Provincia</th>
+                                <th class="text-center">Instituto/Facultad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model._institucionList)
+                            {
+                                <tr class="screen_box_active_tr">
+                                    <td>
+                                        <p>@Html.DisplayFor(model => item.Pais, new { htmlAttributes = new { @readOnly = true } })</p>
+                                    </td>
+                                    <td>
+                                        <p>@Html.DisplayFor(model => item.CiudadText, new { htmlAttributes = new { @readOnly = true } })</p>
+                                    </td>
+                                    <td>
+                                        <p>@Html.DisplayFor(model => item.InstitutoText, new { htmlAttributes = new { @readOnly = true } })</p>
+                                    </td>
+                                    <td>
+                                        <p>@Html.DisplayFor(model => item.Estado, new { htmlAttributes = new { @readOnly = true } })</p>
+                                    </td>
+                                    <td>
+                                        <p>@Html.DisplayFor(model => item.Facultad, new { htmlAttributes = new { @readOnly = true } })</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="title-image-b" data-toggle="collapse" data-target="#divPrograma1" onclick="acordeonSolicitud('spanPrograma')">
+            <img src="~/assets/images/icons/men-programa-educacion-superior-convalidar.svg" alt="">
+            <h3 class="wizard_genera_title">Información del programa de educación superior a convalidar</h3>&nbsp;&nbsp;
+            <span class="wizard_genera_title glyphicon glyphicon-chevron-down" id="spanPrograma"></span>
+        </div>
+
+        <div id="divPrograma1" class="wizard_line_container collapse">
+
+            <div class="row text-left">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Nombre del Programa cursado</label>
+                        @Html.EditorFor(model => model._programa.NombreProgramaText, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Nivel de Formación</label>
+                        @Html.EditorFor(model => model._programa.TipoEducacionSuperiorNombre, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+
+                @if (Model._programa.TipoEducacionSuperior.Equals("2"))
+                {
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Tipo de Maestria</label>
+                            @Html.EditorFor(model => model._programa.TipoMaestriaNombre, new { htmlAttributes = new { @readOnly = true } })
+                        </div>
+                    </div>
+                }
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Título Otorgado</label>
+                        @if (Model._programa.NombrePrograma.Equals("0"))
+                        {
+                            @Html.EditorFor(model => model._programa.TituloObtenidoManual, new { htmlAttributes = new { @readOnly = true } })
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model._programa.TituloObtenido, new { htmlAttributes = new { @readOnly = true } })
+                        }
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="" class="col-sm-12 col-md-12">Duración del Programa cursado</label>
+                        @Html.EditorFor(model => model._programa.Duracion, new { htmlAttributes = new { @readOnly = true, @class = "col-sm-12 col-md-4" } })
+                        @Html.EditorFor(model => model._programa.TipoDuracionNombre, new { htmlAttributes = new { @readOnly = true, @class = "col-sm-12 col-md-8" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Modalidad en que se desarrolló el programa</label>
+                        @Html.EditorFor(model => model._programa.ModalidadProgramaNombre, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Fecha del Título Otorgado</label>
+                        @Html.EditorFor(model => model._programa.FechaTitulo, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Posible denominación del título para convalidar</label>
+                        @Html.EditorFor(model => model._programa.DenominacionTitulo, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">Área de conocimiento</label>
+                        @Html.EditorFor(model => model._programa.CampoAmplioConocimientoNombre, new { htmlAttributes = new { @readOnly = true } })
+                    </div>
+                </div>
+
+                @if (Model._programa.CampoAmplioConocimiento == Model.areaSaludParam && Model.solicitudActual.Tipo.ToUpper().Equals("POSGRADO"))
+                {
+                    if (!Model.segundaEspecialidadSalud)
+                    {
+                        <h5 class="wizard_genera_title">Información sobre la especialidad base o primera especialidad</h5>
+                        if (!Model.segundaEspecialidadSaludNal)
+                        {
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Nombre de la Institución que otorgó el título</label>
+                                    @Html.EditorFor(model => model._segundaEspecialidad.InstitutoText, new { htmlAttributes = new { @readOnly = true } })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Título Obtenido</label>
+                                    @Html.EditorFor(model => model._segundaEspecialidad.Titulo, new { htmlAttributes = new { @readOnly = true } })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Fecha del Título</label>
+                                    @Html.EditorFor(model => model._segundaEspecialidad.FechaTitulo, new { htmlAttributes = new { @readOnly = true } })
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Entidad que emitió la Resolución de convalidación</label>
+                                    @Html.EditorFor(model => model._segundaEspecialidad.Entidad, new { htmlAttributes = new { @readOnly = true } })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Numero de Resolución de convalidación</label>
+                                    @Html.EditorFor(model => model._segundaEspecialidad.NroResolucion, new { htmlAttributes = new { @readOnly = true } })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Fecha de la Resolución</label>
+                                    @Html.EditorFor(model => model._segundaEspecialidad.FechaResolucion, new { htmlAttributes = new { @readOnly = true } })
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+        @if (Model.solicitudActual.Tipo.ToUpper().Equals("POSGRADO"))
+        {
+            <div class="title-image-b" data-toggle="collapse" data-target="#divInfoPregrado1" onclick="acordeonSolicitud('spanInfoPregrado')">
+                <img src="~/assets/images/icons/men-pregrado-convalidar-título-posgrado.svg" alt="">
+                <h3 class="wizard_genera_title">Información sobre el pregrado necesaria para convalidar título de posgrado</h3>&nbsp;&nbsp;
+                <span class="wizard_genera_title glyphicon glyphicon-chevron-down" id="spanInfoPregrado"></span>
+            </div>
+
+            <div id="divInfoPregrado1" class="wizard_line_container collapse">
+                <div class="row text-left">
+                    @if (Model.solicitudActual.nacional == true)
+                    {
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Nombre de la Institución que otorgó el título</label>
+                                @Html.EditorFor(model => model._infoPregrado.InstitutoText, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Título Obtenido</label>
+                                @Html.EditorFor(model => model._infoPregrado.Titulo, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Fecha del Título</label>
+                                @Html.EditorFor(model => model._infoPregrado.FechaTitulo, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Entidad que emitió la Resolución de convalidación</label>
+                                @Html.EditorFor(model => model._infoPregrado.Entidad, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Numero de Resolución de convalidación</label>
+                                @Html.EditorFor(model => model._infoPregrado.NroResolucion, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Fecha de la Resolución</label>
+                                @Html.EditorFor(model => model._infoPregrado.FechaResolucion, new { htmlAttributes = new { @readOnly = true } })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <div class="title-image-b" data-toggle="collapse" data-target="#divDocumentosRec1" onclick="acordeonSolicitud('spanDocumentosRec')">
+            <img src="~/assets/images/icons/men-documentos-recibidos.svg" alt="">
+            <h3 class="wizard_genera_title">Documentos recibidos</h3>&nbsp;&nbsp;
+            <span class="wizard_genera_title glyphicon glyphicon-chevron-down" id="spanDocumentosRec"></span>
+        </div>
+
+        <div id="divDocumentosRec1" class="screen1_box mt-4 mb-5 collapse">
+
+            <div class="screen_box_content">
+                <div class="scren_box_table erase_table">
+                    <table class="erase_table convalidar">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Documentos aportados para gestionar la Convalidación</th>
+                                <th class="text-center">Documento original</th>
+                                <th class="text-center">Documento traducido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lstDocumentos)
+                            {
+                                <tr class="screen_box_active_tr">
+                                    <td>
+                                        <p class="text-justify">@Html.DisplayFor(model => item.nombreDocumentoCompleto_1, new { htmlAttributes = new { @readOnly = true } })</p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            @if (!string.IsNullOrEmpty(item.nombre))
+                                            {
+                                                <a href="@item.rutaNombre" target="_blank">
+                                                    @Html.EditorFor(model => item.nombre, new { htmlAttributes = new { @readOnly = true } })
+                                                </a>
+                                            }
+                                        </p>
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.nombreTraduccion))
+                                        {
+                                            <a href="@item.rutaNombreTraducido" target="_blank">
+                                                @Html.EditorFor(model => item.nombreTraduccion, new { htmlAttributes = new { @readOnly = true } })
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Finaliza sección -->
+        @if (Model.solicitudActual.Estado < 4)
+        {
+            <div class="screen2_actions">
+                <a href="~/Inicio/FaseIV?solicitudId=@Model.solicitudActual.SolicitudId" class="button general_button has_icon button_blue">
+                    <div class="icon_wrap">
+                        <img src="~/assets/images/icons/men-anterior.svg" alt="">
+                    </div>
+                    Anterior
+                </a>
+                <a href="~/Inicio/BandejaConvalidante" class="button general_button has_icon button_blue">
+                    <div class="icon_wrap">
+                        <img src="~/assets/images/icons/men-salir.svg" alt="">
+                    </div>
+                    Menú
+                </a>
+                <a onclick="confirmaRegistrarSolicitud()" class="button general_button has_icon button_pink">
+                    <div class="icon_wrap">
+                        <img src="~/assets/images/icons/men-acepto.svg" alt="">
+                    </div>
+                    Pagar
+                </a>
+                <a onclick="validaResumen('pendiente')" class="button general_button has_icon button_pink">
+                    <div class="icon_wrap">
+                        <img src="~/assets/images/icons/men-acepto.svg" alt="">
+                    </div>
+                    Pendiente de pago
+                </a>
+                <a href="~/Inicio/BandejaConvalidante" id="redirigePago" target="_blank"></a>
+            </div>
+        }
+    </section>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.solicitudActual.SolicitudId, new { id = "hidSolid" })
+    <button value="Pagar" name="btnResumen" class="btn botones btn-lg" id="btnResumen" style="display:none">Pagar</button>
+}
+
+<!-- Modal -->
+<button id="btnModal_2" type="button" data-toggle="modal" data-target="#myModal_2" style="visibility:hidden"></button>
+<div class="modal fade" id="myModal_2" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4>Confirma Registrar Solicitud <span class="glyphicon glyphicon-exclamation-sign"></span></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Señor solicitante ¿Está de acuerdo en continuar con la información aportada para la solicitud?</h3>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCierraModal" type="submit" class="btn btn-info btn-default pull-left" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Cancelar
+                </button>
+                <a onclick="llamaPago('pago')" class="btn btn-info btn-default pull-left" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1013 @@
+﻿@model ConvalidacionEducacionSuperior.Models.Paso3Model
+@{
+    ViewBag.Title = "FaseIII";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<script>
+    window.onload = function () {
+        nobackbutton();
+
+        var txtConfirmaEmail = document.getElementById('txtConfirmaEmail');
+        var txtConfirmaEmail2 = document.getElementById('txtConfirmaEmail2');
+        if (txtConfirmaEmail != null) {
+                txtConfirmaEmail.onpaste = function(e) {
+                e.preventDefault();
+            }
+            txtConfirmaEmail2.onpaste = function(e) {
+                e.preventDefault();
+            }
+        }
+        
+    }
+</script>
+
+
+
+    <div class="container">
+        <section id="screen2">
+            <div class="screen_boxwizard_buttons row">
+                <div class="boxwizard_button col">
+                    <span>Aprobación de términos y condiciones</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Selección de filtros de entrada</span>
+                </div>
+                <div class="boxwizard_button active col">
+                    <span>Diligenciamiento de formato de Solicitud</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Cargue de documentos</span>
+                </div>
+                <div class="boxwizard_button col">
+                    <span>Resumen</span>
+                </div>
+            </div>
+
+            <div class="line-progress">
+                <ul>
+                    <li><span class="progres-done" href=""></span></li>
+                    <li><span class="progres-done" href=""></span></li>
+                    <li><span class="progres-active" href=""></span></li>
+                    <li><span href=""></span></li>
+                    <li><span href=""></span></li>
+                </ul>
+            </div>
+
+            <div class="lines_wizard"></div>
+            @using (Html.BeginForm("FaseIII", "Inicio", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="lines_wizard_general wizard3">
+                    <h3 class="wizard_genera_title">Diligenciamiento del formato de solicitud</h3>
+
+                    <div class="wizard_line_container">
+                        <div class="solicicitud text-right">
+                            <span>Solicitud: @Model.solicitudActual.Fecha - <strong>@Model.solicitudActual.Tipo</strong></span>
+                        </div>
+                    </div>
+                    <b>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</b>
+                    <div class="">
+                        <div class="title-image-b">
+                            <img src="~/assets/images/icons/men-datos.svg" alt="">
+                            <h3 class="wizard_genera_title">Datos personales del solicitante</h3>
+                        </div>
+                        <br /><br />
+                        <div class="container text-left">
+                            <div class="row  text-left">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Primer Nombre</label>
+                                        @Html.EditorFor(model => model.PrimerNombre, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                        @Html.ValidationMessageFor(model => model.PrimerNombre, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Segundo nombre</label>
+                                        @Html.EditorFor(model => model.SegundoNombre, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                        @Html.ValidationMessageFor(model => model.SegundoNombre, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Primer apellido</label>
+                                        @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Segundo apellido</label>
+                                        @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Tipo documento de identidad</label>
+                                        @Html.EditorFor(model => model.NombreTipoDocumento, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                        @Html.HiddenFor(model => model.TipoDocumento)
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Número documento identidad</label>
+                                        @Html.EditorFor(model => model.NumeroDocumento, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                    </div>
+                                </div>
+
+                                @if (Model.TipoDocumento == "CC")
+                                {
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Departamento de Expedición del documento <b class="text-danger">**</b></label>
+                                            @Html.EditorFor(model => model.DeptoExpedicion, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Ciudad Expedición del documento <b class="text-danger">**</b></label>
+                                            @Html.EditorFor(model => model.CiudadExpedicionCC, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Ciudad Expedición del documento</label>
+                                            @Html.EditorFor(model => model.CiudadExpedicion, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">País de Expedición del documento</label>
+                                            @Html.EditorFor(model => model.PaisExpedicion, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                        </div>
+                                    </div>
+                                }
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Nacionalidad</label>
+                                        @Html.EditorFor(model => model.Nacionalidad, new { htmlAttributes = new { @readOnly = true, @class = "text-uppercase" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            @if (Model.solicitudActual.notificacionElectronica == true)
+                            {
+                                <div class="row text-left">
+                                    <div class="col-12">
+                                        <h3 class="text-left">
+                                            <span class="resaltado">
+                                                Datos para notificación Electrónica
+                                            </span>
+                                        </h3>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">País Residencia <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("Pais", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbPais", @onchange = "cambiaDepartamento()" })
+                                            @Html.ValidationMessageFor(model => model.Pais, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div id="divCiudadII" class="col-sm-12 col-md-6" style=@Model.PaisDisplay_II>
+                                        <div class="form-group">
+                                            <label for="">Ciudad Residencia <b class="text-danger">**</b></label>
+                                            @Html.EditorFor(model => model.Ciudad_II, new { htmlAttributes = new { @class = "text-uppercase", id = "txtCiudad" } })
+                                            @Html.ValidationMessageFor(model => model.Ciudad_II, "", new { @class = "text-danger", @style = Model.PaisDisplay_II })
+                                        </div>
+                                    </div>
+                                    <div id="divCiudad_0" class="col-sm-12 col-md-6" style=@Model.PaisDisplay>
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                    <div id="divDpto" class="col-sm-12 col-md-6" style=@Model.PaisDisplay>
+                                        <div class="form-group">
+                                            <label for="">Departamento Residencia <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("Departamento", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbDpto", @onchange = "cambiaCiudad('cmbDpto','cmbCiudad')" })
+                                            @Html.ValidationMessageFor(model => model.Departamento, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div id="divCiudad" class="col-sm-12 col-md-6" style=@Model.PaisDisplay>
+                                        <div class="form-group">
+                                            <label for="">Ciudad Residencia <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("Ciudad", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbCiudad" })
+                                            @Html.ValidationMessageFor(model => model.Ciudad, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Teléfono Móvil de contacto <b class="text-danger">**</b></label>
+                                            @Html.EditorFor(model => model.Celular, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                            @Html.ValidationMessageFor(model => model.Celular, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Teléfono Fijo de contacto</label>
+                                            @Html.EditorFor(model => model.TelefonoFijo, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                            @Html.ValidationMessageFor(model => model.TelefonoFijo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-8">
+                                        <div class="form-group">
+                                            <label for="">Dirección de Residencia <b class="text-danger">**</b></label>
+                                            @Html.TextBoxFor(model => model.Direccion, new { maxlength = 50, @class = "text-uppercase" })
+                                            @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="">Código Postal</label>
+                                            @Html.TextBoxFor(model => model.CodigoPostal, new { maxlength = 8, @class = "text-uppercase" })
+                                            @Html.ValidationMessageFor(model => model.CodigoPostal, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group" title="Se sugiere registrar un correo electrónico personal del solicitante, toda vez que las notificaciones realizadas por el Ministerio se efectuarán por este medio.">
+                                            <label for="">
+                                                Correo Electrónico para notificación.<br />
+                                                Se sugiere registrar un correo electrónico personal del solicitante, toda vez que las notificaciones realizadas por el Ministerio se efectuarán por este medio. <b class="text-danger">**</b>
+                                            </label>
+                                            @Html.TextBoxFor(model => model.Email, new { maxlength = 100, @class = "text-uppercase", @autocomplete = "off", id = "txtEmailNotificacion" })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="">Confirma Correo Electrónico para notificación <b class="text-danger">**</b></label>
+                                            @Html.TextBoxFor(model => model.ConfirmaEmail, new { maxlength = 100, @class = "text-uppercase", id = "txtConfirmaEmail", @autocomplete = "off" })
+                                            @Html.ValidationMessageFor(model => model.ConfirmaEmail, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="">Correo Electrónico para notificación opcional</label>
+                                            @Html.TextBoxFor(model => model.Email2, new { maxlength = 100, @class = "text-uppercase", @autocomplete = "off", id = "txtEmailNotificacion2" })
+                                            @Html.ValidationMessageFor(model => model.Email2, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="">Confirma Correo Electrónico para notificación opcional</label>
+                                            @Html.TextBoxFor(model => model.ConfirmaEmail2, new { maxlength = 100, @class = "text-uppercase", id = "txtConfirmaEmail2", @autocomplete = "off" })
+                                            @Html.ValidationMessageFor(model => model.ConfirmaEmail2, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row text-left">
+                                    @if ((bool)Model.solicitudActual.notificaTercero)
+                                    {
+                                        <div class="col-12">
+                                            <div>
+                                                <p>
+                                                    Señor solicitante, le recordamos que debe registrar los datos del contacto en Colombia para la  notificación física.
+                                                </p>
+                                                <h3>
+                                                    <span class="resaltado">
+                                                        Datos de la persona autorizada para recibir notificaciones en Colombia
+                                                    </span>
+                                                </h3>
+                                                <p>
+                                                    Yo, @Model.PrimerNombre @Model.SegundoNombre @Model.PrimerApellido @Model.SegundoApellido, identificado con documento- @Model.TipoDocumento - @Model.NumeroDocumento - Autorizo para recibir notificaciones en Colombia a:
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Primer Nombre autorizado <b class="text-danger">**</b></label>
+                                                @Html.EditorFor(model => model._autorizado.Nombre1Aut, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                                @Html.ValidationMessageFor(model => model._autorizado.Nombre1Aut, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Segundo Nombre autorizado</label>
+                                                @Html.EditorFor(model => model._autorizado.Nombre2Aut, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                                @Html.ValidationMessageFor(model => model._autorizado.Nombre2Aut, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Primer Apellido autorizado <b class="text-danger">**</b></label>
+                                                @Html.EditorFor(model => model._autorizado.apellido1Aut, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                                @Html.ValidationMessageFor(model => model._autorizado.apellido1Aut, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Segundo Apellido autorizado</label>
+                                                @Html.EditorFor(model => model._autorizado.apellido2Aut, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                                @Html.ValidationMessageFor(model => model._autorizado.apellido2Aut, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Tipo Documento de identidad del autorizado <b class="text-danger">**</b></label>
+                                                @Html.DropDownList("tipoDoc", null, htmlAttributes: new { @class = "text-uppercase" })
+                                                @Html.ValidationMessageFor(model => model._autorizado.TipoDocumento, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Número Documento identidad del autorizado <b class="text-danger">**</b></label>
+                                                @Html.EditorFor(model => model._autorizado.NumeroDocumento, new { htmlAttributes = new { @class = "form-control text-uppercase" } })
+                                                @Html.ValidationMessageFor(model => model._autorizado.NumeroDocumento, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-12">
+                                            <div>
+                                                <h3>
+                                                    <span class="resaltado">
+                                                        Datos para notificación Personal en Colombia
+                                                    </span>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="col-sm-12 col-md-8">
+                                        <div class="form-group">
+                                            <label for="">Dirección física para Notificación <b class="text-danger">**</b></label>
+                                            @Html.EditorFor(model => model._autorizado.Direccion, new { htmlAttributes = new { @class = "text-uppercase", @style = "max-width:100%" } })
+                                            @Html.ValidationMessageFor(model => model._autorizado.Direccion, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="">Código Postal de la dirección de notificación</label>
+                                            @Html.EditorFor(model => model._autorizado.CodigoPostal, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                            @Html.ValidationMessageFor(model => model._autorizado.CodigoPostal, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">País Notificación</label>
+                                            @Html.EditorFor(model => model._autorizado.Pais, new { htmlAttributes = new { @class = "text-uppercase", @readOnly = true } })
+                                            @Html.ValidationMessageFor(model => model._autorizado.Pais, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Departamento Notificación <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("DepartamentoNotificacion", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbDptoNotificacion", @onchange = "cambiaCiudad('cmbDptoNotificacion','cmbCiudadNotificacion')" })
+                                            @Html.ValidationMessageFor(model => model._autorizado.Departamento, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Ciudad Notificación <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("CiudadNotificacion", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbCiudadNotificacion" })
+                                            @Html.ValidationMessageFor(model => model._autorizado.Ciudad, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Teléfono Móvil del autorizado</label>
+                                            @Html.EditorFor(model => model._autorizado.Celular, new { htmlAttributes = new { @class = "text-uppercase", id = "txtCelularAutorizado" } })
+                                            @Html.ValidationMessageFor(model => model._autorizado.Celular, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Teléfono Fijo del autorizado</label>
+                                            @Html.EditorFor(model => model._autorizado.TelefonoFijo, new { htmlAttributes = new { @class = "text-uppercase", id = "txtTelefonoAutorizado" } })
+                                            @Html.ValidationMessageFor(model => model._autorizado.TelefonoFijo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="section-gray">
+                                @if (Model.solicitudActual.variasInstituciones == true)
+                                {
+                                    <div class="title-image-b">
+                                        <img src="~/assets/images/icons/men-datos.svg" alt="">
+                                        <h3 class="wizard_genera_title">Información de las instituciones de educación superior que otorgan el título en el exterior</h3>
+                                    </div>
+
+                                    <div class="col-md-12 d-flex">
+                                        <a class="anadir" onclick="agregarIntitucion()" title="Agrega Institucion"><span>+</span></a>
+                                        <a class="anadir" onclick="agregarIntitucion()" title="Agrega Institucion">Agregar Institución</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="title-image-b">
+                                        <img src="~/assets/images/icons/men-datos.svg" alt="">
+                                        <h3 class="wizard_genera_title">Información de la institución de educación superior que otorga el título en el exterior</h3>
+                                    </div>
+                                }
+                                <div class="screen1_box">
+                                    <div class="screen_box_content">
+                                        <div class="scren_box_table erase_table">
+                                            <table class="erase_table" id="tblInstituciones">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">País <b class="text-danger">**</b></th>
+                                                        <th class="text-center">Ciudad <b class="text-danger">**</b></th>
+                                                        <th class="text-center">Institución Educación Superior <b class="text-danger">**</b></th>
+                                                        <th class="text-center" title="Indique el lugar en donde se ubica la institución donde adelanto sus estudios en el exterior">Estado/Región/Provincia</th>
+                                                        <th class="text-center" title="Se refiere a la unidad encargada dentro de la Institución de Educación Superior de ofertar las asignaturas y los espacios académicos del programa cursado">Instituto/Facultad</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model._institucionList)
+                                                    {
+                                                        <tr class="screen_box_active_tr text-uppercase">
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Pais, Model._institucionList[Model._institucionList.IndexOf(item)].ListaPaises, htmlAttributes: new { @class = "text-uppercase", id = "cmbPaisInstituto_" + @item.institucionId, @onchange = "multiplePaisInsti(this,'txtInputInstructivo_" + @item.institucionId + "','txtInputRutaInstructivo_" + @item.institucionId + "','txtInputRutaInstructivo_0_" + @item.institucionId + "','cmbCiudadExtrangera_" + @item.institucionId + "','txtCiudadExtrangeraText_" + @item.institucionId + "')" })
+                                                                @Html.ValidationMessageFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Pais, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Ciudad, Model._institucionList[Model._institucionList.IndexOf(item)].ListaCiudades, htmlAttributes: new { @class = "text-uppercase", id = "cmbCiudadExtrangera_" + @item.institucionId, @onchange = "SeleccionInsitutoTexto('cmbCiudadExtrangera_" + @item.institucionId + "','txtCiudadExtrangera_" + @item.institucionId + "','txtCiudadExtrangeraText_" + @item.institucionId + "','cmbInstituto_" + @item.institucionId + "','txtInstitutosText_" + @item.institucionId + "')" })
+                                                                @Html.EditorFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Ciudad, new { htmlAttributes = new { @class = "form-control text-uppercase", id = "txtCiudadExtrangera_" + @item.institucionId, @style = "display:none" } })
+                                                                @Html.EditorFor(model => model._institucionList[Model._institucionList.IndexOf(item)].CiudadText, new { htmlAttributes = new { @class = "form-control text-uppercase", id = "txtCiudadExtrangeraText_" + @item.institucionId, @style = item.DisplaysCiudadExtrText } })
+                                                                @Html.ValidationMessageFor(model => model._institucionList[Model._institucionList.IndexOf(item)].CiudadText, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.DropDownListFor(X => item.Instituto, Model._institucionList[Model._institucionList.IndexOf(item)].ListaInstituciones, htmlAttributes: new { @class = "text-uppercase", name = "item.Instituto", id = "cmbInstituto_" + @item.institucionId, @onchange = "SeleccionProgramaTexto('cmbInstituto_" + @item.institucionId + "','txtInstitutos_" + @item.institucionId + "','txtInstitutosText_" + @item.institucionId + "','txtInstitutosText_" + @item.institucionId + "')" })
+                                                                @Html.EditorFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Instituto, new { htmlAttributes = new { @class = "text-uppercase", id = "txtInstitutos_" + @item.institucionId, @style = "display:none" } })
+                                                                @Html.EditorFor(model => model._institucionList[Model._institucionList.IndexOf(item)].InstitutoText, new { htmlAttributes = new { @class = "form-control text-uppercase", id = "txtInstitutosText_" + @item.institucionId, @style = item.DisplasyInstitutoText } })
+                                                                @Html.ValidationMessageFor(model => model._institucionList[Model._institucionList.IndexOf(item)].InstitutoText, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Estado, new { maxlength = 50, @class = "text-uppercase" })
+                                                                @Html.ValidationMessageFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Estado, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Facultad, new { maxlength = 15, @class = "text-uppercase" })
+                                                                @Html.ValidationMessageFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Facultad, "", new { @class = "text-danger" })
+
+                                                            </td>
+                                                            <td>
+                                                                @Html.HiddenFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Instructivo)
+                                                                <ul class="no_list erase_actions">
+                                                                    <li>
+                                                                        <a class="button general_button button_pink button_small" onclick="retiraIntitucion(this.parentElement.parentElement.parentElement.parentElement)" title="Elimina Institucion">
+                                                                            <img src="~/assets/images/icons/men-borrar.svg" alt="">
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="title-image-b">
+                                    <img src="~/assets/images/icons/men-informacion.svg" alt="">
+                                    <h3 class="wizard_genera_title">Información del programa de educación superior obtenido en el exterior a convalidar</h3>
+                                </div>
+
+                                <h3 class="text-left">
+                                    <span class="resaltado">
+                                        Nombre del programa
+                                    </span>
+                                </h3>
+                                <p>
+                                    Si en la lista no encuentra el programa académico, seleccione la opción "OTRO" y escriba el nombre del
+                                    título como aparece en la traducción del diploma que desea convalidar.
+                                </p>
+
+                                <div class="row text-left">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Nombre del Programa <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("NombrePrograma", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbNombrePrograma", @onchange = "SeleccionProgramaTexto('cmbNombrePrograma','txtNombrePrograma','txtNombreProgramaText','divProgramaCursado')", @style = "max-width:100%" })
+                                            @Html.TextBoxFor(model => model._programa.NombrePrograma, new { maxlength = 300, @class = "text-uppercase", id = "txtNombrePrograma", @style = "display:none" })
+                                            @Html.DropDownList("NombreProgramaTitulo", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbNombreProgramaTitulo", @style = "display:none" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group" title="Registrar como aparece en el título (Diploma o acta de grado), y para los casos diferentes al castellano como aparece en la traducción oficial.">
+                                            <label for="">Título Otorgado <b class="text-danger">**</b></label>
+                                            @Html.TextBoxFor(model => model._programa.TituloObtenido, new { maxlength = 300, @class = "form-control text-uppercase", @style = "max-width:100%", id = "txtNombreProgramaText", @readOnly = true })
+                                            @Html.ValidationMessageFor(model => model._programa.TituloObtenido, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12" id="divProgramaCursado" style=@Model.displayNombrePrograma>
+                                        <div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Programa Manual <b class="text-danger">**</b></label>
+                                                    @Html.TextBoxFor(model => model._programa.NombreProgramaText, new { maxlength = 300, @class = "text-uppercase" })
+                                                    @Html.ValidationMessageFor(model => model._programa.NombreProgramaText, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Título Manual <b class="text-danger">**</b></label>
+                                                    @Html.TextBoxFor(model => model._programa.TituloObtenidoManual, new { maxlength = 300, @class = "text-uppercase" })
+                                                    @Html.ValidationMessageFor(model => model._programa.TituloObtenidoManual, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group" title="Posible Homologación del título en Colombia">
+                                            <label for="">Nivel de Formación <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("TipoEducacionSuperior", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbTipoEducacionS", @onchange = "SeleccionTipoEducacion()" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6" id="divTipoMaestria" style=@Model.esMaestria>
+                                        <div class="form-group">
+                                            <label for="">Tipo de Maestria <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("TipoMaestria", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbTipoMaestria", @onchange = "SeleccionAreaConocimiento()" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row text-left">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group" title="Nombre del título otorgado como el solicitante propone convalidar en Colombia.">
+                                            <label for="">Posible denominación del título<b class="text-danger">**</b></label>
+                                            @Html.TextBoxFor(model => model._programa.DenominacionTitulo, new { maxlength = 300, @class = "text-uppercase" })
+                                            @Html.ValidationMessageFor(model => model._programa.DenominacionTitulo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Duración Programa <b class="text-danger">**</b></label>
+                                            <div class="d-flex">
+                                                @Html.EditorFor(model => model._programa.Duracion, new { htmlAttributes = new { @class = "mr-4 text-uppercase" } })
+                                                @Html.DropDownList("TipoDuracion", null, htmlAttributes: new { @class = "text-uppercase", @style = "max-width:100%" })
+                                            </div>
+                                            <label for="">@Html.ValidationMessageFor(model => model._programa.Duracion, "", new { @class = "text-danger" }) </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Modalidad del programa <b class="text-danger">**</b></label>
+                                            @Html.DropDownList("ModalidadPrograma", null, htmlAttributes: new { @class = "text-uppercase" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group" title="Según como se encuentra registrado en la Clasificación Internacional Normalizada De La Educación – Campos De La Educación Y Formación Adaptada Para Colombia (CINE-F 2013 A.C.)">
+                                            <a href="https://www.dane.gov.co/files/noticias/CINE/cine-2013/Documento-CINE-F-2013-AC.pdf" target="_blank">
+                                                <label for="" style="color:black">Área de conocimiento <b class="text-danger">**</b></label>
+                                            </a>
+                                            @Html.DropDownList("CampoAmplioConocimiento", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbAreaConocimiento", @onchange = "SeleccionAreaConocimiento()" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group" title="Tal como aparece en el título (Diploma o acta de grado)">
+                                            <label for="">Fecha del Título<b class="text-danger">**</b></label>
+                                            @Html.EditorFor(model => model._programa.FechaTitulo, new { htmlAttributes = new { @class = "text-uppercase", @radonly="true" } })
+                                            @Html.ValidationMessageFor(model => model._programa.FechaTitulo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row col-12 text-left" id="divSegundaEspecialidad" style=@Model.areaSalud>
+
+                                    <div class="wizard_line_context sin-barra" id="divEspecialidadMedica" style="@Model.EspecialidadMedicaSaludDisplay">
+                                        <div class="d-flex">
+                                            <div class="respuestas mb-5 mt-4">
+                                                <div>
+                                                    <span>
+                                                        ¿Su título corresponde a una especialidad médica y quirúrgica, odontológica o maestría en profundización clínica en salud?
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <div class="respuestas">
+                                                        <label class="respuesta-contenido">
+                                                            SI
+                                                            @Html.RadioButton("EspecialidadMedicaSalud", "true")
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="respuesta-contenido">
+                                                            NO
+                                                            @Html.RadioButton("EspecialidadMedicaSalud", "false")
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="wizard_line_context sin-barra">
+                                        <div class="d-flex">
+                                            <div class="respuestas mb-5 mt-4">
+                                                <div>
+                                                    <span>
+                                                        ¿El título a convalidar corresponde a una subespecialidad o segunda especialidad?
+                                                    </span>
+                                                </div>
+                                                <div onclick="segundaDisplay()">
+                                                    <div class="respuestas">
+                                                        <label class="respuesta-contenido">
+                                                            SI
+                                                            @Html.RadioButton("segundaEspecialidadSalud", "true")
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="respuesta-contenido">
+                                                            NO
+                                                            @Html.RadioButton("segundaEspecialidadSalud", "false")
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12" id="divSegundaEspecialidadNacional" style="@Model.SegundaEspecialidadSaludDisplay">
+                                        <h3 class="text-left">
+                                            <span class="resaltado">
+                                                Información sobre la especialidad base o primera especialidad
+                                            </span>
+                                        </h3>
+
+                                        <div class="wizard_line_context sin-barra">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <span>
+                                                        ¿La subespecialidad o segunda especialidad es Nacional?
+                                                    </span>
+                                                </div>
+                                                <div onclick="segundaNacional()">
+                                                    <div class="respuestas">
+                                                        <label class="respuesta-contenido">
+                                                            SI
+                                                            @Html.RadioButton("segundaEspecialidadSaludNal", "true")
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="respuesta-contenido">
+                                                            NO
+                                                            @Html.RadioButton("segundaEspecialidadSaludNal", "false")
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row col-12" id="divSegundaEspecialidadNacionalSI" style="@Model.SegundaEspecialidadSaludDisplaySI">
+                                            <div class="row col-12">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Departamento <b class="text-danger">**</b></label>
+                                                        @Html.DropDownList("DptoInstitutoPreSeg", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbDptoInstitutoPreSeg", @onchange = "cambiaCiudad('cmbDptoInstitutoPreSeg','cmbCiudadInstitutoPreSeg')" })
+                                                        @Html.ValidationMessageFor(model => model .DptoInstitutoPre, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Ciudad <b class="text-danger">**</b></label>
+                                                        @Html.DropDownList("CiudadInstitutoPreSeg", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbCiudadInstitutoPreSeg", @onchange = "institucionXciudad('cmbCiudadInstitutoPreSeg','cmbNombreIntitutoSegunda')" })
+                                                        @Html.ValidationMessageFor(model => model.CiudadInstitutoPre, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Institución que otorgó la especialidad <b class="text-danger">**</b></label>
+                                                        @Html.DropDownList("NombreInstitucionSegundaEsp", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbNombreIntitutoSegunda", @onchange = "programaXinstitucion('cmbNombreIntitutoSegunda','txtNombreIntitutoSegunda','txtNombreIntitutoSegundaText','cmbNombreProgramaOtorgaPreSeg','cmbNombreProgramaTituloPreSeg')" })
+                                                        @Html.ValidationMessageFor(model => model._segundaEspecialidad.Instituto, "", new { @class = "text-danger" })
+                                                        @Html.TextBoxFor(model => model._segundaEspecialidad.Instituto, new { maxlength = 300, @class = "text-uppercase", id = "txtNombreIntitutoSegunda", @style = "display:none" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-6" id="divInstitutoPre">
+                                                    <div class="col-md-8" style="display:none">
+                                                        @Html.TextBoxFor(model => model._segundaEspecialidad.InstitutoText, new { @class = "form-control text-uppercase", id = "txtNombreIntitutoSegundaText" })
+                                                        @Html.ValidationMessageFor(model => model._segundaEspecialidad.InstitutoText, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="">Programa Académico <b class="text-danger">**</b></label>
+                                                        @Html.DropDownList("NombreProgramaOtorgaPreSeg", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbNombreProgramaOtorgaPreSeg", @onchange = "SeleccionProgramaPregrado('cmbNombreProgramaOtorgaPreSeg','txtEspecialidadObt','cmbNombreProgramaTituloPreSeg')" })
+                                                        @Html.ValidationMessageFor(model => model.NombreProgramaOtorgaPreSeg, "", new { @class = "text-danger" })
+                                                        @Html.DropDownList("NombreProgramaTituloPreSeg", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbNombreProgramaTituloPreSeg", @style = "display:none" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row col-12">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Especialidad Obtenida <b class="text-danger">**</b></label>
+                                                        @Html.TextBoxFor(model => model._segundaEspecialidad.Titulo, new { maxlength = 300, @class = "text-uppercase", id = "txtEspecialidadObt", @readOnly = true })
+                                                        @Html.ValidationMessageFor(model => model._segundaEspecialidad.Titulo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Fecha del Título<b class="text-danger">**</b></label>
+                                                        @Html.EditorFor(model => model._segundaEspecialidad.FechaTitulo, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                                        @Html.ValidationMessageFor(model => model._segundaEspecialidad.FechaTitulo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="divSegundaEspecialidadNacionalNO" style="@Model.SegundaEspecialidadSaludDisplayNO">
+
+                                            <div class="row col-12">
+                                                <p>Recuerde que su primera especialidad en el exterior debe estar convalidado con anterioridad.</p>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Entidad que emitió la Resolución de convalidación <b class="text-danger">**</b></label>
+                                                        @Html.DropDownList("_segundaEsp_Entidad", null, htmlAttributes: new { @class = "text-uppercase" })
+                                                        @Html.ValidationMessageFor(model => model._segundaEspecialidad.Entidad, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Numero de Resolución de convalidación <b class="text-danger">**</b></label>
+                                                        @Html.TextBoxFor(model => model._segundaEspecialidad.NroResolucion, new { maxlength = 10, @class = "text-uppercase" })
+                                                        @Html.ValidationMessageFor(model => model._segundaEspecialidad.NroResolucion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Fecha de la Resolución <b class="text-danger">**</b></label>
+                                                        @Html.EditorFor(model => model._segundaEspecialidad.FechaResolucion, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                                        @Html.ValidationMessageFor(model => model._segundaEspecialidad.FechaResolucion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="divVerificacionPrograma" style=@Model.displayValidacionInstituto >
+                                <div class="title-image-b">
+                                    <img src="~/assets/images/icons/men-verificacion.svg" alt="">
+                                    <h3 class="wizard_genera_title">Verificación del programa o institución de educación superior que otorga el título en el exterior</h3>
+                                </div>
+
+                                <div class="wizard_line_context sin-barra" style="padding-top:20px;padding-bottom:20px">
+                                    <p>
+                                        <span class="resaltado">
+                                            Consulte detalladamente el instructivo de apoyo para conocer si la Institución de Educación Superior o
+                                            el Programa que otorgó el título está acreditada en el país de origen.
+                                        </span><br>
+                                    </p>
+
+                                    <div class="screen1_box">
+                                        <div class="screen_box_content">
+                                            <div class="scren_box_table erase_table">
+                                                <table class="erase_table" id="tblInstructivos">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">País de la institución de educación superior que otorgó el título en el exterior</th>
+                                                            <th class="text-center">Instructivo / Guía del sistema educativo del país</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model._institucionList)
+                                                        {
+                                                            <tr class="screen_box_active_tr text-uppercase">
+                                                                <td>
+                                                                    @Html.EditorFor(model => model._institucionList[Model._institucionList.IndexOf(item)].Pais, new { htmlAttributes = new { @class = "text-uppercase", id = "txtInputInstructivo_" + @item.institucionId, @readOnly = true } })
+                                                                </td>
+                                                                <td>
+                                                                    @if (string.IsNullOrEmpty(item.RutaInstructivo))
+                                                                    {
+                                                                        <a id="txtInputRutaInstructivo_@item.institucionId">
+                                                                            @item.Instructivo
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a id="txtInputRutaInstructivo_@item.institucionId" href="@item.RutaInstructivo" target="_blank">
+                                                                            @item.Instructivo
+                                                                        </a>
+                                                                    }
+                                                                    <a id="txtInputRutaInstructivo_0_@item.institucionId" style="display:none"></a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row col-12 text-left">
+                                    <div class="wizard_line_context sin-barra">
+                                        <div class="text-left">
+                                            <p>
+                                                <span class="resaltado">
+                                                    Contestar correctamente la siguiente pregunta evitará reprocesos y demoras en el trámite de convalidación.
+                                                </span>
+                                            </p>
+                                        </div>
+
+                                        <div class="d-flex">
+                                            <div class="respuestas mb-5 mt-4">
+
+                                                <div>
+                                                    <span class="resaltado">
+                                                        ¿ Señor solicitante, El programa o al menos una de las instituciones de educación superior otorgantes del título en el exterior
+                                                        <a href="https://www.mineducacion.gov.co/portal/convalidaciones/Convalidaciones-Educacion-Superior/350999:Glosario" target="_blank">está acreditada o tiene reconocimiento de alta calidad</a> ?
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <div class="respuestas">
+                                                        <label class="respuesta-contenido">
+                                                            SI
+                                                            @Html.RadioButton("acreditacionCalidad", "true")
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="respuesta-contenido">
+                                                            NO
+                                                            @Html.RadioButton("acreditacionCalidad", "false")
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+
+                            @if (Model.solicitudActual.Tipo.ToUpper().Equals("POSGRADO"))
+                            {
+                                <div class="section-gray">
+                                    <div class="title-image-b">
+                                        <img src="~/assets/images/icons/men-datos.svg" alt="">
+                                        <h3 class="wizard_genera_title">
+                                            Información sobre el pregrado necesaria para convalidar título de posgrado
+                                        </h3>
+                                    </div>
+
+                                    @if (Model.solicitudActual.nacional == true)
+                                    {
+                                        <div class="row text-left">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Departamento <b class="text-danger">**</b></label>
+                                                    @Html.DropDownList("DptoInstitutoPre", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbDptoInstitutoPre", @onchange = "cambiaCiudad('cmbDptoInstitutoPre','cmbCiudadInstitutoPre')" })
+                                                    @Html.ValidationMessageFor(model => model.DptoInstitutoPre, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Ciudad <b class="text-danger">**</b></label>
+                                                    @Html.DropDownList("CiudadInstitutoPre", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbCiudadInstitutoPre", @onchange = "institucionXciudad('cmbCiudadInstitutoPre','cmbNombreIntitutoPregrado')" })
+                                                    @Html.ValidationMessageFor(model => model.CiudadInstitutoPre, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Institución que otorgó el título <b class="text-danger">**</b></label>
+                                                    @Html.DropDownList("NombreInstitucionOtorgaPre", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbNombreIntitutoPregrado", @onchange = "programaXinstitucion('cmbNombreIntitutoPregrado','txtNombreIntitutoPregrado','txtNombreIntitutoPregradoText','cmbNombreProgramaOtorgaPre','cmbNombreProgramaTituloPre')" })
+                                                    @Html.ValidationMessageFor(model => model._infoPregrado.Instituto, "", new { @class = "text-danger" })
+                                                    @Html.TextBoxFor(model => model._infoPregrado.Instituto, new { maxlength = 300, @class = "text-uppercase", id = "txtNombreIntitutoPregrado", @style = "display:none" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6" id="divInstitutoPre">
+                                                <div class="col-md-8" style="display:none">
+                                                    @Html.TextBoxFor(model => model._infoPregrado.InstitutoText, new { @class = "form-control text-uppercase", id = "txtNombreIntitutoPregradoText" })
+                                                    @Html.ValidationMessageFor(model => model._infoPregrado.InstitutoText, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Programa Académico <b class="text-danger">**</b></label>
+                                                    @Html.DropDownList("NombreProgramaOtorgaPre", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbNombreProgramaOtorgaPre", @onchange = "SeleccionProgramaPregrado('cmbNombreProgramaOtorgaPre','txtTituloPregrado','cmbNombreProgramaTituloPre')" })
+                                                    @Html.ValidationMessageFor(model => model.NombreProgramaOtorgaPre, "", new { @class = "text-danger" })
+                                                    @Html.DropDownList("NombreProgramaTituloPre", null, htmlAttributes: new { @class = "text-uppercase", id = "cmbNombreProgramaTituloPre", @style = "display:none" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Título Obtenido <b class="text-danger">**</b></label>
+                                                    @Html.TextBoxFor(model => model._infoPregrado.Titulo, new { maxlength = 300, @class = "text-uppercase", id = "txtTituloPregrado", @readOnly = true })
+                                                    @Html.ValidationMessageFor(model => model._infoPregrado.Titulo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Fecha del Título. <b class="text-danger">**</b></label>
+                                                    @Html.EditorFor(model => model._infoPregrado.FechaTitulo, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                                    @Html.ValidationMessageFor(model => model._infoPregrado.FechaTitulo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="row text-left">
+                                            <p>Recuerde que su pregrado en el exterior debe estar convalidado con anterioridad.</p>
+
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Entidad que emitió la Resolución de convalidación <b class="text-danger">**</b></label>
+                                                    @Html.DropDownList("_infoPregrado_Entidad", null, htmlAttributes: new { @class = "text-uppercase" })
+                                                    @Html.ValidationMessageFor(model => model._infoPregrado.Entidad, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Numero de Resolución de convalidación <b class="text-danger">**</b></label>
+                                                    @Html.TextBoxFor(model => model._infoPregrado.NroResolucion, new { maxlength = 10, @class = "form-control text-uppercase" })
+                                                    @Html.ValidationMessageFor(model => model._infoPregrado.NroResolucion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Fecha de la Resolución <b class="text-danger">**</b></label>
+                                                    @Html.EditorFor(model => model._infoPregrado.FechaResolucion, new { htmlAttributes = new { @class = "text-uppercase" } })
+                                                    @Html.ValidationMessageFor(model => model._infoPregrado.FechaResolucion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                            <p>
+                                <strong>
+                                    Observaciones generales (solo si es necesario realizar alguna aclaración)
+                                </strong>
+                            <p>
+                            @Html.TextAreaFor(model => model.Observaciones, 10, 55, htmlAttributes: new { @style="text-transform: uppercase" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="screen2_actions">
+                    <a onclick="validaFaseIII('atras')" class="button general_button has_icon button_blue">
+                        <div class="icon_wrap">
+                            <img src="~/assets/images/icons/men-anterior.svg" alt="">
+                        </div>
+                        Anterior
+                    </a>
+                    <a onclick="validaFaseIII('salir')" class="button general_button has_icon button_blue">
+                        <div class="icon_wrap">
+                            <img src="~/assets/images/icons/men-salir.svg" alt="">
+                        </div>
+                        Menú
+                    </a>
+                    <a onclick="validaFaseIII('siguiente')" class="button general_button has_icon button_pink">
+                        <div class="icon_wrap">
+                            <img src="~/assets/images/icons/men-acepto.svg" alt="">
+                        </div>
+                        Siguiente
+                    </a>
+                    <button value="Acepto" class="btn botones btn-lg" style="display:none" name="btnAceptaIII" id="btnAceptaIII">Siguiente</button>
+                </div>
+                @Html.HiddenFor(model => model.Pais)
+                @Html.HiddenFor(model => model.solicitudActual.Tipo, htmlAttributes: new { id = "hidenTipoSol" })
+                @Html.DropDownList("PaisInstituto", null, htmlAttributes: new { @class = "form-control", id = "cmbPaisInstituto", @style = "display:none" })
+                @Html.DropDownList("NombreInstitucion", null, htmlAttributes: new { @class = "form-control", id = "cmbInstituto", @style = "display:none" })
+            }
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
